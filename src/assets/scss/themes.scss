@@ -1,0 +1,170 @@
+
+// Ensure Bootstrap functions/mixins and project variables are available
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
+@import "./config/minimal/_variables.scss";
+@import "./config/minimal/_variables-dark.scss";
+@import "./config/minimal/_variables-custom.scss";
+
+//RTL
+@import "../scss/rtl/components-rtl";
+@import "../scss/rtl/layouts-rtl";
+@import "../scss/rtl/plugins-rtl";
+@import "../scss/rtl/pages-rtl";
+
+@import url("https://fonts.googleapis.com/css2?family=Almarai:wght@200;300;400;500;600&display=swap");
+
+/* NOTE: Project-specific SCSS files (icons, app, custom, RTL, etc.) were
+  referenced here but are not present in the repository. To avoid build
+  errors we'll only include the Google font and minimal global rules.
+  Bootstrap CSS is imported from `node_modules` in `src/index.js`.
+*/
+
+//Rigthsidebar offcanvas
+.offcanvas-header-dark {
+  .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+  }
+}
+
+* {
+  font-family: "Almarai", sans-serif;
+}
+
+h4 {
+  font-family: "Almarai", sans-serif;
+}
+
+body {
+  font-family: "Almarai", sans-serif !important;
+  background-color: #fafafa !important;
+
+  * {
+    outline: none;
+  }
+}
+.auth-pass-inputgroup {
+  input {
+    padding-right: $input-padding-x !important;
+  }
+  .end-0 {
+    right: auto !important;
+    left: 0;
+  }
+}
+
+// .Toastify__toast{
+//   min-height: 43px !important;
+//   max-height: 43px !important;
+// }
+
+// Toast
+.Toastify {
+  // .Toastify__toast {
+  //   min-height: 43px;
+  // }
+
+  .Toastify__close-button {
+    bottom: 10px !important;
+    right: 15px !important;
+  }
+
+  .Toastify__close-button--light {
+    color: $light;
+  }
+}
+
+.Toastify__toast--success {
+  background-color: #2e4652 !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  padding: 10px 20px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 18px !important;
+  letter-spacing: 0px !important;
+  text-align: center !important;
+  text-transform: capitalize !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3) !important;
+  direction: ltr;
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.draggable-items {
+  display: flex;
+  gap: 10px;
+}
+
+.draggable-item {
+  padding: 10px;
+  cursor: move;
+}
+
+.droppable-container {
+  min-height: 100px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.dropped-item {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.js-example-basic-single
+  .css-16xfy0z-control[aria-disabled="true"]
+  .css-olqui2-singleValue {
+  color: #212529 !important;
+}
+
+.Toastify__toast--error {
+  background-color: #e23f33 !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  padding: 10px 20px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 18px !important;
+  letter-spacing: 0px !important;
+  text-align: center !important;
+  text-transform: capitalize !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3) !important;
+  direction: ltr;
+}
+
+// icon color in toast success to white
+.Toastify__toast--success .Toastify__icon {
+  color: #fff !important;
+}
+
+.custom-toast .toastify-icon-success {
+  color: #fff !important;
+}
+
+[dir="rtl"] .Toastify__toast--waning {
+  text-align: right !important;
+}
+
+[dir="ltr"] .auth-pass-inputgroup .end-0 {
+  left: auto !important;
+  right: 0 !important;
+}
+
+.css-13cymwt-control{
+  border-radius: 0.375rem !important;
+}
+
+[dir="rtl"] .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  border-top-right-radius: 0px !important ;
+  border-bottom-right-radius: 0px !important;
+}
+
+[dir="rtl"] .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+  border-top-right-radius: 0.375rem  !important ;
+  border-bottom-right-radius: 0.375rem  !important;
+}

@@ -1,0 +1,51 @@
+{
+  "Registers":{
+    "Register": "تسجيل",
+    "Login": "تسجيل دخول",
+    "Center_Education": "🎓 Center_Education",
+    "Center_Educations": "Center Education ",
+    "new_account_Centers_Education": "انشاء حساب جديد في Centers Education",
+    "Log_in_to_Centers_Education": "تسجيل دخول في Centers Education",
+
+    "first_Name": "الاسم الاول",
+    "last_Name": "الاسم الاخير",
+    "email": "البريد الالكتروني",
+    "phone": "رقم الهاتف",
+    "password": "كلمة المرور",
+    "confirm_Password": "تأكيد كلمة المرور",
+    "age": "العمر",
+    "address": "العنوان",
+    "Account_type": "نوع الحساب",
+    "Teacher": "مدرس",
+    "Student": "طالب",
+    "Employee": "موظف",
+    "Assistant": "مساعد",
+    "sign_new_account": "تسجيل حساب جديد",
+    
+    "EmailIncorrect": "البريد الإلكتروني غير صحيح",
+    "EmailRequired": "البريد الإلكتروني مطلوب",
+    "mobileNumberValidation": "التحقق من رقم الجوال",
+    "enterSaudiCorrectNumber": "أدخل الرقم الهاتف الصحيح",
+    "PasswordDoesNotmatch": "كلمة المرور غير متطابقة",
+    "passwordValidation": "التحقق من صحة كلمة المرور",
+    "PasswordConfirmationRequired": "يلزم تأكيد كلمة المرور",
+
+    "loginByEmail": "تسجيل الدخول عن طريق الايميل",
+    "LoginByMobile": "تسجيل الدخول عن طريق رقم الجوال",
+
+    "": ""
+  },
+  "common":{
+    "Welcome_to": "أهلاً بكم في.",
+    "Platform": "منصة",
+    "Back": "عودة",
+    "placeholder": "....",
+    "enter": "ادخل",
+    "required": "مطلوب",
+    "Select": "اختر",
+    "numbers_Only": "ارقام فقط",
+    "minAge": "الحد الأدنى للسن 5 سنوات",
+    "maxAge": "الحد الأقصى للسن 99"
+  }
+
+}

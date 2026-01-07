@@ -1,0 +1,51 @@
+{
+  "Registers":{
+    "Register": "Register",
+    "Login": "Login",
+
+    "Center_Education": "🎓 Center_Education ",
+    "Center_Educations": "Center Education ",
+    "new_account_Centers_Education": "Create a new account Centers Education",
+    "Log_in_to_Centers_Education": "Log in to Centers Education",
+
+    "first_Name": "First Name",
+    "last_Name": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "confirm_Password": "Confirm Password",
+    "age": "Age",
+    "address": "Address",
+    "Account_type": "Account type",
+    "Teacher": "Teacher",
+    "Student": "Student",
+    "Employee": "Employee",
+    "Assistant": "Assistant",
+    "sign_new_account": "Sign New Account",
+
+    "EmailIncorrect": "Invalid email address",
+    "EmailRequired": "Email address required",
+    "mobileNumberValidation": "Verify mobile number",
+    "enterSaudiCorrectNumber": "Enter correct phone number",
+    "PasswordDoesNotmatch": "Password not matched",
+    "passwordValidation": "Verify password",
+    "PasswordConfirmationRequired": "Password confirmation required",
+    "loginByEmail": "Login using email",
+    "LoginByMobile": "Login using mobile number",
+    
+    "": ""
+  },
+  "common":{
+    "Welcome_to": "Welcome to",
+    "Platform": "Platform",
+    "Back": "Back",
+    "placeholder": "....",
+    "enter": "Enter",
+    "required": "required",
+    "Select": "Select",
+    "numbers_Only": "Numbers only",
+    "minAge": "Minimum age: 5 years",
+    "maxAge": "Maximum age: 99"
+
+  }
+}

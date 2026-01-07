@@ -1,0 +1,1763 @@
+
+{
+    "phoneCodes": [
+        {
+            "id": 1,
+            "country_id": 1,
+            "code": "93",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 2,
+            "country_id": 2,
+            "code": "+358-18",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 3,
+            "country_id": 3,
+            "code": "355",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 4,
+            "country_id": 4,
+            "code": "213",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 5,
+            "country_id": 5,
+            "code": "+1-684",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 6,
+            "country_id": 6,
+            "code": "376",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 7,
+            "country_id": 7,
+            "code": "244",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 8,
+            "country_id": 8,
+            "code": "+1-264",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 9,
+            "country_id": 9,
+            "code": "672",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 10,
+            "country_id": 10,
+            "code": "+1-268",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 11,
+            "country_id": 11,
+            "code": "54",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 12,
+            "country_id": 12,
+            "code": "374",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 13,
+            "country_id": 13,
+            "code": "297",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 14,
+            "country_id": 14,
+            "code": "61",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 15,
+            "country_id": 15,
+            "code": "43",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 16,
+            "country_id": 16,
+            "code": "994",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 17,
+            "country_id": 17,
+            "code": "+1-242",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 18,
+            "country_id": 18,
+            "code": "973",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 19,
+            "country_id": 19,
+            "code": "880",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 20,
+            "country_id": 20,
+            "code": "+1-246",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 21,
+            "country_id": 21,
+            "code": "375",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 22,
+            "country_id": 22,
+            "code": "32",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 23,
+            "country_id": 23,
+            "code": "501",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 24,
+            "country_id": 24,
+            "code": "229",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 25,
+            "country_id": 25,
+            "code": "+1-441",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 26,
+            "country_id": 26,
+            "code": "975",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 27,
+            "country_id": 27,
+            "code": "591",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 28,
+            "country_id": 28,
+            "code": "387",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 29,
+            "country_id": 29,
+            "code": "267",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 30,
+            "country_id": 30,
+            "code": "0055",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 31,
+            "country_id": 31,
+            "code": "55",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 32,
+            "country_id": 32,
+            "code": "246",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 33,
+            "country_id": 33,
+            "code": "673",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 34,
+            "country_id": 34,
+            "code": "359",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 35,
+            "country_id": 35,
+            "code": "226",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 36,
+            "country_id": 36,
+            "code": "257",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 37,
+            "country_id": 37,
+            "code": "855",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 38,
+            "country_id": 38,
+            "code": "237",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 39,
+            "country_id": 39,
+            "code": "1",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 40,
+            "country_id": 40,
+            "code": "238",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 41,
+            "country_id": 41,
+            "code": "+1-345",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 42,
+            "country_id": 42,
+            "code": "236",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 43,
+            "country_id": 43,
+            "code": "235",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 44,
+            "country_id": 44,
+            "code": "56",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 45,
+            "country_id": 45,
+            "code": "86",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 46,
+            "country_id": 46,
+            "code": "61",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 47,
+            "country_id": 47,
+            "code": "61",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 48,
+            "country_id": 48,
+            "code": "57",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 49,
+            "country_id": 49,
+            "code": "269",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 50,
+            "country_id": 50,
+            "code": "242",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 51,
+            "country_id": 51,
+            "code": "243",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 52,
+            "country_id": 52,
+            "code": "682",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 53,
+            "country_id": 53,
+            "code": "506",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 54,
+            "country_id": 54,
+            "code": "225",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 55,
+            "country_id": 55,
+            "code": "385",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 56,
+            "country_id": 56,
+            "code": "53",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 57,
+            "country_id": 57,
+            "code": "357",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 58,
+            "country_id": 58,
+            "code": "420",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 59,
+            "country_id": 59,
+            "code": "45",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 60,
+            "country_id": 60,
+            "code": "253",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 61,
+            "country_id": 61,
+            "code": "+1-767",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 62,
+            "country_id": 62,
+            "code": "+1-809 and 1-829",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 63,
+            "country_id": 63,
+            "code": "670",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 64,
+            "country_id": 64,
+            "code": "593",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 65,
+            "country_id": 65,
+            "code": "20",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 66,
+            "country_id": 66,
+            "code": "503",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 67,
+            "country_id": 67,
+            "code": "240",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 68,
+            "country_id": 68,
+            "code": "291",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 69,
+            "country_id": 69,
+            "code": "372",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 70,
+            "country_id": 70,
+            "code": "251",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 71,
+            "country_id": 71,
+            "code": "500",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 72,
+            "country_id": 72,
+            "code": "298",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 73,
+            "country_id": 73,
+            "code": "679",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 74,
+            "country_id": 74,
+            "code": "358",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 75,
+            "country_id": 75,
+            "code": "33",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 76,
+            "country_id": 76,
+            "code": "594",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 77,
+            "country_id": 77,
+            "code": "689",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 78,
+            "country_id": 78,
+            "code": "262",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 79,
+            "country_id": 79,
+            "code": "241",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 80,
+            "country_id": 80,
+            "code": "220",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 81,
+            "country_id": 81,
+            "code": "995",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 82,
+            "country_id": 82,
+            "code": "49",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 83,
+            "country_id": 83,
+            "code": "233",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 84,
+            "country_id": 84,
+            "code": "350",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 85,
+            "country_id": 85,
+            "code": "30",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 86,
+            "country_id": 86,
+            "code": "299",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 87,
+            "country_id": 87,
+            "code": "+1-473",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 88,
+            "country_id": 88,
+            "code": "590",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 89,
+            "country_id": 89,
+            "code": "+1-671",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 90,
+            "country_id": 90,
+            "code": "502",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 91,
+            "country_id": 91,
+            "code": "+44-1481",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 92,
+            "country_id": 92,
+            "code": "224",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 93,
+            "country_id": 93,
+            "code": "245",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 94,
+            "country_id": 94,
+            "code": "592",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 95,
+            "country_id": 95,
+            "code": "509",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 96,
+            "country_id": 96,
+            "code": "672",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 97,
+            "country_id": 97,
+            "code": "504",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 98,
+            "country_id": 98,
+            "code": "852",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 99,
+            "country_id": 99,
+            "code": "36",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 100,
+            "country_id": 100,
+            "code": "354",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 101,
+            "country_id": 101,
+            "code": "91",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 102,
+            "country_id": 102,
+            "code": "62",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 103,
+            "country_id": 103,
+            "code": "98",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 104,
+            "country_id": 104,
+            "code": "964",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 105,
+            "country_id": 105,
+            "code": "353",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 106,
+            "country_id": 106,
+            "code": "972",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 107,
+            "country_id": 107,
+            "code": "39",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 108,
+            "country_id": 108,
+            "code": "+1-876",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 109,
+            "country_id": 109,
+            "code": "81",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 110,
+            "country_id": 110,
+            "code": "+44-1534",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 111,
+            "country_id": 111,
+            "code": "962",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 112,
+            "country_id": 112,
+            "code": "7",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 113,
+            "country_id": 113,
+            "code": "254",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 114,
+            "country_id": 114,
+            "code": "686",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 115,
+            "country_id": 115,
+            "code": "850",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 116,
+            "country_id": 116,
+            "code": "82",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 117,
+            "country_id": 117,
+            "code": "965",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 118,
+            "country_id": 118,
+            "code": "996",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 119,
+            "country_id": 119,
+            "code": "856",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 120,
+            "country_id": 120,
+            "code": "371",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 121,
+            "country_id": 121,
+            "code": "961",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 122,
+            "country_id": 122,
+            "code": "266",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 123,
+            "country_id": 123,
+            "code": "231",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 124,
+            "country_id": 124,
+            "code": "218",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 125,
+            "country_id": 125,
+            "code": "423",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 126,
+            "country_id": 126,
+            "code": "370",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 127,
+            "country_id": 127,
+            "code": "352",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 128,
+            "country_id": 128,
+            "code": "853",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 129,
+            "country_id": 129,
+            "code": "389",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 130,
+            "country_id": 130,
+            "code": "261",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 131,
+            "country_id": 131,
+            "code": "265",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 132,
+            "country_id": 132,
+            "code": "60",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 133,
+            "country_id": 133,
+            "code": "960",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 134,
+            "country_id": 134,
+            "code": "223",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 135,
+            "country_id": 135,
+            "code": "356",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 136,
+            "country_id": 136,
+            "code": "+44-1624",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 137,
+            "country_id": 137,
+            "code": "692",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 138,
+            "country_id": 138,
+            "code": "596",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 139,
+            "country_id": 139,
+            "code": "222",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 140,
+            "country_id": 140,
+            "code": "230",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 141,
+            "country_id": 141,
+            "code": "262",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 142,
+            "country_id": 142,
+            "code": "52",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 143,
+            "country_id": 143,
+            "code": "691",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 144,
+            "country_id": 144,
+            "code": "373",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 145,
+            "country_id": 145,
+            "code": "377",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 146,
+            "country_id": 146,
+            "code": "976",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 147,
+            "country_id": 147,
+            "code": "382",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 148,
+            "country_id": 148,
+            "code": "+1-664",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 149,
+            "country_id": 149,
+            "code": "212",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 150,
+            "country_id": 150,
+            "code": "258",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 151,
+            "country_id": 151,
+            "code": "95",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 152,
+            "country_id": 152,
+            "code": "264",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 153,
+            "country_id": 153,
+            "code": "674",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 154,
+            "country_id": 154,
+            "code": "977",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 155,
+            "country_id": 155,
+            "code": "599",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 156,
+            "country_id": 156,
+            "code": "31",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 157,
+            "country_id": 157,
+            "code": "687",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 158,
+            "country_id": 158,
+            "code": "64",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 159,
+            "country_id": 159,
+            "code": "505",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 160,
+            "country_id": 160,
+            "code": "227",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 161,
+            "country_id": 161,
+            "code": "234",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 162,
+            "country_id": 162,
+            "code": "683",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 163,
+            "country_id": 163,
+            "code": "672",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 164,
+            "country_id": 164,
+            "code": "+1-670",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 165,
+            "country_id": 165,
+            "code": "47",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 166,
+            "country_id": 166,
+            "code": "968",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 167,
+            "country_id": 167,
+            "code": "92",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 168,
+            "country_id": 168,
+            "code": "680",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 169,
+            "country_id": 169,
+            "code": "970",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 170,
+            "country_id": 170,
+            "code": "507",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 171,
+            "country_id": 171,
+            "code": "675",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 172,
+            "country_id": 172,
+            "code": "595",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 173,
+            "country_id": 173,
+            "code": "51",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 174,
+            "country_id": 174,
+            "code": "63",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 175,
+            "country_id": 175,
+            "code": "870",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 176,
+            "country_id": 176,
+            "code": "48",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 177,
+            "country_id": 177,
+            "code": "351",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 178,
+            "country_id": 178,
+            "code": "+1-787 and 1-939",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 179,
+            "country_id": 179,
+            "code": "974",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 180,
+            "country_id": 180,
+            "code": "262",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 181,
+            "country_id": 181,
+            "code": "40",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 182,
+            "country_id": 182,
+            "code": "7",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 183,
+            "country_id": 183,
+            "code": "250",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 184,
+            "country_id": 184,
+            "code": "290",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 185,
+            "country_id": 185,
+            "code": "+1-869",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 186,
+            "country_id": 186,
+            "code": "+1-758",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 187,
+            "country_id": 187,
+            "code": "508",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 188,
+            "country_id": 188,
+            "code": "+1-784",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 189,
+            "country_id": 189,
+            "code": "590",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 190,
+            "country_id": 190,
+            "code": "590",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 191,
+            "country_id": 191,
+            "code": "685",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 192,
+            "country_id": 192,
+            "code": "378",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 193,
+            "country_id": 193,
+            "code": "239",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 194,
+            "country_id": 194,
+            "code": "966",
+            "created_at": null,
+            "updated_at": null
+        },
+     
+        {
+            "id": 195,
+            "country_id": 195,
+            "code": "221",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 196,
+            "country_id": 196,
+            "code": "381",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 197,
+            "country_id": 197,
+            "code": "248",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 198,
+            "country_id": 198,
+            "code": "232",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 199,
+            "country_id": 199,
+            "code": "65",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 200,
+            "country_id": 200,
+            "code": "421",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 201,
+            "country_id": 201,
+            "code": "386",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 202,
+            "country_id": 202,
+            "code": "677",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 203,
+            "country_id": 203,
+            "code": "252",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 204,
+            "country_id": 204,
+            "code": "27",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 205,
+            "country_id": 205,
+            "code": "500",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 206,
+            "country_id": 206,
+            "code": "211",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 207,
+            "country_id": 207,
+            "code": "34",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 208,
+            "country_id": 208,
+            "code": "94",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 209,
+            "country_id": 209,
+            "code": "249",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 210,
+            "country_id": 210,
+            "code": "597",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 211,
+            "country_id": 211,
+            "code": "47",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 212,
+            "country_id": 212,
+            "code": "268",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 213,
+            "country_id": 213,
+            "code": "46",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 214,
+            "country_id": 214,
+            "code": "41",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 215,
+            "country_id": 215,
+            "code": "963",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 216,
+            "country_id": 216,
+            "code": "886",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 217,
+            "country_id": 217,
+            "code": "992",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 218,
+            "country_id": 218,
+            "code": "255",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 219,
+            "country_id": 219,
+            "code": "66",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 220,
+            "country_id": 220,
+            "code": "228",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 221,
+            "country_id": 221,
+            "code": "690",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 222,
+            "country_id": 222,
+            "code": "676",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 223,
+            "country_id": 223,
+            "code": "+1-868",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 224,
+            "country_id": 224,
+            "code": "216",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 225,
+            "country_id": 225,
+            "code": "90",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 226,
+            "country_id": 226,
+            "code": "993",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 227,
+            "country_id": 227,
+            "code": "+1-649",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 228,
+            "country_id": 228,
+            "code": "688",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 229,
+            "country_id": 229,
+            "code": "256",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 230,
+            "country_id": 230,
+            "code": "380",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 231,
+            "country_id": 231,
+            "code": "971",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 232,
+            "country_id": 232,
+            "code": "44",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 233,
+            "country_id": 233,
+            "code": "1",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 234,
+            "country_id": 234,
+            "code": "1",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 235,
+            "country_id": 235,
+            "code": "598",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 236,
+            "country_id": 236,
+            "code": "998",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 237,
+            "country_id": 237,
+            "code": "678",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 238,
+            "country_id": 238,
+            "code": "379",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 239,
+            "country_id": 239,
+            "code": "58",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 240,
+            "country_id": 240,
+            "code": "84",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 241,
+            "country_id": 241,
+            "code": "+1-284",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 242,
+            "country_id": 242,
+            "code": "+1-340",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 243,
+            "country_id": 243,
+            "code": "681",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 244,
+            "country_id": 244,
+            "code": "212",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 245,
+            "country_id": 245,
+            "code": "967",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 246,
+            "country_id": 246,
+            "code": "260",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 247,
+            "country_id": 247,
+            "code": "263",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 248,
+            "country_id": 248,
+            "code": "383",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 249,
+            "country_id": 249,
+            "code": "599",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 250,
+            "country_id": 250,
+            "code": "1721",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 251,
+            "country_id": 251,
+            "code": "+20",
+            "created_at": null,
+            "updated_at": null
+        }
+    ]
+}
