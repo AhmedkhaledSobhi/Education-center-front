@@ -34,7 +34,7 @@ const Layout = (props) => {
           </div>
         </Suspense>
       </div>
-      <RightSidebar />
+      {/* <RightSidebar /> */}
     </React.Fragment>
   );
 }

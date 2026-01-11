@@ -15,7 +15,6 @@ const resources = {
 };
 
 const language = localStorage.getItem("I18N_LANGUAGE");
-// console.log("ahmed language", language);
 
 if (!language) {
   localStorage.setItem("I18N_LANGUAGE", "ar");
