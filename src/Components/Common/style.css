@@ -1,0 +1,115 @@
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.loader {
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally within the loader container */
+}
+
+.loading-text {
+  font-size: 34px; /* Adjust the font size as needed */
+  margin-top: 20px; /* Add some space between the spinner and the text */
+  padding: 5px;
+}
+
+.notify-link {
+  /* color: #283c47 !important; */
+  font-size: 16px;
+  font-weight: 400;
+}
+.notify-link p {
+  height: 18px;
+  overflow: hidden;
+}
+.notify-link:hover,
+.view-all-notifications:hover {
+  text-decoration: none;
+}
+
+.active_notification {
+  position: relative;
+}
+.active_notification::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  translate: 50% 0;
+  height: 8px;
+  width: 8px;
+  background-color: #2a9d94;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .dir-sm-screen {
+    flex-direction: column !important;
+    justify-content: center;
+  }
+  .w-sm-screen {
+    width: 100% !important;
+  }
+}
+
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  display: inline-block;
+  text-align: left;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  display: block;
+  width: 30px;
+  height: 13px;
+  background-color: #ccc;
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-label::after {
+  content: "";
+  position: absolute;
+  top: -2.5px;
+  left: -4px;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0px 0px 1px 0px black;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: #268f87;
+}
+
+.toggle-input:checked + .toggle-label::after {
+  transform: translateX(20px);
+}

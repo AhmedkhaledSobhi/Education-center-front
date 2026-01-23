@@ -1,0 +1,29 @@
+//
+// breadcrumb.scss
+//
+
+// Breadcrumb item arrow
+.breadcrumb-item {
+  > a {
+    color: var(--#{$prefix}body-color);
+  }
+  + .breadcrumb-item {
+    &::before {
+      font-family: "Material Design Icons";
+      font-size: 18px;
+      line-height: 20px;
+      //   content: "\003E";
+    }
+  }
+}
+html[lang='en'] .breadcrumb-item {
+  + .breadcrumb-item {
+    &::before {
+      float: left;
+      padding-right: 0px;
+      transform: rotateY(180deg);
+      padding-left:0px ;
+    
+    }
+  }
+}

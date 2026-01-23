@@ -1,5 +1,5 @@
 import flagus from "../assets/images/flags/us.svg";
-import flagarabic from "../assets/images/flags/ar.svg";
+import flagarabic from "../assets/images/flags/eg.svg";
 
 // const languages = {
 //   sp: {

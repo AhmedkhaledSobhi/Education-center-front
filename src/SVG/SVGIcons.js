@@ -63,8 +63,16 @@ import location from "./location.svg";
 import location2 from "./location2.svg";
 import logo from "./logo.svg";
 import Uplaod from "./Uplaod.svg";
+import logoLight from "./logoLight.svg";
+import logoDark from "./logoDark.svg";
+
 
 import CenterEducation from "./CenterEducation.svg"
+import changePassword from "./changePassword.svg";
+import Settings from "./Settings.svg";
+import Profile from "./Profile.svg";
+import Point from "./Point.svg";
+import UpgradesSubscriptions from "./UpgradesSubscriptions.svg";
 
 const MySVG = {
   saveDraft,
@@ -131,7 +139,14 @@ const MySVG = {
   location2,
   logo,
   Uplaod,
-  CenterEducation
+  CenterEducation,
+  logoLight,
+  logoDark,
+  changePassword,
+  Settings,
+  Profile,
+  Point,
+  UpgradesSubscriptions
 };
 
 export default MySVG;

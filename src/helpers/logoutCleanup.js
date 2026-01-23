@@ -24,7 +24,6 @@ export const performLogoutCleanup = () => {
   // Clear all storage
   localStorage.clear();
   sessionStorage.clear();
-
   // Clear all cookies
   clearAllCookies();
 };

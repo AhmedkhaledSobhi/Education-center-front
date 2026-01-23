@@ -45,7 +45,33 @@
     "Select": "Select",
     "numbers_Only": "Numbers only",
     "minAge": "Minimum age: 5 years",
-    "maxAge": "Maximum age: 99"
+    "maxAge": "Maximum age: 99",
+    "soon": "soon",
+    "save": "save",
+    "SaveNew": "Save New",
+    "SaveAsADraft": "Save As A Draft",
+    "main": "Home"
+
+
+  },
+  "ProfileDropdown":{
+    "Welcome": "Welcome",
+    "Profile": "Profile",
+    "UpgradesAndSubscriptions": "Upgrades and Subscriptions",
+    "changePassword": "Change Password",
+    "accountSettings": "Account Settings",
+    "Logout": "Logout",
+    "Settings": "Settings"
+  },
+  "LayoutMenuData":{
+    "main": "Home",
+    "Settings": "Settings",
+    "Users": "Users",
+    "Teachers": "Teachers",
+    "Students": "Students",
+    "Employee": "Employee",
+    "Assistants": "Assistants",
+    "rolesPermissions": "roles Permissions"
 
   }
 }

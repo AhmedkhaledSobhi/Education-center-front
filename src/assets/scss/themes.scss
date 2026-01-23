@@ -1,16 +1,17 @@
 
-// Ensure Bootstrap functions/mixins and project variables are available
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/mixins";
-@import "./config/minimal/_variables.scss";
-@import "./config/minimal/_variables-dark.scss";
-@import "./config/minimal/_variables-custom.scss";
-
+@import "../scss/icons.scss";
+@import "../scss/config/minimal/bootstrap.scss";
+@import "../scss/config/minimal/app.scss";
+@import "../scss/config/minimal/custom.scss";
+@import "./shepherd.css";
+@import "./mermaid.min.css";
 //RTL
 @import "../scss/rtl/components-rtl";
 @import "../scss/rtl/layouts-rtl";
 @import "../scss/rtl/plugins-rtl";
 @import "../scss/rtl/pages-rtl";
+
+@import "./ButtonComponent.scss";
 
 @import url("https://fonts.googleapis.com/css2?family=Almarai:wght@200;300;400;500;600&display=swap");
 
@@ -168,3 +169,39 @@ body {
   border-top-right-radius: 0.375rem  !important ;
   border-bottom-right-radius: 0.375rem  !important;
 }
+
+.navbar-menu .navbar-nav .nav-link[data-bs-toggle=collapse][aria-expanded=true] {
+    color: var(--vz-vertical-menu-item-active-color);
+}
+// ------------------------------------
+.soon-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.soon-container {
+  position: absolute;
+  overflow: hidden;
+  // transform: rotate(-45deg);
+  // left: -15px;
+  top: 5px !important;
+  background: #0d6efd;
+  text-align: center;
+  color: white;
+  display: block;
+  font-size: 12px;
+  width: 50px;
+  padding: 1px 0;
+}
+html[lang="ar"] {
+  .soon-container {
+    left: -15px !important;
+    transform: rotate(-50deg) !important;
+  }
+};
+html[lang="en"] {
+  .soon-container {
+    right: -15px !important;
+    transform: rotate(45deg) !important;
+  }
+};

@@ -1,0 +1,769 @@
+.section-color {
+  background-color: #fafafa;
+}
+
+.new-card {
+  display: flex;
+  border-radius: 8px;
+  border-right: 8px solid #2a9d94;
+  background: #eaf5f4;
+  margin-bottom: 24px;
+  align-items: center;
+}
+html[lang="en"] .new-card {
+  border-left: 8px solid #2a9d94;
+  border-right: none;
+}
+.new-card div {
+  flex: 1 0 0;
+  padding: 16px 24px;
+  display: flex;
+}
+
+.new-card .icon {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  align-items: baseline;
+  color: #283c47;
+}
+
+.new-card p {
+  color: #53636c;
+  text-align: right;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 200%;
+  margin: 0px;
+  width: 80%;
+  font-family: "Almarai" !important;
+}
+html[lang="en"] .new-card p {
+  text-align: left;
+}
+.new-card i {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.new-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-card-info .drop-down-save,
+.new-card-info .drop-down {
+  border-radius: 10px;
+  display: flex;
+  height: 40px;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-family: "Almarai" !important;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  background-color: #00a598;
+}
+
+.new-card-info .drop-down[aria-expanded="true"] {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.new-card-info .dropdown-menu.show {
+  background-color: #eaeced80;
+  min-width: 10rem !important;
+  padding: 0px !important;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.store .dropdown-menu.show {
+  background-color: #eaeced80;
+  min-width: 10.7rem !important;
+  padding: 0px !important;
+  border-radius: 0px 0px 10px 10px;
+}
+
+/* .new-card-info */
+ .dropdown-item {
+  padding-right: 14px !important;
+  padding-left: 14px !important;
+}
+
+/* .new-card-info  */
+.dropdown-item span {
+  text-align: right;
+  font-family: "Almarai" !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-inline-start: 8px;
+  color: #283c47;
+}
+
+.close-icon {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1.5px solid #d60000;
+  padding: 8px 24px;
+}
+
+.close-icon span {
+  margin-inline-start: 8px;
+  color: #d60000;
+  font-weight: 700;
+}
+
+.close-icon i,
+.info-icon i {
+  font-size: 20px;
+}
+
+.info-icon {
+  display: flex;
+  height: 40px;
+  padding: 8px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1.5px solid #283c47;
+  cursor: pointer;
+}
+
+.new-card-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.info-icon,
+.close-icon {
+  margin-inline-start: 16px;
+}
+
+.title {
+  color: #283c47;
+  text-align: right;
+  font-family: "Almarai" !important;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.maunal-permission {
+  background-color: #fff;
+  margin: 20px 0px;
+  border-radius: 10px;
+}
+
+.sub-title {
+  border-bottom: 1px solid #eaeced;
+  padding: 14px 24px;
+  color: #283c47;
+  font-family: "Almarai" !important;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 700 !important;
+  line-height: normal;
+}
+
+.maunal-permission-data {
+  padding: 24px;
+}
+
+.input-permission {
+  margin-inline-end: 24px;
+}
+
+.maunal-permission-data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100% !important;
+}
+
+.input-number {
+  width: 220px;
+}
+
+.input-select {
+  width: 470px;
+}
+
+.input-new-select {
+  width: 283px;
+}
+
+/* .content-table {
+  border-collapse: collapse;
+  margin: 25px 0px;
+  font-size: 20px;
+  min-width: 400px;
+  overflow: hidden;
+  width: 100%;
+  overflow-x: auto;
+} */
+
+/* .content-table thead tr {
+  background-color: rgb(235, 236, 237);
+  color: #283c47;
+  text-align: left;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 8px;
+  text-align: right;
+} */
+
+/* .content-table thead tr th:nth-child(1) {
+  border-radius: 5px 0px 0px 0px;
+}
+
+.content-table th:nth-last-child(1) {
+  border-radius: 0px 5px 0px 0px;
+} */
+
+/* .content-table thead tr th:first-child {
+  border-right-style: solid;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-align: center;
+}
+.content-table thead tr th:last-child {
+  border-left-style: solid;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+} */
+
+.content-info,
+.info {
+  display: flex;
+}
+
+.info {
+  justify-content: center;
+  align-items: center;
+}
+
+.permission-product {
+  display: inline-flex;
+  padding-bottom: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #fff;
+  width: 100%;
+  margin: 20px 0px;
+  border-radius: 10px;
+}
+
+.store-product-title {
+  padding: 10px 24px;
+  border-bottom: 1px solid #eaeced;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.permmision-table {
+  /* py-2 */
+  padding: 12px;
+}
+
+.table-delete {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px !important;
+  background-color: #fde5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.table-delete i {
+  color: #d60000;
+  font-size: 25px;
+}
+
+/* .remove-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+.table-delete {
+  margin-inline-start: 15px;
+}
+
+.table-number {
+  display: flex;
+  width: 57px;
+  height: 40px;
+  padding: 10px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+  background-color: rgba(234, 236, 237, 0.5);
+  color: #9ca5aa;
+  text-align: right;
+  font-family: "Almarai" !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.table-number.text {
+  padding: 10px 15px !important;
+  width: 35px !important;
+}
+
+.add-product-table {
+  display: flex;
+  height: 40px;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  opacity: 0.8;
+  background-color: transparent;
+  color: #fff;
+  font-family: "Almarai" !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 1px solid #2a9d94;
+  background-color: #2a9d94;
+}
+
+.add-product-new-table {
+  display: flex;
+  height: 40px;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  opacity: 0.8;
+  background-color: transparent;
+  color: #fff;
+  color: #2a9d94;
+  font-family: "Almarai" !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: 1px solid #2a9d94;
+}
+
+/* .content-table th {
+  color: #283c47;
+  font-family: "Almarai" !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+} */
+
+/* .table-barcode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+/* .table-barcode input {
+  margin-inline-end: 10px;
+} */
+
+.barcode-icon {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background-color: #eaf5f4;
+  cursor: pointer;
+}
+
+.barcode-icon i {
+  color: #2a9d94;
+}
+
+.add-new-product-table {
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* .total-product-table {
+  display: flex;
+  width: 330px;
+  height: 40px;
+  padding: 10px 24px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid var(--Foundation-Blue-blue-50, #eaeced);
+  background: rgba(234, 236, 237, 0.2);
+} */
+.discount {
+  width: 750px;
+  margin-top: 30px;
+  margin-right: 10px;
+  height: 186px;
+  flex-shrink: 0;
+  border-radius: var(--Spacing-16, 16px);
+  background: #f9f9f9;
+}
+/* 
+.total-product-table span {
+  color: #7d888f;
+  text-align: right;
+  font-family: Almarai;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+} */
+
+.maunal-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note,
+.attachment {
+  background-color: #fff;
+  margin: 20px 0px;
+  border-radius: 10px;
+  width: 798px;
+  height: 305px;
+  padding: 20px;
+  height: 430px;
+}
+
+.add-product-image-table {
+  color: #283c47;
+  font-family: "Almarai" !important;
+  font-size: 12.718px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.add-product-image-table span {
+  color: #2a9d94;
+  font-family: "Almarai" !important;
+  font-size: 12.718px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+.input-new-date .rs-picker-toggle-wrapper {
+  width: 100%;
+}
+
+.input-barcode-store {
+  display: flex;
+  min-width: 200px;
+  height: 40px;
+  padding: 10px 24px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+  background-color: #fff;
+}
+
+.input-quantity-store {
+  display: flex;
+  min-width: 150px;
+  height: 40px;
+  padding: 10px 24px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+  background-color: #fff;
+}
+.input-price-store {
+  display: flex;
+  min-width: 150px;
+  height: 40px;
+  padding: 10px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+  background-color: #fff;
+}
+.input-store-store {
+  display: flex;
+  min-width: 150px;
+  height: 40px;
+  padding: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+  background-color: #fff;
+}
+.input-total-store {
+  display: flex;
+  min-width: 150px;
+  height: 40px;
+  padding: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+}
+
+.input-total-data {
+  display: flex;
+  min-width: 140px;
+  height: 40px;
+  padding: 10px 14px;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+}
+
+.input-collect-data {
+  display: flex;
+  min-width: 100px;
+  height: 40px;
+  padding: 10px 14px;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+}
+
+.input-start-date {
+  min-width: 472px;
+  height: 72px;
+}
+.input-quantity {
+  min-width: 270px;
+  height: 72px;
+}
+.input-status {
+  min-width: 270px;
+  height: 72px;
+}
+.input-price {
+  min-width: 528px;
+  height: 72px;
+}
+
+.maunal-editor {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.price label {
+  display: block;
+  margin-bottom: 10px;
+  color: #283c47;
+  text-align: right;
+  font-family: "Almarai" !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  margin-inline-end: 24px;
+}
+
+.price span {
+  margin: 0px 8px 0px 24px;
+}
+@media (max-width: 768px) {
+  .price span {
+    margin: 0px 8px 0px 9px;
+  }
+}
+.price input[type="radio"],
+.price input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+  display: inline-grid;
+  place-content: center;
+}
+
+.price input[type="radio"]::before,
+.price input[type="checkbox"]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transform-origin: bottom left;
+  background-color: #fff;
+  clip-path: polygon(13% 50%, 34% 66%, 81% 2%, 100% 18%, 39% 100%, 0 71%);
+}
+
+.price input[type="radio"]:checked::before,
+.price input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.price input[type="radio"]:checked,
+.price input[type="checkbox"]:checked {
+  background-color: #2a9d94 !important;
+  border: 2px solid #2a9d94 !important;
+}
+
+.price {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+@media (max-width: 768px) {
+  .price {
+    align-items: center !important;
+  }
+  .price-shift-sm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .price-shift-sm label {
+    flex: 0 0 32%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+}
+
+.excel-btn {
+  display: flex;
+  height: 40px;
+  padding: 9px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  background-color: #eaeced;
+  color: #2a9d94;
+  font-family: "Almarai" !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  margin-inline-start: 15px;
+}
+
+.js-example-basic-single > div {
+  border-radius: 10px !important;
+}
+
+/* .js-example-basic-single > div > div {
+} */
+
+.delivery-data {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #eaeced;
+}
+
+.delivery-body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  border-bottom: 1px solid #eaeced;
+  margin-bottom: 15px;
+}
+
+.delivery-body:last-child {
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}
+
+.delivery-body p {
+  color: #2a9d94;
+  text-align: right;
+  font-family: "Almarai";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.delivery-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.delivery-detail h2 {
+  color: #283c47;
+  text-align: right;
+  line-height: 2 !important;
+  font-family: "Almarai";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.delivery-detail span {
+  color: #283c47;
+  font-family: "Almarai";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

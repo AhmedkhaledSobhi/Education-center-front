@@ -45,7 +45,35 @@
     "Select": "اختر",
     "numbers_Only": "ارقام فقط",
     "minAge": "الحد الأدنى للسن 5 سنوات",
-    "maxAge": "الحد الأقصى للسن 99"
-  }
+    "maxAge": "الحد الأقصى للسن 99",
+    "soon": "قريباً",
+    "save": "حفظ",
+    "SaveNew": "حفظ جديد",
+    "SaveAsADraft": "حفظ كمسودة",
+    "main": "الرئيسية"
 
+  },
+  "ProfileDropdown":{
+    "Welcome": "مرحباً بك",
+    "Profile": "الملف الشخصي",
+    "UpgradesAndSubscriptions": "الترقيات والاشتراكات",
+    "changePassword": "تغيير كلمة المرور",
+    "accountSettings": "إعدادات الحساب",
+    "Logout": "تسجيل خروج",
+    "Settings": "الإعدادات",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phoneNumber": "رقم الهاتف",
+    "password": "كلمة المرور"
+  },
+  "LayoutMenuData":{
+    "main": "الرئيسية",
+    "Setting": "الإعدادات",
+    "Users": "المستخدمين",
+    "Teachers": "المدرسين",
+    "Students": "الطلاب",
+    "Employee": "موظف",
+    "Assistants": "المساعدين",
+    "rolesPermissions": "الأدوار و الصلاحيات"
+  }
 }

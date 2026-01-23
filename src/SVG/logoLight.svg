@@ -1,0 +1,10 @@
+<svg width="780" height="300" viewBox="0 0 20 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- First line -->
+  <text x="100%" y="140" font-family="Arial, sans-serif" font-size="150" fill="#fff" font-weight="bold" text-anchor="middle">
+    🎓Center
+  </text>
+  <!-- Second line -->
+  <text x="160%" y="280" font-family="Arial, sans-serif" font-size="150" fill="#fff" font-weight="bold" text-anchor="middle">
+    Education
+  </text>
+</svg>

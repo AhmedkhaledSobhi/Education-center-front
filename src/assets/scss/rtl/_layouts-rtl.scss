@@ -291,6 +291,11 @@
   right: $vertical-menu-width;
 }
 
+[dir="ltr"] .footer {
+  right: 0px;
+  left: $vertical-menu-width;
+}
+
 .auth-page-wrapper {
   .footer {
     right: 0;

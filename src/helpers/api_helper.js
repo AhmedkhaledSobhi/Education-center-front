@@ -38,7 +38,7 @@ axios.interceptors.request.use(
     config.headers["lang"] = currentLanguage;
 
     // Remove any existing Authorization header first
-    delete config.headers.Authorization;
+    // delete config.headers.Authorization;
 
     return config;
   },
@@ -83,12 +83,11 @@ axios.interceptors.response.use(
  * @param {*} token
  */
 const setAuthorization = (token) => {
+  
   // Don't set global defaults anymore, let the interceptor handle it
-  // axios.defaults.headers.common["Authorization"] = "Bearer " + token
+  axios.defaults.headers.common["Authorization"] = "Bearer " + token
 
   // Store the token in localStorage so the interceptor can use it
-  console.log("ahmed token", token);
-  console.log("ahmed authUser", authUser);
 
   const authUser = JSON.parse(localStorage.getItem("authUser") || "{}");
   authUser.token = token;
@@ -265,7 +264,7 @@ class APIClient {
 }
 
 const getLoggedinUser = () => {
-  const user = sessionStorage.getItem("authUser");
+  const user = sessionStorage.getItem("authUser");  
   if (!user) {
     return null;
   } else {

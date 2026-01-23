@@ -15,6 +15,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-i18next": "^16.3.5",
+    "react-icons": "^5.5.0",
     "react-loader-spinner": "^8.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.6",
@@ -25,6 +26,8 @@
     "reactstrap": "^9.2.3",
     "remixicon": "^4.7.0",
     "reselect": "^5.1.1",
+    "rsuite": "^5.40.0",
+    "sass": "^1.75.0",
     "simplebar": "^6.3.3",
     "simplebar-react": "^3.3.2",
     "web-vitals": "^2.1.4",
@@ -53,8 +56,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "sass": "^1.94.2"
   }
 }

@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 import { LOGIN, PROFILE, } from '../../helpers/url_helper';
 import configService from '../../helpers/config';
 import axios from "axios";
-// import { profile } from '../../helpers/fakebackend_helper';
+import { profile } from '../../helpers/fakebackend_helper';
 
 export default function Login() {
   const { t, i18n } = useTranslation();
@@ -63,7 +63,7 @@ export default function Login() {
         },
       });
 
-      if (res && res?.status) {
+      if (res && res) {
         toast.success(res?.message, {
           position: "top-center",
           hideProgressBar: false,
@@ -72,8 +72,12 @@ export default function Login() {
         });
         
         // store in session for 5 minutes
-        localStorage.setItem("authUser", JSON.stringify(res?.data?.data?.user));
-        localStorage.setItem("access_token", JSON.stringify(res?.data?.data?.access_token));
+        localStorage.setItem("role", JSON.stringify(res?.data?.user));
+        localStorage.setItem("authUser", JSON.stringify(res?.data?.user));
+        sessionStorage.setItem("authUser", JSON.stringify(res?.data?.user));
+
+        localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+        localStorage.setItem("access_token", JSON.stringify(res?.data?.access_token));
         localStorage.setItem("I18N_LANGUAGE", lang);
 
         const authUser = JSON.parse(localStorage.getItem("authUser"));
@@ -88,17 +92,15 @@ export default function Login() {
 
           const id = idUser;
           try {
-            // const res = await profile(id);
             const response = await axios.get(`${BASE_URL}${PROFILE}${id}`);
-            localStorage.setItem("myInfo", JSON.stringify(response?.data));
-            localStorage.setItem("loginType", JSON.stringify(response?.data?.role));
-
+            localStorage.setItem("myInfo", JSON.stringify(response));
+            localStorage.setItem("loginType", JSON.stringify(response?.role));
+            navigate("/Home")
           } catch (error) {
             console.error(error.response?.data || error.message);
           }
         }
 
-        navigate("/Home")
       }
     } catch (error){
       toast.error(error?.response?.data?.message, {

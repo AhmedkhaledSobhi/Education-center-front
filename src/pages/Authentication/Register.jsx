@@ -148,7 +148,6 @@ export default function Register() {
     }
   }
 // ______________________________________________________________
-console.log("ahmed loginToken", loginToken);
 
   useEffect(() => {
     if (loginToken) {
