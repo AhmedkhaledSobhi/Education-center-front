@@ -28,7 +28,7 @@ import axios from "axios";
 import configService from '../../helpers/config';
 import { toast } from 'react-toastify';
 import SimpleBar from "simplebar-react";
-import phoneCodeData from "./PhoneCode.json";
+import phoneCodeData from "../../localesJson/PhoneCode.json";
 import { REGISTER } from '../../helpers/url_helper';
 
 export default function Register() {
@@ -51,15 +51,18 @@ export default function Register() {
   });
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Account_type =[
+    {name: t("Registers.Admin") , id: 0, value:"ADMIN"},
     {name: t("Registers.Teacher") , id: 1, value:"TEACHER"},
     {name: t("Registers.Student") , id: 2, value:"STUDENT"},
     {name: t("Registers.Employee") , id: 3, value:"EMPLOYEE"},
     {name: t("Registers.Assistant") , id: 4, value:"ASSISTANT"},
   ]
+
 // ______________________________________________________________
 
   const loginToken = JSON.parse(localStorage.getItem("access_token"));
-
+  console.log("ahmed loginToken", loginToken);
+  
   const changeLanguageAction = (lang) => {
     i18n.changeLanguage(lang);
     i18next.changeLanguage(lang);
@@ -77,7 +80,7 @@ export default function Register() {
     password: "",
     email: "",
     password_confirmation: "",
-    role: "",
+    role: Account_type[1],
     address: "",
   });
 
@@ -86,6 +89,8 @@ export default function Register() {
   const register = async (values) => {
     try {
       const { password_confirmation, ...payload } = values;
+      console.log("ahmed payload", payload);
+      
       // تحويل role من object لـ string
       if (payload.role && payload.role.value) {
         payload.role = payload.role.value;
@@ -180,7 +185,7 @@ export default function Register() {
                         {t("Registers.Center_Education")} 
                       </span>
                     </h2>
-                    <div className='w-100'>
+                    <div className='w -100'>
                       <img 
                         src={MySVG.CenterEducation} 
                         style={{
@@ -449,7 +454,7 @@ export default function Register() {
                                 getOptionValue={(option) => option?.id}
                                 value={
                                   Account_type.find((option)=>{
-                                    return values?.role
+                                    return  option?.id === values?.role?.id
                                   }) 
                                 } 
                                 onChange={(option) => {
@@ -458,6 +463,7 @@ export default function Register() {
                                 onBlur={() => {
                                   setFieldTouched("role", true);
                                 }}
+                                isDisabled
                               />
                               {touched?.role && errors?.role ? (
                                 <div style={{ color: "red" }}>
@@ -514,14 +520,14 @@ export default function Register() {
                                 className="input-group "
                                 isOpen={dropdownOpen}
                                 toggle={toggle}
-                                readonly
-                                isReadonly
+                                readOnly={true}
+                                
                               >
                                 <DropdownToggle
                                   as="button"
                                   // disabled
-                                  readonly
-                                  isReadonly
+                                  readOnly={true}
+                                  
                                   className={`btn btn-light border arrow-none input-btnleft ${
                                     i18n.language === "ar"
                                       ? "input-btn-left"
@@ -726,24 +732,21 @@ export default function Register() {
                     )}
                   </Formik>
                 </div>
-                <div className="text-center my-4 align-items-center">
-                  <p
-                    className={`mb-0 d-flex justify-content-center fw-semibold cursor-pointer ms-1 ${i18n.language == "ar" ? "text-success" : "text-muted"}`}
+                <div className="text-center my-4 align-items-center ">
+                  <div
+                    className={`mb-0 d-flex justify-content-center fw-semibold cursor-pointer ms-1 ${i18n.language == "ar" ? "text-primary" : "text-muted"}`}
                   >
-                    {" "}
                     <span
                       className="mx-3"
                       onClick={() => changeLanguageAction("ar")}
                     >
                       العربية
                     </span>
-                    {"  "}
                     <p
-                      className={`fw-semibold  ms-1 ${i18n.language == "en" ? "text-success" : "text-muted"}`}
+                      className={`fw-semibold  ms-1 ${i18n.language == "en" ? "text-primary" : "text-muted"}`}
                       >
                       {" "}
                       <span className='text-muted'>
-
                       |{" "}
                       </span>
                       <span
@@ -752,8 +755,8 @@ export default function Register() {
                       >
                         English
                       </span>
-                    </p>{" "}
-                  </p>
+                    </p>
+                  </div>
                 </div>
                 <div>
                 </div>

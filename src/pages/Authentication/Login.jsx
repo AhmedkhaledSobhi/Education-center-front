@@ -10,7 +10,7 @@ import { hasEmptyValue } from '../../helpers';
 import MySVG from '../../SVG/SVGIcons';
 import ButtonLoader from '../../Components/Common/ButtonLoader';
 import SimpleBar from 'simplebar-react';
-import phoneCodeData from "./PhoneCode.json";
+import phoneCodeData from "../../localesJson/PhoneCode.json";
 import { toast } from 'react-toastify';
 import { LOGIN, PROFILE, } from '../../helpers/url_helper';
 import configService from '../../helpers/config';
@@ -272,14 +272,14 @@ export default function Login() {
                                     className="input-group "
                                     isOpen={dropdownOpen}
                                     toggle={toggle}
-                                    readonly
-                                    isReadonly
+                                    readOnly
+                                    
                                   >
                                     <DropdownToggle
                                       as="button"
                                       // disabled
-                                      readonly
-                                      isReadonly
+                                      readOnly={true}
+                                      
                                       className={`btn btn-light border arrow-none input-btnleft ${
                                         i18n.language === "ar"
                                           ? "input-btn-left"
@@ -629,24 +629,18 @@ export default function Login() {
                 </div>
 
                 <div className="text-center my-4 align-items-center">
-                  <p
-                    className={`mb-0 d-flex justify-content-center fw-semibold cursor-pointer ms-1 ${i18n.language == "ar" ? "text-success" : "text-muted"}`}
+                  <div
+                    className={`mb-0 d-flex justify-content-center fw-semibold cursor-pointer ms-1 ${i18n.language == "ar" ? "text-primary" : "text-muted"}`}
                   >
-                    {" "}
                     <span
                       className="mx-3"
                       onClick={() => changeLanguageAction("ar")}
                     >
                       العربية
                     </span>
-                    {"  "}
-                    <p
-                      className={`fw-semibold  ms-1 ${i18n.language == "en" ? "text-success" : "text-muted"}`}
-                      >
-                      {" "}
+                    <p className={`fw-semibold  ms-1 ${i18n.language == "en" ? "text-primary" : "text-muted"}`}>
                       <span className='text-muted'>
-
-                      |{" "}
+                      {" "} | {" "}
                       </span>
                       <span
                         className="mx-3 curso"
@@ -654,8 +648,8 @@ export default function Login() {
                       >
                         English
                       </span>
-                    </p>{" "}
-                  </p>
+                    </p>
+                  </div>
                 </div>
                 <div>
                 </div>

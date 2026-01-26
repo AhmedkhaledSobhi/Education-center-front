@@ -1,0 +1,1574 @@
+{
+  "cities": [
+    {
+      "id": "31577",
+      "name": "Abnūb",
+      "name_ar": "",
+      "name_en": "Abnūb",
+      "region_id": "3236",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:08"
+    },
+    {
+      "id": "31578",
+      "name": "Abu Simbel",
+      "name_ar": "",
+      "name_en": "Abu Simbel",
+      "region_id": "3225",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:08"
+    },
+    {
+      "id": "31579",
+      "name": "Abū Qurqāş",
+      "name_ar": "",
+      "name_en": "Abū Qurqāş",
+      "region_id": "3243",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:09"
+    },
+    {
+      "id": "31580",
+      "name": "Abū Tīj",
+      "name_ar": "",
+      "name_en": "Abū Tīj",
+      "region_id": "3236",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:10"
+    },
+    {
+      "id": "31581",
+      "name": "Abū al Maţāmīr",
+      "name_ar": "",
+      "name_en": "Abū al Maţāmīr",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:11"
+    },
+    {
+      "id": "31582",
+      "name": "Ad Dilinjāt",
+      "name_ar": "",
+      "name_en": "Ad Dilinjāt",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:11"
+    },
+    {
+      "id": "31583",
+      "name": "Ain Sukhna",
+      "name_ar": "",
+      "name_en": "Ain Sukhna",
+      "region_id": "3233",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:12"
+    },
+    {
+      "id": "31584",
+      "name": "Ajā",
+      "name_ar": "",
+      "name_en": "Ajā",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:13"
+    },
+    {
+      "id": "31585",
+      "name": "Akhmīm",
+      "name_ar": "",
+      "name_en": "Akhmīm",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:13"
+    },
+    {
+      "id": "31586",
+      "name": "Al Badārī",
+      "name_ar": "",
+      "name_en": "Al Badārī",
+      "region_id": "3236",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:14"
+    },
+    {
+      "id": "31587",
+      "name": "Al Balyanā",
+      "name_ar": "",
+      "name_en": "Al Balyanā",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:14"
+    },
+    {
+      "id": "31588",
+      "name": "Al Bawīţī",
+      "name_ar": "",
+      "name_en": "Al Bawīţī",
+      "region_id": "3239",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:15"
+    },
+    {
+      "id": "31589",
+      "name": "Al Bājūr",
+      "name_ar": "",
+      "name_en": "Al Bājūr",
+      "region_id": "3228",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:16"
+    },
+    {
+      "id": "31590",
+      "name": "Al Fashn",
+      "name_ar": "",
+      "name_en": "Al Fashn",
+      "region_id": "3230",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:17"
+    },
+    {
+      "id": "31591",
+      "name": "Al Fayyūm",
+      "name_ar": "",
+      "name_en": "Al Fayyūm",
+      "region_id": "3238",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:17"
+    },
+    {
+      "id": "31592",
+      "name": "Al Jammālīyah",
+      "name_ar": "",
+      "name_en": "Al Jammālīyah",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:18"
+    },
+    {
+      "id": "31593",
+      "name": "Al Khānkah",
+      "name_ar": "",
+      "name_en": "Al Khānkah",
+      "region_id": "3232",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:18"
+    },
+    {
+      "id": "31594",
+      "name": "Al Khārijah",
+      "name_ar": "",
+      "name_en": "Al Khārijah",
+      "region_id": "3246",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:18"
+    },
+    {
+      "id": "31595",
+      "name": "Al Manshāh",
+      "name_ar": "",
+      "name_en": "Al Manshāh",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:19"
+    },
+    {
+      "id": "31596",
+      "name": "Al Manzalah",
+      "name_ar": "",
+      "name_en": "Al Manzalah",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:19"
+    },
+    {
+      "id": "31597",
+      "name": "Al Manşūrah",
+      "name_ar": "",
+      "name_en": "Al Manşūrah",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:20"
+    },
+    {
+      "id": "31598",
+      "name": "Al Maţarīyah",
+      "name_ar": "",
+      "name_en": "Al Maţarīyah",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:20"
+    },
+    {
+      "id": "31599",
+      "name": "Al Maḩallah al Kubrá",
+      "name_ar": "",
+      "name_en": "Al Maḩallah al Kubrá",
+      "region_id": "3234",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:21"
+    },
+    {
+      "id": "31600",
+      "name": "Al Minyā",
+      "name_ar": "",
+      "name_en": "Al Minyā",
+      "region_id": "3243",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:21"
+    },
+    {
+      "id": "31601",
+      "name": "Al Qanāţir al Khayrīyah",
+      "name_ar": "",
+      "name_en": "Al Qanāţir al Khayrīyah",
+      "region_id": "3232",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:22"
+    },
+    {
+      "id": "31602",
+      "name": "Al Quşayr",
+      "name_ar": "",
+      "name_en": "Al Quşayr",
+      "region_id": "3240",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:22"
+    },
+    {
+      "id": "31603",
+      "name": "Al Qūşīyah",
+      "name_ar": "",
+      "name_en": "Al Qūşīyah",
+      "region_id": "3236",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:23"
+    },
+    {
+      "id": "31604",
+      "name": "Al Wāsiţah",
+      "name_ar": "",
+      "name_en": "Al Wāsiţah",
+      "region_id": "3238",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:23"
+    },
+    {
+      "id": "31605",
+      "name": "Al Ḩawāmidīyah",
+      "name_ar": "",
+      "name_en": "Al Ḩawāmidīyah",
+      "region_id": "3239",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:24"
+    },
+    {
+      "id": "31606",
+      "name": "Al Ḩāmūl",
+      "name_ar": "",
+      "name_en": "Al Ḩāmūl",
+      "region_id": "3222",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:24"
+    },
+    {
+      "id": "31607",
+      "name": "Al ‘Alamayn",
+      "name_ar": "",
+      "name_en": "Al ‘Alamayn",
+      "region_id": "3231",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:25"
+    },
+    {
+      "id": "31608",
+      "name": "Al ‘Ayyāţ",
+      "name_ar": "",
+      "name_en": "Al ‘Ayyāţ",
+      "region_id": "3239",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:25"
+    },
+    {
+      "id": "31609",
+      "name": "Alexandria",
+      "name_ar": "",
+      "name_en": "Alexandria",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:26"
+    },
+    {
+      "id": "31610",
+      "name": "Arish",
+      "name_ar": "",
+      "name_en": "Arish",
+      "region_id": "3227",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:26"
+    },
+    {
+      "id": "31611",
+      "name": "Ash Shuhadā’",
+      "name_ar": "",
+      "name_en": "Ash Shuhadā’",
+      "region_id": "3228",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:27"
+    },
+    {
+      "id": "31612",
+      "name": "Ashmūn",
+      "name_ar": "",
+      "name_en": "Ashmūn",
+      "region_id": "3228",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:27"
+    },
+    {
+      "id": "31613",
+      "name": "Aswan",
+      "name_ar": "",
+      "name_en": "Aswan",
+      "region_id": "3225",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:28"
+    },
+    {
+      "id": "31614",
+      "name": "Asyūţ",
+      "name_ar": "",
+      "name_en": "Asyūţ",
+      "region_id": "3236",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:28"
+    },
+    {
+      "id": "31615",
+      "name": "Awsīm",
+      "name_ar": "",
+      "name_en": "Awsīm",
+      "region_id": "3239",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:29"
+    },
+    {
+      "id": "31616",
+      "name": "Az Zarqā",
+      "name_ar": "",
+      "name_en": "Az Zarqā",
+      "region_id": "3224",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:29"
+    },
+    {
+      "id": "31617",
+      "name": "Aş Şaff",
+      "name_ar": "",
+      "name_en": "Aş Şaff",
+      "region_id": "3239",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:30"
+    },
+    {
+      "id": "31618",
+      "name": "Banhā",
+      "name_ar": "",
+      "name_en": "Banhā",
+      "region_id": "3232",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:30"
+    },
+    {
+      "id": "31619",
+      "name": "Banī Mazār",
+      "name_ar": "",
+      "name_en": "Banī Mazār",
+      "region_id": "3243",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:31"
+    },
+    {
+      "id": "31620",
+      "name": "Banī Suwayf",
+      "name_ar": "",
+      "name_en": "Banī Suwayf",
+      "region_id": "3230",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:31"
+    },
+    {
+      "id": "31621",
+      "name": "Basyūn",
+      "name_ar": "",
+      "name_en": "Basyūn",
+      "region_id": "3234",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:32"
+    },
+    {
+      "id": "31622",
+      "name": "Bilqās",
+      "name_ar": "",
+      "name_en": "Bilqās",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:32"
+    },
+    {
+      "id": "31623",
+      "name": "Būsh",
+      "name_ar": "",
+      "name_en": "Būsh",
+      "region_id": "3230",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:33"
+    },
+    {
+      "id": "31624",
+      "name": "Cairo",
+      "name_ar": "",
+      "name_en": "Cairo",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:33"
+    },
+    {
+      "id": "31625",
+      "name": "Dahab",
+      "name_ar": "",
+      "name_en": "Dahab",
+      "region_id": "3237",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:33"
+    },
+    {
+      "id": "31626",
+      "name": "Damanhūr",
+      "name_ar": "",
+      "name_en": "Damanhūr",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:34"
+    },
+    {
+      "id": "31627",
+      "name": "Damietta",
+      "name_ar": "",
+      "name_en": "Damietta",
+      "region_id": "3224",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:34"
+    },
+    {
+      "id": "31628",
+      "name": "Dayr Mawās",
+      "name_ar": "",
+      "name_en": "Dayr Mawās",
+      "region_id": "3243",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:35"
+    },
+    {
+      "id": "31629",
+      "name": "Dayrūţ",
+      "name_ar": "",
+      "name_en": "Dayrūţ",
+      "region_id": "3236",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:35"
+    },
+    {
+      "id": "31630",
+      "name": "Dikirnis",
+      "name_ar": "",
+      "name_en": "Dikirnis",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:36"
+    },
+    {
+      "id": "31631",
+      "name": "Dishnā",
+      "name_ar": "",
+      "name_en": "Dishnā",
+      "region_id": "3247",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:36"
+    },
+    {
+      "id": "31632",
+      "name": "Disūq",
+      "name_ar": "",
+      "name_en": "Disūq",
+      "region_id": "3222",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:37"
+    },
+    {
+      "id": "31633",
+      "name": "El Gouna",
+      "name_ar": "",
+      "name_en": "El Gouna",
+      "region_id": "3240",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:37"
+    },
+    {
+      "id": "31634",
+      "name": "El-Tor",
+      "name_ar": "",
+      "name_en": "El-Tor",
+      "region_id": "3237",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:38"
+    },
+    {
+      "id": "31635",
+      "name": "Farshūţ",
+      "name_ar": "",
+      "name_en": "Farshūţ",
+      "region_id": "3247",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:38"
+    },
+    {
+      "id": "31636",
+      "name": "Fuwwah",
+      "name_ar": "",
+      "name_en": "Fuwwah",
+      "region_id": "3222",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:39"
+    },
+    {
+      "id": "31637",
+      "name": "Fāraskūr",
+      "name_ar": "",
+      "name_en": "Fāraskūr",
+      "region_id": "3224",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:39"
+    },
+    {
+      "id": "31638",
+      "name": "Giza",
+      "name_ar": "",
+      "name_en": "Giza",
+      "region_id": "3239",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:40"
+    },
+    {
+      "id": "31639",
+      "name": "Hurghada",
+      "name_ar": "",
+      "name_en": "Hurghada",
+      "region_id": "3240",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:40"
+    },
+    {
+      "id": "31640",
+      "name": "Ibshawāy",
+      "name_ar": "",
+      "name_en": "Ibshawāy",
+      "region_id": "3238",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:41"
+    },
+    {
+      "id": "31641",
+      "name": "Idfū",
+      "name_ar": "",
+      "name_en": "Idfū",
+      "region_id": "3225",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:42"
+    },
+    {
+      "id": "31642",
+      "name": "Idkū",
+      "name_ar": "",
+      "name_en": "Idkū",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:42"
+    },
+    {
+      "id": "31643",
+      "name": "Ismailia",
+      "name_ar": "",
+      "name_en": "Ismailia",
+      "region_id": "3244",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:43"
+    },
+    {
+      "id": "31644",
+      "name": "Isnā",
+      "name_ar": "",
+      "name_en": "Isnā",
+      "region_id": "3247",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:43"
+    },
+    {
+      "id": "31645",
+      "name": "Iţsā",
+      "name_ar": "",
+      "name_en": "Iţsā",
+      "region_id": "3238",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:44"
+    },
+    {
+      "id": "31646",
+      "name": "Jirjā",
+      "name_ar": "",
+      "name_en": "Jirjā",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:44"
+    },
+    {
+      "id": "31647",
+      "name": "Juhaynah",
+      "name_ar": "",
+      "name_en": "Juhaynah",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:45"
+    },
+    {
+      "id": "31648",
+      "name": "Kafr ad Dawwār",
+      "name_ar": "",
+      "name_en": "Kafr ad Dawwār",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:45"
+    },
+    {
+      "id": "31649",
+      "name": "Kafr ash Shaykh",
+      "name_ar": "",
+      "name_en": "Kafr ash Shaykh",
+      "region_id": "3222",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:46"
+    },
+    {
+      "id": "31650",
+      "name": "Kafr az Zayyāt",
+      "name_ar": "",
+      "name_en": "Kafr az Zayyāt",
+      "region_id": "3234",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:46"
+    },
+    {
+      "id": "31651",
+      "name": "Kawm Umbū",
+      "name_ar": "",
+      "name_en": "Kawm Umbū",
+      "region_id": "3225",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:46"
+    },
+    {
+      "id": "31652",
+      "name": "Kawm Ḩamādah",
+      "name_ar": "",
+      "name_en": "Kawm Ḩamādah",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:47"
+    },
+    {
+      "id": "31653",
+      "name": "Kousa",
+      "name_ar": "",
+      "name_en": "Kousa",
+      "region_id": "3247",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:47"
+    },
+    {
+      "id": "31654",
+      "name": "Luxor",
+      "name_ar": "",
+      "name_en": "Luxor",
+      "region_id": "3242",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:48"
+    },
+    {
+      "id": "31655",
+      "name": "Madīnat Sittah Uktūbar",
+      "name_ar": "",
+      "name_en": "Madīnat Sittah Uktūbar",
+      "region_id": "3239",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:48"
+    },
+    {
+      "id": "31656",
+      "name": "Makadi Bay",
+      "name_ar": "",
+      "name_en": "Makadi Bay",
+      "region_id": "3240",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:49"
+    },
+    {
+      "id": "31657",
+      "name": "Mallawī",
+      "name_ar": "",
+      "name_en": "Mallawī",
+      "region_id": "3243",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:49"
+    },
+    {
+      "id": "31658",
+      "name": "Manfalūţ",
+      "name_ar": "",
+      "name_en": "Manfalūţ",
+      "region_id": "3236",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:50"
+    },
+    {
+      "id": "31659",
+      "name": "Markaz Disūq",
+      "name_ar": "",
+      "name_en": "Markaz Disūq",
+      "region_id": "3222",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:50"
+    },
+    {
+      "id": "31660",
+      "name": "Markaz Jirjā",
+      "name_ar": "",
+      "name_en": "Markaz Jirjā",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:51"
+    },
+    {
+      "id": "31661",
+      "name": "Markaz Sūhāj",
+      "name_ar": "",
+      "name_en": "Markaz Sūhāj",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:51"
+    },
+    {
+      "id": "31662",
+      "name": "Markaz al Uqşur",
+      "name_ar": "",
+      "name_en": "Markaz al Uqşur",
+      "region_id": "3242",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:52"
+    },
+    {
+      "id": "31663",
+      "name": "Marsa Alam",
+      "name_ar": "",
+      "name_en": "Marsa Alam",
+      "region_id": "3240",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:52"
+    },
+    {
+      "id": "31664",
+      "name": "Maţāy",
+      "name_ar": "",
+      "name_en": "Maţāy",
+      "region_id": "3243",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:52"
+    },
+    {
+      "id": "31665",
+      "name": "Mersa Matruh",
+      "name_ar": "",
+      "name_en": "Mersa Matruh",
+      "region_id": "3231",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:53"
+    },
+    {
+      "id": "31666",
+      "name": "Minyat an Naşr",
+      "name_ar": "",
+      "name_en": "Minyat an Naşr",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:53"
+    },
+    {
+      "id": "31667",
+      "name": "Munshāt ‘Alī Āghā",
+      "name_ar": "",
+      "name_en": "Munshāt ‘Alī Āghā",
+      "region_id": "3222",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:54"
+    },
+    {
+      "id": "31668",
+      "name": "Munūf",
+      "name_ar": "",
+      "name_en": "Munūf",
+      "region_id": "3228",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:54"
+    },
+    {
+      "id": "31669",
+      "name": "Naja' Ḥammādī",
+      "name_ar": "",
+      "name_en": "Naja' Ḥammādī",
+      "region_id": "3247",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:55"
+    },
+    {
+      "id": "31670",
+      "name": "Nuwaybi‘a",
+      "name_ar": "",
+      "name_en": "Nuwaybi‘a",
+      "region_id": "3237",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:55"
+    },
+    {
+      "id": "31671",
+      "name": "Port Said",
+      "name_ar": "",
+      "name_en": "Port Said",
+      "region_id": "3229",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:56"
+    },
+    {
+      "id": "31672",
+      "name": "Qalyūb",
+      "name_ar": "",
+      "name_en": "Qalyūb",
+      "region_id": "3232",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:56"
+    },
+    {
+      "id": "31673",
+      "name": "Qaşr al Farāfirah",
+      "name_ar": "",
+      "name_en": "Qaşr al Farāfirah",
+      "region_id": "3246",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:57"
+    },
+    {
+      "id": "31674",
+      "name": "Qinā",
+      "name_ar": "",
+      "name_en": "Qinā",
+      "region_id": "3247",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:57"
+    },
+    {
+      "id": "31675",
+      "name": "Quwaysinā",
+      "name_ar": "",
+      "name_en": "Quwaysinā",
+      "region_id": "3228",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:58"
+    },
+    {
+      "id": "31676",
+      "name": "Quţūr",
+      "name_ar": "",
+      "name_en": "Quţūr",
+      "region_id": "3234",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:58"
+    },
+    {
+      "id": "31677",
+      "name": "Ras Gharib",
+      "name_ar": "",
+      "name_en": "Ras Gharib",
+      "region_id": "3240",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:59"
+    },
+    {
+      "id": "31678",
+      "name": "Rosetta",
+      "name_ar": "",
+      "name_en": "Rosetta",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:25:59"
+    },
+    {
+      "id": "31679",
+      "name": "Safaga",
+      "name_ar": "",
+      "name_en": "Safaga",
+      "region_id": "3240",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:00"
+    },
+    {
+      "id": "31680",
+      "name": "Saint Catherine",
+      "name_ar": "",
+      "name_en": "Saint Catherine",
+      "region_id": "3237",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:00"
+    },
+    {
+      "id": "31681",
+      "name": "Samannūd",
+      "name_ar": "",
+      "name_en": "Samannūd",
+      "region_id": "3234",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:01"
+    },
+    {
+      "id": "31682",
+      "name": "Samālūţ",
+      "name_ar": "",
+      "name_en": "Samālūţ",
+      "region_id": "3243",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:03"
+    },
+    {
+      "id": "31683",
+      "name": "Sharm el-Sheikh",
+      "name_ar": "",
+      "name_en": "Sharm el-Sheikh",
+      "region_id": "3237",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:06"
+    },
+    {
+      "id": "31684",
+      "name": "Shibīn al Kawm",
+      "name_ar": "",
+      "name_en": "Shibīn al Kawm",
+      "region_id": "3228",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:07"
+    },
+    {
+      "id": "31685",
+      "name": "Shibīn al Qanāṭir",
+      "name_ar": "",
+      "name_en": "Shibīn al Qanāṭir",
+      "region_id": "3232",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:07"
+    },
+    {
+      "id": "31686",
+      "name": "Shirbīn",
+      "name_ar": "",
+      "name_en": "Shirbīn",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:08"
+    },
+    {
+      "id": "31687",
+      "name": "Siwa Oasis",
+      "name_ar": "",
+      "name_en": "Siwa Oasis",
+      "region_id": "3231",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:08"
+    },
+    {
+      "id": "31688",
+      "name": "Sohag",
+      "name_ar": "",
+      "name_en": "Sohag",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:09"
+    },
+    {
+      "id": "31689",
+      "name": "Suez",
+      "name_ar": "",
+      "name_en": "Suez",
+      "region_id": "3233",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:10"
+    },
+    {
+      "id": "31690",
+      "name": "Sumusţā as Sulţānī",
+      "name_ar": "",
+      "name_en": "Sumusţā as Sulţānī",
+      "region_id": "3230",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:11"
+    },
+    {
+      "id": "31691",
+      "name": "Sīdī Sālim",
+      "name_ar": "",
+      "name_en": "Sīdī Sālim",
+      "region_id": "3222",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:11"
+    },
+    {
+      "id": "31692",
+      "name": "Talā",
+      "name_ar": "",
+      "name_en": "Talā",
+      "region_id": "3228",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:12"
+    },
+    {
+      "id": "31693",
+      "name": "Tanda",
+      "name_ar": "",
+      "name_en": "Tanda",
+      "region_id": "3234",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:12"
+    },
+    {
+      "id": "31694",
+      "name": "Toukh",
+      "name_ar": "",
+      "name_en": "Toukh",
+      "region_id": "3232",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:13"
+    },
+    {
+      "id": "31695",
+      "name": "Zefta",
+      "name_ar": "",
+      "name_en": "Zefta",
+      "region_id": "3234",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:13"
+    },
+    {
+      "id": "31696",
+      "name": "Ţahţā",
+      "name_ar": "",
+      "name_en": "Ţahţā",
+      "region_id": "3226",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:14"
+    },
+    {
+      "id": "31697",
+      "name": "Ţalkhā",
+      "name_ar": "",
+      "name_en": "Ţalkhā",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:14"
+    },
+    {
+      "id": "31698",
+      "name": "Ţāmiyah",
+      "name_ar": "",
+      "name_en": "Ţāmiyah",
+      "region_id": "3238",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:15"
+    },
+    {
+      "id": "31699",
+      "name": "Ḩawsh ‘Īsá",
+      "name_ar": "",
+      "name_en": "Ḩawsh ‘Īsá",
+      "region_id": "3241",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:15"
+    },
+    {
+      "id": "31700",
+      "name": "‘Izbat al Burj",
+      "name_ar": "",
+      "name_en": "‘Izbat al Burj",
+      "region_id": "3245",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-13 12:26:16"
+    },
+    {
+      "id": "146138",
+      "name": "10th of Ramadan",
+      "name_ar": "",
+      "name_en": "10th of Ramadan",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:08"
+    },
+    {
+      "id": "146139",
+      "name": "Markaz Abū Ḩammād",
+      "name_ar": "",
+      "name_en": "Markaz Abū Ḩammād",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:08"
+    },
+    {
+      "id": "146140",
+      "name": "Awlad Saqr",
+      "name_ar": "",
+      "name_en": "Awlad Saqr",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146141",
+      "name": "Bilbeis",
+      "name_ar": "",
+      "name_en": "Bilbeis",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146142",
+      "name": "Diyarb Negm",
+      "name_ar": "",
+      "name_en": "Diyarb Negm",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146143",
+      "name": "El Husseiniya",
+      "name_ar": "",
+      "name_en": "El Husseiniya",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146144",
+      "name": "Al Qurein",
+      "name_ar": "",
+      "name_en": "Al Qurein",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146145",
+      "name": "Faqous",
+      "name_ar": "",
+      "name_en": "Faqous",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146146",
+      "name": "Hihya",
+      "name_ar": "",
+      "name_en": "Hihya",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146147",
+      "name": "Kafr Saqr",
+      "name_ar": "",
+      "name_en": "Kafr Saqr",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:09"
+    },
+    {
+      "id": "146148",
+      "name": "Mashtoul El Souk",
+      "name_ar": "",
+      "name_en": "Mashtoul El Souk",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:10"
+    },
+    {
+      "id": "146149",
+      "name": "Minya El Qamh",
+      "name_ar": "",
+      "name_en": "Minya El Qamh",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:10"
+    },
+    {
+      "id": "146150",
+      "name": "New Salhia",
+      "name_ar": "",
+      "name_en": "New Salhia",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:10"
+    },
+    {
+      "id": "146151",
+      "name": "Zagazig",
+      "name_ar": "",
+      "name_en": "Zagazig",
+      "region_id": "5067",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:10"
+    },
+    {
+      "id": "146497",
+      "name": "Badr",
+      "name_ar": "",
+      "name_en": "Badr",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:48"
+    },
+    {
+      "id": "146498",
+      "name": "Bulaq",
+      "name_ar": "",
+      "name_en": "Bulaq",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:48"
+    },
+    {
+      "id": "146499",
+      "name": "El Mataria",
+      "name_ar": "",
+      "name_en": "El Mataria",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:48"
+    },
+    {
+      "id": "146500",
+      "name": "Fustat",
+      "name_ar": "",
+      "name_en": "Fustat",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:48"
+    },
+    {
+      "id": "146501",
+      "name": "Hadayek El Kobba",
+      "name_ar": "",
+      "name_en": "Hadayek El Kobba",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146502",
+      "name": "Heliopolis",
+      "name_ar": "",
+      "name_en": "Heliopolis",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146503",
+      "name": "Helwan",
+      "name_ar": "",
+      "name_en": "Helwan",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146504",
+      "name": "Maadi",
+      "name_ar": "",
+      "name_en": "Maadi",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146505",
+      "name": "Musturud",
+      "name_ar": "",
+      "name_en": "Musturud",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146506",
+      "name": "New Administrative Capital of Egypt",
+      "name_ar": "",
+      "name_en": "New Administrative Capital of Egypt",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146507",
+      "name": "Shubra",
+      "name_ar": "",
+      "name_en": "Shubra",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146508",
+      "name": "Tura",
+      "name_ar": "",
+      "name_en": "Tura",
+      "region_id": "3223",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146509",
+      "name": "Abu Qir",
+      "name_ar": "",
+      "name_en": "Abu Qir",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146510",
+      "name": "Agami",
+      "name_ar": "",
+      "name_en": "Agami",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:49"
+    },
+    {
+      "id": "146511",
+      "name": "Ar-Raml",
+      "name_ar": "",
+      "name_en": "Ar-Raml",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:50"
+    },
+    {
+      "id": "146512",
+      "name": "Borg El Arab",
+      "name_ar": "",
+      "name_en": "Borg El Arab",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:50"
+    },
+    {
+      "id": "146513",
+      "name": "Montaza",
+      "name_ar": "",
+      "name_en": "Montaza",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:50"
+    },
+    {
+      "id": "146514",
+      "name": "New Borg El Arab",
+      "name_ar": "",
+      "name_en": "New Borg El Arab",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:50"
+    },
+    {
+      "id": "146515",
+      "name": "Sidi Bishr",
+      "name_ar": "",
+      "name_en": "Sidi Bishr",
+      "region_id": "3235",
+      "country_id": "65",
+      "created_at": null,
+      "updated_at": "2024-06-22 10:07:50"
+    }
+  ]
+}

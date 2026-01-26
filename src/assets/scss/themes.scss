@@ -15,6 +15,16 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Almarai:wght@200;300;400;500;600&display=swap");
 
+
+$primary: #0d6efd;
+$secondary: #6c757d;
+$danger: #d60000;
+$green: #00bd9d;
+$yellow: #ffbc0a;
+$orange: #f1963b;
+$blue: #32ccff;
+$cyan: #25a0e2;
+
 /* NOTE: Project-specific SCSS files (icons, app, custom, RTL, etc.) were
   referenced here but are not present in the repository. To avoid build
   errors we'll only include the Google font and minimal global rules.
@@ -44,6 +54,25 @@ body {
     outline: none;
   }
 }
+// ------------- Start Scrollbar Styles -------------
+::-webkit-scrollbar-thumb {
+  background-color: $primary;
+  border-radius: 5px;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+  background: transparent;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e1e1e1;
+}
+// ------------- End Scrollbar Styles -------------
 .auth-pass-inputgroup {
   input {
     padding-right: $input-padding-x !important;
@@ -185,7 +214,7 @@ body {
   // transform: rotate(-45deg);
   // left: -15px;
   top: 5px !important;
-  background: #0d6efd;
+  background: $primary;
   text-align: center;
   color: white;
   display: block;
@@ -205,3 +234,120 @@ html[lang="en"] {
     transform: rotate(45deg) !important;
   }
 };
+
+.sub-title {
+  border-bottom: 1px solid #eaeced;
+  padding: 14px 24px;
+  color: #283c47;
+  font-family: "Almarai" !important;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 700 !important;
+  line-height: normal;
+}
+
+.new-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: #283c47;
+  text-align: right;
+  font-family: "Almarai" !important;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.close-icon {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1.5px solid $danger;
+  padding: 8px 24px;
+  // margin-inline-start: 16px;
+}
+
+.info-icon, .close-icon {
+  margin-inline-start: 16px;
+}
+
+.section-left {
+  width: 323px;
+  margin-right: 24px;
+}
+
+.white {
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.file-upload-label {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  min-height: 218px;
+  border: 2px dashed #e9ebec;
+  background-color: #fafafa;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-upload-label svg {
+  margin-inline-end: 10px;
+  font-size: 25px;
+  color: #000;
+}
+
+.add-product-image-table {
+  color: #283c47;
+  font-family: "Almarai" !important;
+  font-size: 12.718px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.add-product-image-table span {
+  color: $primary;
+  font-family: "Almarai" !important;
+  font-size: 12.718px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+// ---------------------------------------------
+.css-olqui2-singleValue {
+  color: #000000 !important;
+}
+.css-16xfy0z-control {
+  border-radius: 10px !important;
+}
+
+
+
+.dropdown-menu.show {
+  width: 50px !important;
+}

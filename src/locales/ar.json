@@ -16,6 +16,7 @@
     "age": "العمر",
     "address": "العنوان",
     "Account_type": "نوع الحساب",
+    "Admin": "مسؤول",
     "Teacher": "مدرس",
     "Student": "طالب",
     "Employee": "موظف",
@@ -50,7 +51,13 @@
     "save": "حفظ",
     "SaveNew": "حفظ جديد",
     "SaveAsADraft": "حفظ كمسودة",
-    "main": "الرئيسية"
+    "edit": "تعديل",
+    "cancel": "إلغاء",
+    "main": "الرئيسية",
+    "SavedSuccessfully": "تم الحفظ بنجاح.",
+
+    "InsertImageHereOrClickToUpload": "قم بإدراج الصورة (250x250) هنا",
+    "OrClickToUpload": "أو انقر للتحميل"
 
   },
   "ProfileDropdown":{
@@ -65,6 +72,26 @@
     "email": "البريد الإلكتروني",
     "phoneNumber": "رقم الهاتف",
     "password": "كلمة المرور"
+  },
+  "AccountSettings":{
+    "Basic_information": "معلومات أساسية",
+    "AccountSettings": "إعدادات الحساب",
+    "ProfileInformation": "معلومات الملف الشخصي",
+    "Contact_information": "بيانات الاتصال",
+    "Address": "العنوان",
+    "country":"الدولة",
+    "City": "المدينة",
+    "additional_address": "عنوان إضافي",
+    
+    "Center_Name": "اسم المركز",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "ClickToUpload": "انقر للتحميل",
+    "OrClickToUpload": "أو انقر للتحميل",
+    "slogan": "الشعار",
+    "imagesize": " حجم الصورة يجب أن يكون 250 px",
+    "ClickOnTheSloganImage": "انقر علي صورة الشعار للتعديل"
+
   },
   "LayoutMenuData":{
     "main": "الرئيسية",

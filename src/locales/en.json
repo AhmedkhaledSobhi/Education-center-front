@@ -17,6 +17,7 @@
     "age": "Age",
     "address": "Address",
     "Account_type": "Account type",
+    "Admin": "Admin",
     "Teacher": "Teacher",
     "Student": "Student",
     "Employee": "Employee",

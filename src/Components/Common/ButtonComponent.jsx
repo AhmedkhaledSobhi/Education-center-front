@@ -10,11 +10,13 @@ export default function ButtonComponent({
   disabled,
   img,
   icon,
+  iconStyle,
   styleImg,
   className,
   classNameImage,
   colorLoading,
   soon = false,
+  style,
 }) {
   const { t, i18n } = useTranslation();
   return (
@@ -27,17 +29,18 @@ export default function ButtonComponent({
           id="dropdownMenuButton"
           onClick={onClick}
           disabled={soon || loading || disabled}
-          style={{ backgroundColor: icon ? "white" : "" }}
+          style={{ ...style, backgroundColor: icon ? "white" : "" }}
         >
           {loading ? (
             <ButtonLoader color={colorLoading} />
           ) : (
             <>
+              {nameBtn}
               <>
                 {icon ? (
                   <i
                     className={icon}
-                    style={{ styleImg }}
+                    style={iconStyle }
                   ></i>
                 ) : (
                   <img
@@ -50,7 +53,6 @@ export default function ButtonComponent({
                   />
                 )}
               </>
-              {nameBtn}
               {soon ? (
                 <span className="soon-container">{t("common.soon")}</span>
               ) : (
