@@ -45,8 +45,10 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
     try {
       const authUser = JSON.parse(localStorage.getItem("authUser"));
       const data ={id: Number(authUser?.id) }
-      const res = await profile(data);
-      setUserInfo(res.data);
+      if(authUser?.id){
+        const res = await profile(data);
+        setUserInfo(res);
+      }
     } catch (error) {}
   };
 

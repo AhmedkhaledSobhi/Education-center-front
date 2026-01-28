@@ -40,7 +40,7 @@ export default function BasicInformation({
   const handleImageChange = (event, setFieldValue) => {
     handleUpload(event);
     setIsSelected(true);
-    setFieldValue("photo", event.target.files);
+    // setFieldValue("photo", event.target.files);
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -169,7 +169,7 @@ export default function BasicInformation({
                 </Col>
 
                 {/* ------ اسم المركز ------ */}
-                <Col lg={6}>
+                {/* <Col lg={6}>
                   <FormGroup className="mb-3">
                     <Label
                       className="form-label"
@@ -191,7 +191,7 @@ export default function BasicInformation({
                       onBlur={handleBlur}
                     />
                   </FormGroup>
-                </Col>
+                </Col> */}
 
                 {/* ------ نوع الحساب ------ */}
                 <Col lg={6}>

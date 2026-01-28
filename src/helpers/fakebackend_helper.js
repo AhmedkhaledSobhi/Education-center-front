@@ -9,6 +9,7 @@ const api = new APIClient();
 const authUser = JSON.parse(localStorage.getItem("authUser"));
 const idUser = authUser?.id
 console.log("ahmed idUser", idUser);
+console.log("ahmed authUser", authUser);
 
 export const getLoggedInUser = () => {
   const user = localStorage.getItem("user");

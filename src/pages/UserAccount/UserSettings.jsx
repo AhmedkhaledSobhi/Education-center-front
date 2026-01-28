@@ -39,22 +39,23 @@ export default function UserSettings() {
         setInitialValues({
           first_name: response?.first_name,
           last_name: response?.last_name,
-          Center_name: response?.first_name + " " + response?.last_name, 
+          // Center_name: response?.first_name + " " + response?.last_name, 
           phone: phone,
           email: response?.email,
           address: response?.address || "",
           role: response?.role,
-          country: { 
-            id: "65", 
-            name: "Egypt", 
-            name_ar: "مصر",
-            name_en: "Egypt",
-          },
-          region: ""
+          // country: { 
+          //   id: "65", 
+          //   name: "Egypt", 
+          //   name_ar: "مصر",
+          //   name_en: "Egypt",
+          // },
+          // region: ""
+          // city: ""
         })
         setProfileData((prev) => {
           return {
-            Center_name: response?.first_name + " " + response?.last_name,
+            // Center_name: response?.first_name + " " + response?.last_name,
             phone: phone,
             email: response?.email,
             phone_code_id: "996",
@@ -82,14 +83,13 @@ export default function UserSettings() {
   const onSubmitForm = async (values, action) => {
 
     console.log("ahmed values Form", values);
-    const authUser = JSON.parse(localStorage.getItem("authUser"));
 
     const params = {
       ...values,
       role: values?.role?.value ?? values?.role,
-      country: values?.country?.id,
-      region: values?.region?.id,
-      city: values?.city?.id,
+      // country: values?.country?.id,
+      // region: values?.region?.id,
+      // city: values?.city?.id,
     }
     const formData = new FormData();
     for (const key in params) {
