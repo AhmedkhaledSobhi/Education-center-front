@@ -41,16 +41,18 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 
   const [userInfo, setUserInfo] = useState();
 
-  // const getProfileData = async () => {
-  //   try {
-  //     const res = await profile();
-  //     setUserInfo(res.data);
-  //   } catch (error) {}
-  // };
+  const getProfileData = async () => {
+    try {
+      const authUser = JSON.parse(localStorage.getItem("authUser"));
+      const data ={id: Number(authUser?.id) }
+      const res = await profile(data);
+      setUserInfo(res.data);
+    } catch (error) {}
+  };
 
-  // useEffect(() => {
-  //   getProfileData();
-  // }, [localStorage.getItem("authUser")]);
+  useEffect(() => {
+    getProfileData();
+  }, [localStorage.getItem("authUser")]);
 
   const [search, setSearch] = useState(false);
   const toogleSearch = () => {
@@ -130,6 +132,8 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
       // localStorage.removeItem("packages");
       // localStorage.setItem("packages", JSON.stringify(res?.data));
       
+      localStorage.setItem("authUser", JSON.stringify(res));
+      localStorage.setItem("userInfo", JSON.stringify(res));
       localStorage.setItem("myInfo", JSON.stringify(res));
       localStorage.setItem("role", JSON.stringify(res?.role));
       window.location.reload();

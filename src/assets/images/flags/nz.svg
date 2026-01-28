@@ -11,7 +11,7 @@
       <use xlink:href="#a" transform="scale(-1 1) rotate(72)"/>
     </g>
   </defs>
-  <path fill="#00247d" fill-rule="evenodd" d="M0 0h512v512H0z"/>
+  <path fill="#00247d" fillRule="evenodd" d="M0 0h512v512H0z"/>
   <g transform="translate(-148.7 90.5) scale(.60566)">
     <use xlink:href="#b" width="100%" height="100%" fill="#fff" transform="matrix(45.4 0 0 45.4 900 120)"/>
     <use xlink:href="#b" width="100%" height="100%" fill="#cc142b" transform="matrix(30 0 0 30 900 120)"/>

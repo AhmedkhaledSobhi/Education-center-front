@@ -7,7 +7,6 @@ export const LOGIN = "auth/login";
 export const PROFILES = `auth/`;
 
 // Edit Account Information
-const authUser = JSON.parse(localStorage.getItem("authUser"));
-const idUser = authUser?.id
 
-export const EDIT_ACCOUNT_INFORMATION = `user/idUser`;
+
+export const EDIT_ACCOUNT_INFORMATION = `user/`;

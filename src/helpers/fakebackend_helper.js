@@ -5,6 +5,11 @@ import { APIClient } from "./api_helper";
 
 const api = new APIClient();
 
+
+const authUser = JSON.parse(localStorage.getItem("authUser"));
+const idUser = authUser?.id
+console.log("ahmed idUser", idUser);
+
 export const getLoggedInUser = () => {
   const user = localStorage.getItem("user");
   if (user) return JSON.parse(user);
@@ -17,4 +22,4 @@ export const isUserAuthenticated = () => {
 
 // profile api
 export const profile = (data) => api.get(url.PROFILES, data);
-export const editAccountInformation = (data) => api.put(url.EDIT_ACCOUNT_INFORMATION, data);
+export const editAccountInformation = (data) => api.update(`${url.EDIT_ACCOUNT_INFORMATION}${idUser}`, data);

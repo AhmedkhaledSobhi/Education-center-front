@@ -86,7 +86,6 @@ export default function UserSettings() {
 
     const params = {
       ...values,
-      id: Number(authUser?.id),
       role: values?.role?.value ?? values?.role,
       country: values?.country?.id,
       region: values?.region?.id,
