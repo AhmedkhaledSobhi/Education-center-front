@@ -65,6 +65,7 @@
     "Profile": "الملف الشخصي",
     "UpgradesAndSubscriptions": "الترقيات والاشتراكات",
     "changePassword": "تغيير كلمة المرور",
+    "Help": "المساعد",
     "accountSettings": "إعدادات الحساب",
     "Logout": "تسجيل خروج",
     "Settings": "الإعدادات",
@@ -80,7 +81,8 @@
     "Contact_information": "بيانات الاتصال",
     "Address": "العنوان",
     "country":"الدولة",
-    "City": "المدينة",
+    "city": "المدينة",
+    "Region": "المحافظه",
     "additional_address": "عنوان إضافي",
     
     "Center_Name": "اسم المركز",

@@ -1,6 +1,15 @@
 // 
 // _page-head.scss
 // 
+$primary: #0d6efd;
+$primary2: #0d6dfdb3;
+$secondary: #6c757d;
+$danger: #d60000;
+$green: #00bd9d;
+$yellow: #ffbc0a;
+$orange: #f1963b;
+$blue: #32ccff;
+$cyan: #25a0e2;
 
 .page-title-box {
     padding: 10px $grid-gutter-width;
@@ -21,6 +30,9 @@
         font-weight: 700;
         font-size: 15px!important;
         text-transform: uppercase;
+    }
+    h5{
+        color: $primary;
     }
 }
 

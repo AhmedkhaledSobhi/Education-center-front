@@ -107,7 +107,7 @@ export default function ContactInformationComponents({
                   <DropdownMenu
                     as="ul"
                     // disabled
-                    className={`list-unstyled w-100 dropdown-menu-list mb-0 input-btnleft ${
+                    className={`list-unstyled w-25 dropdown-menu-list mb-0 input-btnleft ${
                       i18n.language === "ar"
                         ? "input-btn-left"
                         : "input-btn"

@@ -18,7 +18,7 @@ const BreadCrumb = ({
         <Col xs={12}>
           <div className="page-title-box ">
             <Row>
-              <h5 className="text-secondary mb-sm-0">{title}</h5>
+              <h5 className="text- secondary mb-sm-0">{title}</h5>
             </Row>
             <div className="page-title-left mt-2">
               <ol className="breadcrumb m-0">

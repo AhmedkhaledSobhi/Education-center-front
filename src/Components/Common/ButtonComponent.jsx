@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ButtonLoader from "../Common/ButtonLoader";
 import { DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { useTranslation } from "react-i18next";
@@ -19,6 +19,14 @@ export default function ButtonComponent({
   style,
 }) {
   const { t, i18n } = useTranslation();
+
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 576);
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 576);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
   return (
     <React.Fragment>
       <UncontrolledDropdown>
@@ -35,7 +43,7 @@ export default function ButtonComponent({
             <ButtonLoader color={colorLoading} />
           ) : (
             <>
-              {nameBtn}
+              {isSmallScreen ? " " : nameBtn }
               <>
                 {icon ? (
                   <i

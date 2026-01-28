@@ -16,5 +16,5 @@ export const isUserAuthenticated = () => {
 };
 
 // profile api
-export const profile = (data) => api.get(url.PROFILE, data);
+export const profile = (data) => api.get(url.PROFILES, data);
 export const editAccountInformation = (data) => api.put(url.EDIT_ACCOUNT_INFORMATION, data);

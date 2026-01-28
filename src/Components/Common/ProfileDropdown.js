@@ -15,11 +15,9 @@ import { useTranslation } from "react-i18next";
 // import { CartContext } from "../../Context/CartContext.jsx";
 import { checkUserRoles } from "../../helpers/index.js";
 import i18n from "../../i18n.js";
-import configService from "../../helpers/config";
 // import { useMediaQuery } from "@mui/material";
 import { performLogoutCleanup } from "../../helpers/logoutCleanup";
 import MySVG from "../../SVG/SVGIcons";
-import { PROFILE } from "../../helpers/url_helper.js";
 
 const ProfileDropdown = () => {
   const nav = useNavigate();
@@ -40,14 +38,14 @@ const ProfileDropdown = () => {
   const [userInfo, setUserInfo] = useState();
   const getProfileData = async () => {
     try {
-      // const res = await profile();
-
-      const BASE_URL = configService.apiBaseUrl;
-      const authUser = JSON.parse(localStorage.getItem("authUser"));
-      const idUser = authUser?.id
-      const res = await axios.get(`${BASE_URL}${PROFILE}${idUser}`);
-          
-      setUserInfo(res);
+      const authUser = JSON.parse(localStorage.getItem("userInfo"));
+      const data ={id: Number(authUser?.id) }
+      if (authUser) {
+        const response = await profile(data);
+        if (response) {
+          setUserInfo(response);
+        }
+      }
     } catch (error) {}
   };
 
@@ -274,6 +272,42 @@ const ProfileDropdown = () => {
                     }}
                   >
                     {t("ProfileDropdown.changePassword")}
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <span className="soon-container">
+              {t("common.soon")}
+            </span>
+          </DropdownItem>
+
+          {/* ------ المساعد ------ */}
+          <div className="dropdown-divider m-0"></div>
+          <DropdownItem disabled className="p-0 pe-2 ps-1 soon-parent">
+            <Link
+              onClick={() =>
+                handleExternalLink(
+                  "https://api.whatsapp.com/send?phone=201026496334"
+                  // "https://wa.me/201026496334?text=مرحبا%20أريد%20التواصل"
+                )
+              }
+              rel="noopener noreferrer"
+              className="dropdown-item p-0"
+            >
+              <div className="dropdown-header d-flex align-items-center gap-2">
+                <img
+                  src={MySVG.Help}
+                  alt="Help"
+                />
+                <div>
+                  <div
+                    style={{
+                      color: "rgba(40, 60, 71, 1)",
+                      fontWeight: "500",
+                      fontSize: "12px",
+                    }}
+                  >
+                    {t("ProfileDropdown.Help")}
                   </div>
                 </div>
               </div>

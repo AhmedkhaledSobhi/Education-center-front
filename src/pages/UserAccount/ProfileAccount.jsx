@@ -4,10 +4,10 @@ import BreadCrumb from '../../Components/Common/BreadCrumb'
 import { useTranslation } from 'react-i18next';
 import ButtonLoader from '../../Components/Common/ButtonLoader';
 import axios from 'axios';
-import { PROFILE } from '../../helpers/url_helper';
 import configService from '../../helpers/config';
 import { checkUserRoles } from '../../helpers';
 import avatar1 from "../../assets/images/user-avatar.png";
+import { profile } from '../../helpers/fakebackend_helper';
 
 export default function ProfileAccount() {
   const { t, i18n } = useTranslation();
@@ -24,20 +24,19 @@ export default function ProfileAccount() {
   const getProfileData = async () => {
     try {
       setLoadingProfile(true);
-      // const res = await profile();
-      const BASE_URL = configService.apiBaseUrl;
+      
       const authUser = JSON.parse(localStorage.getItem("authUser"));
-      const idUser = authUser?.id
-      const res = await axios.get(`${BASE_URL}${PROFILE}${idUser}`);      
-      if(res){
-        const phone = res?.phone?.replace(/^\(\+20\)/, "");
+      const data ={id: Number(authUser?.id) }
+      const response = await profile(data); 
+      if(response){
+        const phone = response?.phone?.replace(/^\(\+20\)/, "");
         setProfileData((prev) => {
           return {
-            name: res?.first_name + " " + res?.last_name,
+            name: response?.first_name + " " + response?.last_name,
             phone: phone,
-            email: res?.email,
+            email: response?.email,
             phone_code_id: "996",
-            avatar: res?.image_path != "null" ? res?.image_path : avatar1,
+            avatar: response?.image_path != "null" ? response?.image_path : avatar1,
           };
         });
         setLoadingProfile(false);

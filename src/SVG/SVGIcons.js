@@ -73,6 +73,8 @@ import Settings from "./Settings.svg";
 import Profile from "./Profile.svg";
 import Point from "./Point.svg";
 import UpgradesSubscriptions from "./UpgradesSubscriptions.svg";
+import Help from "./Help.svg";
+
 
 const MySVG = {
   saveDraft,
@@ -146,7 +148,8 @@ const MySVG = {
   Settings,
   Profile,
   Point,
-  UpgradesSubscriptions
+  UpgradesSubscriptions,
+  Help,
 };
 
 export default MySVG;

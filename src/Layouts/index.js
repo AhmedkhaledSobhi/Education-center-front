@@ -106,9 +106,7 @@ const Layout = (props) => {
             </div>
           }
         >
-          <div className={"main-content"}>
-           { console.log("ahmed props", props)}
-            
+          <div className={"main-content"}>            
             {props.children}
             <Footer />
           </div>

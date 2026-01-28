@@ -122,10 +122,16 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 
   const handleReload = async () => {
     try {
-      const res = await profile();
-      localStorage.removeItem("packages");
+      
+      const authUser = JSON.parse(localStorage.getItem("authUser"));
+      const data ={id: Number(authUser?.id) }
+      const res = await profile(data);
+
+      // localStorage.removeItem("packages");
       // localStorage.setItem("packages", JSON.stringify(res?.data));
-      // localStorage.setItem("role", JSON.stringify(res?.data));
+      
+      localStorage.setItem("myInfo", JSON.stringify(res));
+      localStorage.setItem("role", JSON.stringify(res?.role));
       window.location.reload();
     } catch (error) {}
   };
@@ -158,14 +164,14 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                       src={logoSm}
                       alt=""
                       height="22"
-                    />
+                    />tt
                   </span>
                   <span className="logo-lg">
                     <img
                       src={logoDark}
                       alt=""
                       height="17"
-                    />
+                    />rr
                   </span>
                 </Link>
 
@@ -210,8 +216,8 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                   <img
                     className="roundedcircle header-profile-user header-profile-user-sm me2"
                     src={
-                      userInfo?.client?.image
-                        ? userInfo?.client?.image
+                      userInfo?.image_path
+                        ? userInfo?.image_path
                         : avatar1
                     }
                     alt="Header Avatar"
@@ -241,31 +247,29 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                       }}
                     >
                       {isSmallScreen
-                        ? userInfo?.client?.commercial_name
+                        ? userInfo
                           ?(() => {
                               const words =
-                                userInfo?.client?.commercial_name
+                                userInfo?.first_name
                                   ?.trim()
                                   .split(" ") || [];
-                              // const firstLetter = words[0]?.charAt(0) || "";
-                              const secondWord = words[1] || "";
+                              const word =
+                                userInfo?.last_name
+                                  ?.trim()
+                                  .split(" ") || [];    
+                              const secondWord = word[0] || "";
                               const firstLetter = words[0] || "";
-                              // const secondWord = words[1]?.charAt(0) || "";
                               return (
                                 <>
-                                  {firstLetter}
-                                  {/* <br /> */}
-                                  {/* {secondWord} */}
+                                  {firstLetter } 
+                                  {secondWord}
                                 </>
                               );
                             })()
                           : t("ProfileDropdown.CompanyNameNotAvailable")
-                        : (userInfo?.client?.commercial_name ??
-                          t("common.Welcome_to"))}
-                      {/* {userInfo?.client?.commercial_name  ??
-                    t("ProfileDropdown.CompanyNameNotAvailable")} */}
-                      {userInfo?.client_id && (
-                        <span>{`( ${userInfo?.client_id} )`}</span>
+                        : ((userInfo?.first_name ) ? userInfo?.first_name + " " + userInfo?.last_name : t("common.Welcome_to"))}
+                      {userInfo?.id && (
+                        <span>{`( ${userInfo?.id} )`}</span>
                       )}
                     </div>
 
@@ -275,17 +279,11 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                         fontSize: "10px",
                       }}
                     >
-                      {/* {userInfo?.client?.type == "brand"
-                        ? t("ProfileDropdown.commercial")
-                        : t("ProfileDropdown.freeWork")} */}
                       {t("common.Platform")} {" "} {t("Registers.Center_Educations")}
-
                     </div>
                   </div>
                 </div>
               </div>
-              {/* ---------- SearchOption ---------- */}
-              {/* <SearchOption /> */}
             </div>
 
             <div className="d-flex align-items-center">
@@ -323,10 +321,6 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                 </DropdownMenu>
               </Dropdown>
 
-              {/* AI Chat Button */}
-              {/* <HeaderChatButton /> */}
-
-              {/* Reload Button */}
               <button
                 onClick={handleReload}
                 type="button"

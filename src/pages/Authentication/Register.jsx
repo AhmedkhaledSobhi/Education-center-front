@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 
 import i18next from "i18next";
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -29,7 +29,7 @@ import configService from '../../helpers/config';
 import { toast } from 'react-toastify';
 import SimpleBar from "simplebar-react";
 import phoneCodeData from "../../localesJson/PhoneCode.json";
-import { REGISTER } from '../../helpers/url_helper';
+import { PROFILES, REGISTER } from '../../helpers/url_helper';
 
 export default function Register() {
   const { t, i18n } = useTranslation();
@@ -61,7 +61,6 @@ export default function Register() {
 // ______________________________________________________________
 
   const loginToken = JSON.parse(localStorage.getItem("access_token"));
-  console.log("ahmed loginToken", loginToken);
   
   const changeLanguageAction = (lang) => {
     i18n.changeLanguage(lang);
@@ -76,20 +75,19 @@ export default function Register() {
     first_name: "",
     last_name: "",
     phone: "",
-    age: "",
     password: "",
     email: "",
     password_confirmation: "",
     role: Account_type[1],
-    address: "",
+    // age: "",
+    // address: "",
   });
 
 // ______________________________________________________________
   
   const register = async (values) => {
     try {
-      const { password_confirmation, ...payload } = values;
-      console.log("ahmed payload", payload);
+      const { password_confirmation, age, address, ...payload } = values;
       
       // تحويل role من object لـ string
       if (payload.role && payload.role.value) {
@@ -97,8 +95,8 @@ export default function Register() {
       }
       
       payload.phone = `(${seletedCountry?.code})${payload.phone}`;
-      payload.age = parseInt(payload.age);
       payload.image_path = "null";
+      // payload.age = parseInt(payload.age);
 
       const BASE_URL = configService.apiBaseUrl;
       const res = await axios.post(`${BASE_URL}${REGISTER}`, payload, {
@@ -108,48 +106,53 @@ export default function Register() {
         },
       });
 
-      if (res && res?.status) {
-        toast.success(res?.data?.message, {
+      if (res && res?.status == 1) {
+        toast.success(res?.message, {
           position: "top-center",
           hideProgressBar: false,
           autoClose: 3000,
           progress: undefined,
         });
-        // store in session for 5 minutes
-        localStorage.setItem("authUser", JSON.stringify(res?.data?.data?.info));
-        localStorage.setItem("access_token", JSON.stringify(res?.data?.data?.token));
+        localStorage.setItem("role", JSON.stringify(res?.data?.user));
+        localStorage.setItem("authUser", JSON.stringify(res?.data?.user));
+        sessionStorage.setItem("authUser", JSON.stringify(res?.data?.user));
+
+        localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
+        localStorage.setItem("access_token", JSON.stringify(res?.data?.access_token));
         localStorage.setItem("I18N_LANGUAGE", lang);
 
         const authUser = JSON.parse(localStorage.getItem("authUser"));
         const accessToken = JSON.parse(localStorage.getItem("access_token"));
-        const loginToken = accessToken || authUser?.data?.token;
+        const loginToken = accessToken;
         const idUser = authUser?.id
-
-        if (loginToken) {
+    
+        if (loginToken || idUser) {
           axios.defaults.headers.common["Authorization"] =
             `Bearer ${loginToken}`;
           axios.defaults.headers.common["login-type"] = loginType;
-          
           const id = idUser;
           try {
-            const response = await axios.get(`${BASE_URL}auth/${id}`);
-            localStorage.setItem("myInfo", JSON.stringify(response?.data));
-            localStorage.setItem("loginType", JSON.stringify(response?.data?.role));
+            const response = await axios.get(`${BASE_URL}${PROFILES}`,{
+              params : {id},
+            });
+            localStorage.setItem("myInfo", JSON.stringify(response));
+            localStorage.setItem("loginType", JSON.stringify(response?.role));
+            navigate("/Home")
           } catch (error) {
             console.error(error.response?.data || error.message);
           }
         }
-        navigate("/Home")
+      }else{
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
       }
-
     } catch (error){
-      toast.error(error?.response?.data?.message, {
-        position: "top-center",
-        hideProgressBar: false,
-        autoClose: 3000,
-        progress: undefined,
-        toastId: "",
-      });
+      console.error("error", error);
     }
   }
 // ______________________________________________________________
@@ -160,6 +163,15 @@ export default function Register() {
     }
   }, []);
 
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 576);
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 576);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+// ______________________________________________________________
+
   return (
     <React.Fragment>
       <Row className="justify-content-center align-items-center mx-0 my-5">
@@ -168,12 +180,12 @@ export default function Register() {
         }}>
           <CardBody className='p-0'>
             <Row>
-              <Col xxl={5} className={`bg-primary ${i18n.language == "ar" ? "offset-1" : ""} `}
+              <Col xxl={5} className={` section-Auth bg-primary ${i18n.language == "ar" ? "offset-1" : ""} `}
                 style={{
                   display:"flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  borderRadius: i18n.language == "ar" ? "50%  0px 0px 50%" :"0%  50% 50% 0%"
+                  borderRadius: isSmallScreen ? "0px 0px  50% 50%" : ""
                 }}
               >
                 <div className='d-flex align-items-center align-content-center justify-content-center'>
@@ -252,17 +264,17 @@ export default function Register() {
                       last_name: Yup.string().required(
                         `${t("Registers.last_Name")} ${t("common.required")}`
                       ),
-                      age: Yup.number()
-                        .typeError(t("common.numbers_Only"))   // لو كتب حروف
-                        .required(`${t("Registers.age")} ${t("common.required")}`)
-                        .min(5, t("common.minAge"))           // أقل عمر
-                        .max(99, t("common.maxAge")),
+                      // age: Yup.number()
+                      //   .typeError(t("common.numbers_Only"))   // لو كتب حروف
+                      //   .required(`${t("Registers.age")} ${t("common.required")}`)
+                      //   .min(5, t("common.minAge"))           // أقل عمر
+                      //   .max(99, t("common.maxAge")),
                       role: Yup.object().nullable().required(
                         `${t("Registers.Account_type")} ${t("common.required")}`
                       ),
-                      address: Yup.string().required(
-                        `${t("Registers.address")} ${t("common.required")}`
-                      ),
+                      // address: Yup.string().required(
+                      //   `${t("Registers.address")} ${t("common.required")}`
+                      // ),
                       email: Yup.string()
                         .email(t("Registers.EmailIncorrect"))
                         .matches(
@@ -474,7 +486,7 @@ export default function Register() {
                           </Col>
 
                           {/* ------ العمر ------ */}
-                          <Col lg={6}>
+                          {/* <Col lg={6}>
                             <FormGroup>
                               <Label
                                 htmlFor="age"
@@ -504,10 +516,10 @@ export default function Register() {
                                 </div>
                               ) : null}
                             </FormGroup>
-                          </Col>
+                          </Col> */}
 
                           {/* ------ رقم الهاتف ------ */}
-                          <Col lg={12}>
+                          <Col lg={6}>
                             <FormGroup>
                               <Label
                                 htmlFor="phone"
@@ -554,7 +566,7 @@ export default function Register() {
                                 <DropdownMenu
                                   as="ul"
                                   // disabled
-                                  className={`list-unstyled w-100 dropdown-menu-list mb-0 input-btnleft ${
+                                  className={`list-unstyled w-25 dropdown-menu-list mb-0 input-btnleft ${
                                     i18n.language === "ar"
                                       ? "input-btn-left"
                                       : "input-btn"
@@ -595,7 +607,7 @@ export default function Register() {
                           </Col>
 
                           {/* ------ العنوان ------ */}
-                          <Col lg={12}>
+                          {/* <Col lg={12}>
                             <FormGroup>
                               <Label
                                 htmlFor="address"
@@ -622,7 +634,7 @@ export default function Register() {
                                   </div>
                                 ) : null}
                               </FormGroup>
-                          </Col>
+                          </Col> */}
 
                           {/* ------ كلمة المرور ------ */}
                           <Col lg={6}>

@@ -5,17 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import i18next from "i18next";
 import { Button, Card, CardBody, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, FormGroup, Input, Label, Row } from 'reactstrap';
 import * as Yup from "yup";
-import image from '../../assets/images/CenterEducation2.png'
 import { hasEmptyValue } from '../../helpers';
 import MySVG from '../../SVG/SVGIcons';
 import ButtonLoader from '../../Components/Common/ButtonLoader';
 import SimpleBar from 'simplebar-react';
 import phoneCodeData from "../../localesJson/PhoneCode.json";
 import { toast } from 'react-toastify';
-import { LOGIN, PROFILE, } from '../../helpers/url_helper';
+import { LOGIN, PROFILES} from '../../helpers/url_helper';
 import configService from '../../helpers/config';
 import axios from "axios";
-import { profile } from '../../helpers/fakebackend_helper';
+import image from '../../assets/images/CenterEducation2.png'
 
 export default function Login() {
   const { t, i18n } = useTranslation();
@@ -63,7 +62,7 @@ export default function Login() {
         },
       });
 
-      if (res && res) {
+      if (res && res?.status == 1) {
         toast.success(res?.message, {
           position: "top-center",
           hideProgressBar: false,
@@ -85,14 +84,13 @@ export default function Login() {
         const loginToken = accessToken;
         const idUser = authUser?.id
 
-        if (loginToken) {
+        if (loginToken || idUser) {
           axios.defaults.headers.common["Authorization"] =
             `Bearer ${loginToken}`;
           axios.defaults.headers.common["login-type"] = loginType;
-
           const id = idUser;
           try {
-            const response = await axios.get(`${BASE_URL}${PROFILE}${id}`);
+            const response = await axios.get(`${BASE_URL}${PROFILES}`,{params : {id},});
             localStorage.setItem("myInfo", JSON.stringify(response));
             localStorage.setItem("loginType", JSON.stringify(response?.role));
             navigate("/Home")
@@ -101,15 +99,18 @@ export default function Login() {
           }
         }
 
+      }else{
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
       }
+
     } catch (error){
-      toast.error(error?.response?.data?.message, {
-        position: "top-center",
-        hideProgressBar: false,
-        autoClose: 3000,
-        progress: undefined,
-        toastId: "",
-      });
+      console.error("error", error)
     }
   }
   // ______________________________________________________________
@@ -120,6 +121,13 @@ export default function Login() {
     }
   }, []);
 
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 576);
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 576);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <React.Fragment>
       <Row className="justify-content-center align-items-center mx-0 mt-4 vh- 100 ">
@@ -128,9 +136,12 @@ export default function Login() {
         }}>
           <CardBody className='p-0'>
             <Row>
-              <Col xxl={5} className={`bg-primary pt-5 ${i18n.language == "ar" ? "offset-1" : ""} `}
+              <Col xxl={5} className={`section-Auth bg-primary pt-5 ${i18n.language == "ar" ? "offset-1" : ""} `}
                 style={{
-                  borderRadius: i18n.language == "ar" ? "50%  0px 0px 50%" :"0%  50% 50% 0%"
+                  display:"flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: isSmallScreen ? "0px 0px  50% 50%" : ""
                 }}
               >
                 <div className='d-flex align-items-center align-content-center justify-content-center'>
@@ -306,7 +317,7 @@ export default function Login() {
                                     <DropdownMenu
                                       as="ul"
                                       // disabled
-                                      className={`list-unstyled w-100 dropdown-menu-list mb-0 input-btnleft ${
+                                      className={`list-unstyled w-25 dropdown-menu-list mb-0 input-btnleft ${
                                         i18n.language === "ar"
                                           ? "input-btn-left"
                                           : "input-btn"

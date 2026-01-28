@@ -60,9 +60,13 @@
     "Profile": "Profile",
     "UpgradesAndSubscriptions": "Upgrades and Subscriptions",
     "changePassword": "Change Password",
+    "Help": "Help",
     "accountSettings": "Account Settings",
     "Logout": "Logout",
     "Settings": "Settings"
+  },
+  "AccountSettings": {
+    
   },
   "LayoutMenuData":{
     "main": "Home",

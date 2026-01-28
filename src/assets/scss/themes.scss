@@ -17,6 +17,7 @@
 
 
 $primary: #0d6efd;
+$primary2: #0d6dfdb3;
 $secondary: #6c757d;
 $danger: #d60000;
 $green: #00bd9d;
@@ -235,6 +236,19 @@ html[lang="en"] {
   }
 };
 
+// ----------
+html[lang="ar"] {
+  .section-Auth {
+    border-radius: 50%  0px 0px 50%;
+  }
+};
+
+html[lang="en"] {
+  .section-Auth {
+    border-radius: 0%  50% 50% 0%;
+  }
+};
+// ----------
 .sub-title {
   border-bottom: 1px solid #eaeced;
   padding: 14px 24px;
@@ -298,7 +312,9 @@ html[lang="en"] {
   width: 100%;
   cursor: pointer;
   min-height: 218px;
-  border: 2px dashed #e9ebec;
+  // border: 2px dashed #e9ebec;
+  border: 2px dashed $primary2;
+
   background-color: #fafafa;
   border-radius: 6px;
   justify-content: center;
@@ -336,7 +352,7 @@ html[lang="en"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 5px;
+  margin: 10px 5px !important;
 }
 // ---------------------------------------------
 .css-olqui2-singleValue {
@@ -348,6 +364,6 @@ html[lang="en"] {
 
 
 
-.dropdown-menu.show {
-  width: 50px !important;
-}
+// .dropdown-menu.show {
+//   width: 50px !important;
+// }
