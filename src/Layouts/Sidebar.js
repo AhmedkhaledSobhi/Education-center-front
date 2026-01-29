@@ -58,8 +58,8 @@ const Sidebar = ({ layoutType }) => {
           >
             <span className="logo-sm">
               <img
-                src={MySVG.logoDark}
-                alt="logoDark"
+                src={MySVG.logoSm}
+                alt="logoSm"
                 height="22"
               />
             </span>

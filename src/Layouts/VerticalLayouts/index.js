@@ -50,7 +50,7 @@ const VerticalLayout = (props) => {
       var hamburgerIcon = document.querySelector(".hamburger-icon");
       if (
         (sidebarVisibilitytype === "show" ||
-          // layoutType === "vertical" ||
+          layoutType === "vertical" ||
           layoutType === "twocolumn") &&
         document.querySelector(".hamburger-icon")
       ) {

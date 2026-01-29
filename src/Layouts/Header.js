@@ -32,8 +32,10 @@ import i18n from "../i18n";
 const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  
   const selectDashboardData = createSelector(
-    (state) => state.Layout.sidebarVisibilitytype,
+    (state) =>state.Layout.sidebarVisibilitytype,
     (sidebarVisibilitytype) => sidebarVisibilitytype
   );
   // Inside your component
@@ -64,9 +66,11 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   const toogleMenuBtn = () => {
     var windowSize = document.documentElement.clientWidth;
     dispatch(changeSidebarVisibility("show"));
+    const getAttributeDataLayout = document.documentElement.getAttribute("data-layout")
 
-    if (windowSize > 767)
+    if (windowSize > 767){
       document.querySelector(".hamburger-icon").classList.toggle("open");
+    }
 
     //For collapse horizontal menu
     if (document.documentElement.getAttribute("data-layout") === "horizontal") {

@@ -1,14 +1,12 @@
 import React, { Suspense, useEffect, useState } from "react";
-import withRouter from "../Components/Common/withRouter";
 import PropTypes from "prop-types";
+import withRouter from "../Components/Common/withRouter";
 
 //import Components
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
-// import RightSidebar from "../Components/Common/RightSidebar";
+import RightSidebar from "../Components/Common/RightSidebar";
 
 //import actions
 import {
@@ -22,7 +20,10 @@ import {
   changeLeftsidebarViewType,
   changeSidebarVisibility,
 } from "../slices/thunks";
-import RightSidebar from "../Components/Common/RightSidebar";
+
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "reselect";
 
 const Layout = (props) => {
   const [headerClass, setHeaderClass] = useState("");
@@ -45,7 +46,6 @@ const Layout = (props) => {
       sidebarVisibilitytype: layout.sidebarVisibilitytype,
     })
   );
-
   // Inside your component
   const {
     layoutType,
@@ -60,8 +60,7 @@ const Layout = (props) => {
     preloader,
     sidebarVisibilitytype,
   } = useSelector(selectLayoutProperties);
-
-    // class add remove in header
+  // class add remove in header
   useEffect(() => {
     window.addEventListener("scroll", scrollNavigation, true);
   });
@@ -73,12 +72,64 @@ const Layout = (props) => {
       setHeaderClass("");
     }
   }
-
-    const onChangeLayoutMode = (value) => {
+  /*
+    layout settings
+    */
+  useEffect(() => {
+    if (
+      layoutType ||
+      leftSidebarType ||
+      layoutModeType ||
+      layoutWidthType ||
+      layoutPositionType ||
+      topbarThemeType ||
+      leftsidbarSizeType ||
+      leftSidebarViewType ||
+      sidebarVisibilitytype
+    ) {
+      window.dispatchEvent(new Event("resize"));
+      dispatch(changeLeftsidebarViewType(leftSidebarViewType));
+      dispatch(changeLeftsidebarSizeType(leftsidbarSizeType));
+      dispatch(changeSidebarTheme(leftSidebarType));
+      dispatch(changeLayoutMode(layoutModeType));
+      dispatch(changeLayoutWidth(layoutWidthType));
+      dispatch(changeLayoutPosition(layoutPositionType));
+      dispatch(changeTopbarTheme(topbarThemeType));
+      dispatch(changeLayout(layoutType));
+      dispatch(changeSidebarVisibility(sidebarVisibilitytype));
+    }
+  }, [
+    layoutType,
+    leftSidebarType,
+    layoutModeType,
+    layoutWidthType,
+    layoutPositionType,
+    topbarThemeType,
+    leftsidbarSizeType,
+    leftSidebarViewType,
+    sidebarVisibilitytype,
+    dispatch,
+  ]);
+  /*
+    call dark/light mode
+    */
+  const onChangeLayoutMode = (value) => {
     if (changeLayoutMode) {
       dispatch(changeLayoutMode(value));
     }
   };
+
+  useEffect(() => {
+    if (
+      sidebarVisibilitytype === "show" ||
+      layoutType === "vertical" ||
+      layoutType === "twocolumn"
+    ) {
+      document.querySelector(".hamburger-icon")?.classList.remove("open");
+    } else {
+      document.querySelector(".hamburger-icon")?.classList.add("open");
+    }
+  }, [sidebarVisibilitytype, layoutType]);
 
   return (
     <React.Fragment>
@@ -92,7 +143,7 @@ const Layout = (props) => {
         <Suspense
           fallback={
             <div
-              className="bg-danger d-flex justify-content-center align-items-center"
+              className="d-flex justify-content-center align-items-center"
               style={{ height: "100vh", width: "100vw" }}
             >
               <div id="status">
@@ -106,7 +157,7 @@ const Layout = (props) => {
             </div>
           }
         >
-          <div className={"main-content"}>            
+          <div className={"main-content"}>
             {props.children}
             <Footer />
           </div>
@@ -115,7 +166,7 @@ const Layout = (props) => {
       <RightSidebar />
     </React.Fragment>
   );
-}
+};
 
 Layout.propTypes = {
   children: PropTypes.object,

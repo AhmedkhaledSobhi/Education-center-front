@@ -125,7 +125,6 @@ export default function AddressComponents({
                 </div>
               </FormGroup>
             </Col>
-            {console.log("ahmed values", values)}
             {/* ----------- المدينه ----------- */}
             <Col lg={4}>
               <FormGroup className="mb-3">

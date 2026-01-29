@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./slices";
+
 import './index.css';
 import './i18n';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'remixicon/fonts/remixicon.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+const store = configureStore({ reducer: rootReducer, devTools: true });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
