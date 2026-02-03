@@ -26,11 +26,17 @@ $vertical-menu-bg:                                 #283C47;
 $vertical-menu-border:                            $border-color;
 $vertical-menu-item-color:                        #FFFFFF;
 $vertical-menu-item-bg:                           rgba($primary, .15);
-$vertical-menu-item-hover-color:                  $secondary;
-$vertical-menu-item-active-color:                 $secondary;
+
+// $vertical-menu-item-hover-color:                  $secondary;
+// $vertical-menu-item-active-color:                 $secondary;
+
+$vertical-menu-item-hover-color:                  $primary;
+$vertical-menu-item-active-color:                 $primary;
+
 $vertical-menu-item-active-bg:                    rgba($primary, .15);
 $vertical-menu-sub-item-color:                     #C3C1C1;;
-$vertical-menu-sub-item-hover-color:              $secondary;
+// $vertical-menu-sub-item-hover-color:              $secondary;
+$vertical-menu-sub-item-hover-color:              $primary;
 $vertical-menu-sub-item-active-color:             $secondary;
 $vertical-menu-title-color:                       #919da9;
 $vertical-menu-box-shadow:                        none;

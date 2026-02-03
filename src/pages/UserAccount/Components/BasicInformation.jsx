@@ -169,7 +169,7 @@ export default function BasicInformation({
                 </Col>
 
                 {/* ------ اسم المركز ------ */}
-                {/* <Col lg={6}>
+                <Col lg={6}>
                   <FormGroup className="mb-3">
                     <Label
                       className="form-label"
@@ -189,9 +189,10 @@ export default function BasicInformation({
                       }
                       value={values?.Center_name}
                       onBlur={handleBlur}
+                      disabled
                     />
                   </FormGroup>
-                </Col> */}
+                </Col>
 
                 {/* ------ نوع الحساب ------ */}
                 <Col lg={6}>
@@ -241,7 +242,7 @@ export default function BasicInformation({
                       onBlur={() => {
                         setFieldTouched("role", true);
                       }}
-                      // isDisabled
+                      isDisabled
                     />
                     {touched?.role && errors?.role ? (
                       <div style={{ color: "red" }}>

@@ -121,10 +121,6 @@ const Navdata = () => {
       document.body.classList.add("twocolumn-panel");
     }
     
-    if (iscurrentState === "Landing") {
-      setIsLanding(false);
-    }
-    
     if (iscurrentState !== "Customers") {
       setIsCustomers(false);
     }
@@ -218,17 +214,17 @@ const Navdata = () => {
       },
       stateVariables: isUsers,
       subItems: [
-        isTeacher && {
+        {
           id: "Teacher",
           label: "LayoutMenuData.Teachers",
           link: "/teacher",
         },
-        isStudent && {
+        {
           id: "Student",
           label: t("LayoutMenuData.Students"),
           link: "/student",
         },
-        isAssistant && {
+        {
           id: "Assistant",
           label: t("LayoutMenuData.Assistants"),
           link: "/assistant",

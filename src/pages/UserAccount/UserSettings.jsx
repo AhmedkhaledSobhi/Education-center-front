@@ -44,14 +44,14 @@ export default function UserSettings() {
           email: response?.email,
           address: response?.address || "",
           role: response?.role,
-          // country: { 
-          //   id: "65", 
-          //   name: "Egypt", 
-          //   name_ar: "مصر",
-          //   name_en: "Egypt",
-          // },
-          // region: ""
-          // city: ""
+          country: { 
+            id: "65", 
+            name: "Egypt", 
+            name_ar: "مصر",
+            name_en: "Egypt",
+          },
+          region: "",
+          city: "",
         })
         setProfileData((prev) => {
           return {
@@ -87,9 +87,9 @@ export default function UserSettings() {
     const params = {
       ...values,
       role: values?.role?.value ?? values?.role,
-      // country: values?.country?.id,
-      // region: values?.region?.id,
-      // city: values?.city?.id,
+      country: values?.country?.id,
+      region: values?.region?.id,
+      city: values?.city?.id,
     }
     const formData = new FormData();
     for (const key in params) {
