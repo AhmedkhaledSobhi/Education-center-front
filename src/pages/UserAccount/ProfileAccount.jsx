@@ -7,7 +7,7 @@ import axios from 'axios';
 import configService from '../../helpers/config';
 import { checkUserRoles } from '../../helpers';
 import avatar1 from "../../assets/images/user-avatar.png";
-import { profile } from '../../helpers/fakebackend_helper';
+import { getLoggedInUser, profile } from '../../helpers/fakebackend_helper';
 
 export default function ProfileAccount() {
   const { t, i18n } = useTranslation();
@@ -23,10 +23,10 @@ export default function ProfileAccount() {
   );
   const getProfileData = async () => {
     try {
-      setLoadingProfile(true);
-      
-      const authUser = JSON.parse(localStorage.getItem("authUser"));
-      const data ={id: Number(authUser?.id) }
+      setLoadingProfile(true);      
+      const user = getLoggedInUser();
+
+      const data ={id: Number(user?.id) }
       const response = await profile(data); 
       if(response){
         const phone = response?.phone?.replace(/^\(\+20\)/, "");

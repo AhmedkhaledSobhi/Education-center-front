@@ -5,6 +5,7 @@ export const LOGIN = "auth/login";
 
 // Profile
 export const PROFILES = `auth/`;
+export const ALLUSERS = `auth/users`;
 
 // Edit Account Information
 

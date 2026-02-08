@@ -22,6 +22,7 @@
     "react-router-dom": "^7.9.6",
     "react-scripts": "5.0.1",
     "react-select": "^5.10.2",
+    "react-table": "^7.8.0",
     "react-toastify": "^11.0.5",
     "react-top-loading-bar": "^3.0.2",
     "reactstrap": "^9.2.3",

@@ -8,6 +8,8 @@ import Teacher from "../pages/Teacher/Teacher";
 import UserSettings from "../pages/UserAccount/UserSettings";
 import ProfileAccount from "../pages/UserAccount/ProfileAccount";
 import Assistant from "../pages/Assistant/Assistant";
+import AddTeacher from "../pages/Teacher/AddTeacher";
+import AddStudent from "../pages/Student/AddStudent";
 
 const publicRoutes = [
   { path: "/login", component: <Login /> },
@@ -38,9 +40,19 @@ const authProtectedRoutes = [
     moduleName: "Teacher"
   },
   {
+    path: "/addTeacher",
+    component: <AddTeacher/>,
+    moduleName: "Teacher"
+  },
+  {
     path: "/student",
     component: <Student/>,
     moduleName: "Student"
+  },
+    {
+    path: "/addStudent",
+    component: <AddStudent/>,
+    moduleName: "Teacher"
   },
   {
     path: "/assistant",

@@ -24,6 +24,7 @@ export const isUserAuthenticated = () => {
 
 // profile api
 export const profile = (data) => api.get(url.PROFILES, data);
+export const allUser = (data) => api.get(url.ALLUSERS, data);
 
 export const editAccountInformation = (data) =>{
   const user = getLoggedInUser();

@@ -24,7 +24,7 @@ import avatar1 from "../assets/images/user-avatar.png";
 import { changeSidebarVisibility } from "../slices/thunks";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
-import { profile } from "../helpers/fakebackend_helper";
+import { getLoggedInUser, profile } from "../helpers/fakebackend_helper";
 import { useTranslation } from "react-i18next";
 import { IoReload } from "react-icons/io5";
 import i18n from "../i18n";
@@ -45,9 +45,9 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 
   const getProfileData = async () => {
     try {
-      const authUser = JSON.parse(localStorage.getItem("authUser"));
-      const data ={id: Number(authUser?.id) }
-      if(authUser?.id){
+      const user = getLoggedInUser();
+      const data ={id: Number(user?.id) }
+      if(user?.id){
         const res = await profile(data);
         setUserInfo(res);
       }
@@ -129,20 +129,21 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   }, []);
 
   const handleReload = async () => {
-    try {
-      
-      const authUser = JSON.parse(localStorage.getItem("authUser"));
-      const data ={id: Number(authUser?.id) }
-      const res = await profile(data);
+    try {      
+      const user = getLoggedInUser();
+      if(user){
+        const data ={id: Number(user?.id) }
+        const res = await profile(data);
 
-      // localStorage.removeItem("packages");
-      // localStorage.setItem("packages", JSON.stringify(res?.data));
-      
-      localStorage.setItem("authUser", JSON.stringify(res));
-      localStorage.setItem("userInfo", JSON.stringify(res));
-      localStorage.setItem("myInfo", JSON.stringify(res));
-      localStorage.setItem("role", JSON.stringify(res?.role));
-      window.location.reload();
+        // localStorage.removeItem("packages");
+        // localStorage.setItem("packages", JSON.stringify(res?.data));
+        
+        // localStorage.setItem("authUser", JSON.stringify(res));
+        // localStorage.setItem("userInfo", JSON.stringify(res));
+        // localStorage.setItem("myInfo", JSON.stringify(res));
+        // localStorage.setItem("role", JSON.stringify(res?.role));
+        // window.location.reload();
+      }
     } catch (error) {}
   };
 

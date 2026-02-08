@@ -6,7 +6,7 @@ import ButtonLoader from '../../Components/Common/ButtonLoader';
 import avatar1 from "../../assets/images/user-avatar.png";
 import { toast } from 'react-toastify';
 import * as Yup from "yup";
-import { editAccountInformation, profile } from '../../helpers/fakebackend_helper';
+import { editAccountInformation, getLoggedInUser, profile } from '../../helpers/fakebackend_helper';
 import { Formik } from 'formik';
 import TopPageButttons from '../../Components/Common/TopPageButttons';
 import { useNavigate } from 'react-router-dom';
@@ -31,17 +31,18 @@ export default function UserSettings() {
   const getProfileData = async () => {
     try {
       setLoadingProfile(true);
-      const authUser = JSON.parse(localStorage.getItem("authUser"));
-      const data ={id: Number(authUser?.id) }
+      const user = getLoggedInUser()
+      const data ={id: Number(user?.id) }
       const response = await profile(data);      
       if(response){
         const phone = response?.phone?.replace(/^\(\+20\)/, "");
         setInitialValues({
           first_name: response?.first_name,
           last_name: response?.last_name,
-          // Center_name: response?.first_name + " " + response?.last_name, 
+          Center_name: response?.first_name + " " + response?.last_name, 
           phone: phone,
           email: response?.email,
+          age: response?.age,
           address: response?.address || "",
           role: response?.role,
           country: { 
@@ -55,11 +56,6 @@ export default function UserSettings() {
         })
         setProfileData((prev) => {
           return {
-            // Center_name: response?.first_name + " " + response?.last_name,
-            phone: phone,
-            email: response?.email,
-            phone_code_id: "996",
-            role: response?.role,
             avatar: response?.image_path != "null" ? response?.image_path : avatar1,
           };
         });
@@ -136,95 +132,78 @@ export default function UserSettings() {
             subTitle={t("ProfileDropdown.Settings")}
             pageTitle={t("ProfileDropdown.accountSettings")}
           />
-          {loadingProfile ?
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                height: 200,
-              }}
-            >
-              <ButtonLoader
-                color="#0d6efd"
-                width="70"
-                height="70"
-              />
-            </div>
-          : 
-            (
-              <Formik
-                initialValues={initialValues}
-                validationSchema={() => {
-                  return validationSchema;
+
+          <Formik
+            initialValues={initialValues}
+            validationSchema={() => {
+              return validationSchema;
+            }}
+            onSubmit={(values, action) => {
+              onSubmitForm(values, action);
+            }}
+            enableReinitialize={true}
+          >
+            {({
+              handleSubmit,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              values,
+              isSubmitting,
+              setFieldValue,
+              setFieldTouched,
+              validateForm,
+            }) => (
+              <form
+                onSubmit={handleSubmit}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                  }
                 }}
-                onSubmit={(values, action) => {
-                  onSubmitForm(values, action);
-                }}
-                enableReinitialize={true}
               >
-                {({
-                  handleSubmit,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleBlur,
-                  values,
-                  isSubmitting,
-                  setFieldValue,
-                  setFieldTouched,
-                  validateForm,
-                }) => (
-                  <form
-                    onSubmit={handleSubmit}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        event.preventDefault();
-                      }
-                    }}
-                  >
-                    <TopPageButttons
-                      PageTittle={`${t("common.edit")} ${t("AccountSettings.ProfileInformation")}`}
-                      handleSave={() => handleSubmit(values)}
-                      loadsave={loadsave}
-                      close={() => {nav("/teacher")}}
-                      information={()=> setIsInfoOpen(!isInfoOpen)}
-                    />
+                <TopPageButttons
+                  PageTittle={`${t("common.edit")} ${t("AccountSettings.ProfileInformation")}`}
+                  handleSave={() => handleSubmit(values)}
+                  loadsave={loadsave}
+                  close={() => {nav("/teacher")}}
+                  information={()=> setIsInfoOpen(!isInfoOpen)}
+                />
 
-                    {/* ---------------- المعلومات الاساسيه ---------------- */}
-                    <BasicInformation
-                      values={values}
-                      handleBlur={handleBlur}
-                      setFieldValue={setFieldValue}
-                      setFieldTouched={setFieldTouched}
-                      touched={touched}
-                      errors={errors}
-                      profileData={profileData}
-                      disableEdit={disableEdit}
-                    />
+                {/* ---------------- المعلومات الاساسيه ---------------- */}
+                <BasicInformation
+                  values={values}
+                  handleBlur={handleBlur}
+                  setFieldValue={setFieldValue}
+                  setFieldTouched={setFieldTouched}
+                  touched={touched}
+                  errors={errors}
+                  loadingProfile={loadingProfile}
+                  disableEdit={disableEdit}
+                />
 
-                    {/* ---------------- بيانات الاتصال ---------------- */}
-                    <ContactInformationComponents
-                      values={values}
-                      handleBlur={handleBlur}
-                      setFieldValue={setFieldValue}
-                      touched={touched}
-                      errors={errors}
-                    />
-                    {/* ---------------- العنوان ---------------- */}
-                    <AddressComponents
-                      values={values}
-                      handleBlur={handleBlur}
-                      setFieldValue={setFieldValue}
-                      touched={touched}
-                      errors={errors}
-                    />
-                  </form>
-                )}
-              </Formik>
-            )
-          }
+                {/* ---------------- بيانات الاتصال ---------------- */}
+                <ContactInformationComponents
+                  values={values}
+                  handleBlur={handleBlur}
+                  setFieldValue={setFieldValue}
+                  touched={touched}
+                  errors={errors}
+                  loadingProfile={loadingProfile}
+                />
+                {/* ---------------- العنوان ---------------- */}
+                <AddressComponents
+                  values={values}
+                  handleBlur={handleBlur}
+                  setFieldValue={setFieldValue}
+                  touched={touched}
+                  errors={errors}
+                  loadingProfile={loadingProfile}
+                />
+              </form>
+            )}
+          </Formik>
         </Container>
       </div>
     </React.Fragment>

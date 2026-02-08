@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ButtonLoader from "../Common/ButtonLoader";
 import { DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { useTranslation } from "react-i18next";
+import { CiCirclePlus } from "react-icons/ci";
 
 export default function ButtonComponent({
   onClick,

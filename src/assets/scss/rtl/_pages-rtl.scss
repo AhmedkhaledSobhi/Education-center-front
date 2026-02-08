@@ -688,7 +688,9 @@
     }
 
     &:last-child {
-      padding-left: 16px;
+      // padding-left: 16px;
+      padding-left: 0px;
+
       padding-right: 0;
     }
   }
@@ -704,11 +706,14 @@ html[lang="en"] {
     td {
       &:first-child {
         padding-left: 16px;
+
         padding-right: 0;
       }
 
       &:last-child {
-        padding-right: 16px;
+        // padding-right: 16px;
+        padding-right: 0px;
+
         padding-left: 0;
       }
     }

@@ -55,6 +55,10 @@ body {
     outline: none;
   }
 }
+a {
+  text-decoration: none !important;
+}
+
 // ------------- Start Scrollbar Styles -------------
 ::-webkit-scrollbar-thumb {
   background-color: $primary;
@@ -367,3 +371,44 @@ html[lang="en"] {
 // .dropdown-menu.show {
 //   width: 50px !important;
 // }
+
+.new-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 8px;  
+  background-color: rgba($primary, .12);
+
+  margin-bottom: 24px;
+  align-items: center;
+}
+html[lang="en"] {
+  .new-card {
+    border-left: 8px solid $primary !important;
+  }
+}
+html[lang="ar"] {
+  .new-card {
+    border-right: 8px solid $primary !important;
+  }
+}
+.new-card div {
+  flex: 1 0;
+  padding: 16px 20px;
+}
+
+.new-card .icon {
+  justify-content: flex-end;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  color: #283c47;
+}
+
+.new-card i {
+  font-size: 21px;
+}
+
+.table-head {
+  background-color: #eaeced !important;
+}

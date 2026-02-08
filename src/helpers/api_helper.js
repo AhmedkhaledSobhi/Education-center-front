@@ -130,6 +130,8 @@ class APIClient {
         }
       );
       if (response?.message === "Unauthenticated") {
+        console.log("ahmed response", response);
+        
         performLogoutCleanup();
         window.location.href = "/login";
       }
@@ -264,12 +266,11 @@ class APIClient {
 }
 
 const getLoggedinUser = () => {
-  const user = sessionStorage.getItem("authUser");  
-  if (!user) {
+  try {
+    const user = localStorage.getItem("authUser");
+    return user ? JSON.parse(user) : null;
+  } catch {
     return null;
-  } else {
-    return JSON.parse(user);
   }
 };
-
 export { APIClient, setAuthorization, setLoginType, getLoggedinUser };

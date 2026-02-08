@@ -1,88 +1,197 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Container } from 'reactstrap'
+import { Card, CardBody, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap'
 import BreadCrumb from '../../Components/Common/BreadCrumb';
 import ButtonLoader from '../../Components/Common/ButtonLoader';
-import ButtonComponent from '../../Components/Common/ButtonComponent';
-import MySVG from '../../SVG/SVGIcons';
-import ImageWithLoader from '../../Components/Common/ImageWithLoader';
-// import "../../assets/scss/StorePermission.css";
+import { useNavigate } from 'react-router-dom';
+import TopTablesButtons from '../../Components/Common/TopTablesButtons';
+import Alert from '../../Components/Common/Alert';
+import TableContainerComponent from '../../Components/Common/TableContainerComponent/TableContainerComponent';
+import { allUser } from '../../helpers/fakebackend_helper';
 
 export default function Teacher() {
   const { t, i18n } = useTranslation();
-  const [loadingProfile, setLoadingProfile] = useState(true);
+  const nav = useNavigate();
   
-  return (
+  const [isInfoOpen, setIsInfoOpen] = useState(true);
+  
+  const [loadingProfile, setLoadingProfile] = useState(false);
+  const [productsData, setProductsData] = useState([]);
+  const [totalPage, setTotalPage] = useState([]);
+  const [currentPage, setCurrentPage] = useState([]);
+  const [limit, setLimit] = useState([]);
 
+  // ____________________________________________________________________
+
+  const productSettingsColumns = useMemo(
+    () => [
+      {
+        Header: t("Teacher.name"),
+        accessor: "first_name",
+        filterable: false,
+        Cell: (cellProps)=>{
+          return ( <span> {cellProps?.row?.original?.first_name } {cellProps?.row?.original?.last_name} </span>)
+        }
+      },
+      {
+        Header: t("Teacher.email"),
+        accessor: "email",
+        filterable: false,
+      },
+      {
+        Header: t("Teacher.phoneNumber"),
+        accessor: "phone",
+        filterable: false,
+        Cell: (cellProps)=>{
+          const phone = cellProps?.row?.original?.phone ?.replace(/^\(\+20\)/, "");
+          return ( <span> {phone} </span>)
+        }
+      },
+      {
+        Header: t("Teacher.age"),
+        accessor: "age",
+        filterable: false,
+      },
+      {
+        Header: t("Teacher.Address"),
+        accessor: "address",
+        filterable: false,
+      },
+      {
+        Header: t("Teacher.Account_type"),
+        accessor: "role",
+        filterable: false,
+        Cell: (cellProps)=>{
+          return cellProps?.row?.original?.role
+        }
+      },
+      {
+        Header: t("common.settings"),
+        Cell: (cellProps) => {
+          return (
+            <UncontrolledDropdown onClick={(e) => e?.stopPropagation()}>
+              <DropdownToggle
+                tag="a"
+                className="btn btn-light btn-sm"
+              >
+                <i className="ri-more-2-fill align-middle"></i>
+              </DropdownToggle>
+              <DropdownMenu className="dropdown-menu-end">
+                <li>
+                  <DropdownItem>
+                    <div className="d-flex justify-content-start aligns-item-center">
+                      <i className="mdi mdi-eye-circle-outline  align-bottom me-2 text-muted"></i>
+                      <div>{t("common.view")}</div>
+                    </div>
+                  </DropdownItem>
+                </li>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          )
+        }
+      }
+    ]);
+  
+  // ____________________________________________________________________
+  
+  const getProfileData = async () => {
+    try {
+      setLoadingProfile(true);
+      const response = await allUser();    
+      console.log("ahmed response", response);
+              
+      if(response){
+        const result = response?.data?.filter((item) => {
+          return item.role == "TEACHER";
+        });
+        setProductsData(result);
+        setTotalPage(response?.meta?.total)
+        setCurrentPage(response?.meta?.page)
+        setLimit(response?.meta?.limit)
+        setLoadingProfile(false);
+      }
+    } catch (error) {
+      setLoadingProfile(false);
+      console.log("Error in fetching profile data:", error);
+    }
+  };
+
+  // ____________________________________________________________________
+  
+  useEffect(() => {
+    getProfileData();
+  }, []);
+
+  return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
           <BreadCrumb
             title={t("LayoutMenuData.Users")}
             subTitle={t("LayoutMenuData.Users")}
-            pageTitle={t("LayoutMenuData.Teachers")}
+            pageTitle={t("Teacher.Teachers")}
           />
-          <div className="new-card-info">
-            <ImageWithLoader
-              src={"productData?.product?.image"}
-              // width={60}
-              // height={60}
-              className="object-fit-contain"
-              alt="images/1.png"
-            />
-            <ButtonComponent
-              nameBtn={t("common.SaveNew")}
-              className={"drop-down-save mobile-button mx-1"}
-              classNameImage={"hide-on-mobile"}
-              img={MySVG.save}
-              // onClick={() => {
-              //   step < 2
-              //     ? setSweetAlertModal(true)
-              //     : formSubmitted && handleSaveNew(values);
-              // }}
-              styleImg={"brightness(0) invert(1)"}
-              // loading={loading}
-              // disabled={loading || loadingSaveDraft}
-            />
-            <ButtonComponent
-              nameBtn={t("common.SaveAsADraft")}
-              className={"add-product-new-table mobile-button hide-on-mobile mx-1"}
-              classNameImage={"hide-on-mobile"}
-              img={MySVG.saveDraft}
-              // onClick={() => {
-              //   step < 2
-              //     ? setSweetAlertModal(true)
-              //     : formSubmittedSaveDraft && handleSaveDraft(values);
-              // }}
-              styleImg={
-                "invert(61%) sepia(88%) saturate(4762%) hue-rotate(196deg) brightness(92%) contrast(101%)"
-              }
-              // loading={loadingSaveDraft}
-              // disabled={loading || loadingSaveDraft}
-              colorLoading={"#00a598"}
-            />
-          </div>
-
-
-
-          {loadingProfile?
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                height: 200,
-              }}
-            >
-              <ButtonLoader
-                color="#0d6efd"
-                width="70"
-                height="70"
+          <Row>
+            <Col xs={12}>
+              <Alert
+                message={"descMsg"}
+                close={isInfoOpen}
+                onClose={()=> setIsInfoOpen(!isInfoOpen)}
               />
-            </div>
-            :<div> </div>            
-          }
+            </Col>
+            <Col xs={12}>
+              <TopTablesButtons 
+                PageTittle={`${t("Teacher.Teachers")}`}
+                addTitle={t("Teacher.AddTeacher")}
+                link={() => nav("/addTeacher")}
+                information={()=> setIsInfoOpen(!isInfoOpen)}
+              />
+            </Col>
+            
+            <Col xs={12}>
+              <div className="card-body pt-0">
+                <Card>
+                  <CardBody className="pt-0">
+                    {loadingProfile?
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: "100%",
+                          height: 200,
+                        }}
+                      >
+                        <ButtonLoader
+                          color="#0d6efd"
+                          width="70"
+                          height="70"
+                        />
+                      </div>
+                      :<div> 
+                        {console.log("ahmed productsData", productsData)}
+
+                        <TableContainerComponent
+                          columns={productSettingsColumns || []}
+                          data={productsData || [] }
+                          customPagination={true}
+                          pages={productsData?.meta?.page}
+                          
+                          limit={limit}
+                          totalPage={totalPage}
+                          currentPage={currentPage}
+                          setParams={productsData}
+                          params={limit}
+                        /> 
+                      </div>            
+                    }  
+                  </CardBody>
+                </Card>
+              </div>
+            </Col>
+          </Row>
+
+
         </Container>
       </div>
     </React.Fragment>

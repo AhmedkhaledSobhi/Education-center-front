@@ -21,8 +21,9 @@
     "Student": "طالب",
     "Employee": "موظف",
     "Assistant": "مساعد",
+    "User": "مستخدم",
     "sign_new_account": "تسجيل حساب جديد",
-    
+
     "EmailIncorrect": "البريد الإلكتروني غير صحيح",
     "EmailRequired": "البريد الإلكتروني مطلوب",
     "mobileNumberValidation": "التحقق من رقم الجوال",
@@ -55,10 +56,14 @@
     "cancel": "إلغاء",
     "main": "الرئيسية",
     "SavedSuccessfully": "تم الحفظ بنجاح.",
-
     "InsertImageHereOrClickToUpload": "قم بإدراج الصورة (250x250) هنا",
-    "OrClickToUpload": "أو انقر للتحميل"
+    "OrClickToUpload": "أو انقر للتحميل",
 
+    "NumberOfDisplayed": "عدد المعروض",
+    "noData": "لا يوجد بيانات متوفرة",
+    "settings": "الاعدادات",
+    
+    "": ""
   },
   "ProfileDropdown":{
     "Welcome": "مرحباً بك",
@@ -72,7 +77,9 @@
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "phoneNumber": "رقم الهاتف",
-    "password": "كلمة المرور"
+    "password": "كلمة المرور",
+
+    "": ""
   },
   "AccountSettings":{
     "Basic_information": "معلومات أساسية",
@@ -84,7 +91,6 @@
     "city": "المدينة",
     "Region": "المحافظه",
     "additional_address": "عنوان إضافي",
-    
     "Center_Name": "اسم المركز",
     "email": "البريد الإلكتروني",
     "phone": "رقم الهاتف",
@@ -92,8 +98,9 @@
     "OrClickToUpload": "أو انقر للتحميل",
     "slogan": "الشعار",
     "imagesize": " حجم الصورة يجب أن يكون 250 px",
-    "ClickOnTheSloganImage": "انقر علي صورة الشعار للتعديل"
+    "ClickOnTheSloganImage": "انقر علي صورة الشعار للتعديل",
 
+    "": ""
   },
   "LayoutMenuData":{
     "main": "الرئيسية",
@@ -104,5 +111,30 @@
     "Employee": "موظف",
     "Assistants": "المساعدين",
     "rolesPermissions": "الأدوار و الصلاحيات"
+  },
+  
+  "Teacher":{
+    "Teachers": "المدرسين",
+    "AddTeacher": "اضافه مدرس",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phoneNumber": "رقم الهاتف",
+    "age": "العمر",
+    "Address": "العنوان",
+    "Account_type": "نوع الحساب",
+
+    "": ""
+  },
+  "Student": {
+    "Students": "الطلاب",
+    "AddStudent": "اضافه طالب",
+
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phoneNumber": "رقم الهاتف",
+    "age": "العمر",
+    "Address": "العنوان",
+    "Account_type": "نوع الحساب",
+    "": ""
   }
 }

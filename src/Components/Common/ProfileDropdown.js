@@ -10,7 +10,7 @@ import axios from "axios";
 
 //import images
 import avatar1 from "../../assets/images/user-avatar.png";
-import { logout, profile } from "../../helpers/fakebackend_helper";
+import { getLoggedInUser, logout, profile } from "../../helpers/fakebackend_helper";
 import { useTranslation } from "react-i18next";
 // import { CartContext } from "../../Context/CartContext.jsx";
 import { checkUserRoles } from "../../helpers/index.js";
@@ -38,9 +38,9 @@ const ProfileDropdown = () => {
   const [userInfo, setUserInfo] = useState();
   const getProfileData = async () => {
     try {
-      const authUser = JSON.parse(localStorage.getItem("userInfo"));
-      const data ={id: Number(authUser?.id) }
-      if (authUser) {
+      const user = getLoggedInUser();
+      const data ={id: Number(user?.id) }
+      if (user) {
         const response = await profile(data);
         if (response) {
           setUserInfo(response);

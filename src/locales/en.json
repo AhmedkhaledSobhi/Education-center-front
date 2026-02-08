@@ -22,6 +22,7 @@
     "Student": "Student",
     "Employee": "Employee",
     "Assistant": "Assistant",
+    "User": "User",
     "sign_new_account": "Sign New Account",
 
     "EmailIncorrect": "Invalid email address",
@@ -51,9 +52,10 @@
     "save": "save",
     "SaveNew": "Save New",
     "SaveAsADraft": "Save As A Draft",
-    "main": "Home"
-
-
+    "main": "Home",
+    "NumberOfDisplayed": "Number of displayed",
+    "noData": "There is no data available",
+    "settings": "Settings"
   },
   "ProfileDropdown":{
     "Welcome": "Welcome",
@@ -70,13 +72,36 @@
   },
   "LayoutMenuData":{
     "main": "Home",
-    "Settings": "Settings",
+    "Setting": "Settings",
     "Users": "Users",
     "Teachers": "Teachers",
     "Students": "Students",
     "Employee": "Employee",
     "Assistants": "Assistants",
     "rolesPermissions": "roles Permissions"
-
+  },
+  "Teacher": {
+    "Teachers": "Teachers",
+    "AddTeacher": "Add Teacher",
+    "AddStudent": "Add Student",
+    "name": "Name",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "age": "Age",
+    "Address": "Address",
+    "Account_type": "Account type",
+    "": ""
+  },
+  "Student": {
+    "Students": "Students",
+    "AddStudent": "Add Student",
+    "name": "Name",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "age": "Age",
+    "Address": "Address",
+    "Account_type": "Account type",
+    
+    "": ""
   }
 }

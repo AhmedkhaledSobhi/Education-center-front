@@ -4,13 +4,14 @@ import { Col, Row } from "reactstrap";
 
 const BreadCrumb = ({
   title,
+  subTitle,
   pageTitle,
+  
   subTitleLink,
   subPageTitle,
 
   subPageTitleLink,
   pageTitleLink,
-  subTitle,
 }) => {
   return (
     <React.Fragment>

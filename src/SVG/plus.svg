@@ -4,8 +4,8 @@
   stroke-width="0"
   viewBox="0 0 512 512"
   class="text-light  m-2 fs-12 fw-400"
-  height="2.5em"
-  width="2.5em"
+  height="1.3em"
+  width="1.3em"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path d="M363 277h-86v86h-42v-86h-86v-42h86v-86h42v86h86v42z"></path>
