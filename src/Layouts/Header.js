@@ -24,15 +24,17 @@ import avatar1 from "../assets/images/user-avatar.png";
 import { changeSidebarVisibility } from "../slices/thunks";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
-import { getLoggedInUser, profile } from "../helpers/fakebackend_helper";
 import { useTranslation } from "react-i18next";
 import { IoReload } from "react-icons/io5";
 import i18n from "../i18n";
+import { useGetProfile } from "../helpers/getAllApiSelect";
 
 const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
+ const location = useLocation();
+  // Access the current route link
+  const currentPath = location.pathname;
   
   const selectDashboardData = createSelector(
     (state) =>state.Layout.sidebarVisibilitytype,
@@ -41,21 +43,15 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   // Inside your component
   const sidebarVisibilitytype = useSelector(selectDashboardData);
 
+  // _________________________________________________________________________________________________
   const [userInfo, setUserInfo] = useState();
-
-  const getProfileData = async () => {
-    try {
-      const user = getLoggedInUser();
-      const data ={id: Number(user?.id) }
-      if(user?.id){
-        const res = await profile(data);
-        setUserInfo(res);
-      }
-    } catch (error) {}
-  };
+  const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
+// _________________________________________________________________________________________________
 
   useEffect(() => {
-    getProfileData();
+    if(Profile){
+      setUserInfo(Profile);
+    }
   }, [localStorage.getItem("authUser")]);
 
   const [search, setSearch] = useState(false);
@@ -109,10 +105,6 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
     }
   };
 
-  const location = useLocation();
-
-  // Access the current route link
-  const currentPath = location.pathname;
   useEffect(() => {
     var windowSize = document.documentElement.clientWidth;
     if (windowSize <= 767) {
@@ -130,19 +122,15 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 
   const handleReload = async () => {
     try {      
-      const user = getLoggedInUser();
-      if(user){
-        const data ={id: Number(user?.id) }
-        const res = await profile(data);
-
+      if(Profile){
         // localStorage.removeItem("packages");
         // localStorage.setItem("packages", JSON.stringify(res?.data));
         
-        // localStorage.setItem("authUser", JSON.stringify(res));
-        // localStorage.setItem("userInfo", JSON.stringify(res));
-        // localStorage.setItem("myInfo", JSON.stringify(res));
-        // localStorage.setItem("role", JSON.stringify(res?.role));
-        // window.location.reload();
+        localStorage.setItem("authUser", JSON.stringify(Profile));
+        localStorage.setItem("userInfo", JSON.stringify(Profile));
+        localStorage.setItem("myInfo", JSON.stringify(Profile));
+        localStorage.setItem("role", JSON.stringify(Profile?.role));
+        window.location.reload();
       }
     } catch (error) {}
   };

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import TopTablesButtons from '../../Components/Common/TopTablesButtons';
 import Alert from '../../Components/Common/Alert';
 import TableContainerComponent from '../../Components/Common/TableContainerComponent/TableContainerComponent';
-import { allUser } from '../../helpers/fakebackend_helper';
+import { useGetAllUser } from '../../helpers/getAllApiSelect';
 
 export default function Teacher() {
   const { t, i18n } = useTranslation();
@@ -15,7 +15,6 @@ export default function Teacher() {
   
   const [isInfoOpen, setIsInfoOpen] = useState(true);
   
-  const [loadingProfile, setLoadingProfile] = useState(false);
   const [productsData, setProductsData] = useState([]);
   const [totalPage, setTotalPage] = useState([]);
   const [currentPage, setCurrentPage] = useState([]);
@@ -23,7 +22,7 @@ export default function Teacher() {
 
   // ____________________________________________________________________
 
-  const productSettingsColumns = useMemo(
+  const tableDataColumns = useMemo(
     () => [
       {
         Header: t("Teacher.name"),
@@ -69,19 +68,35 @@ export default function Teacher() {
         Header: t("common.settings"),
         Cell: (cellProps) => {
           return (
-            <UncontrolledDropdown onClick={(e) => e?.stopPropagation()}>
+            <UncontrolledDropdown onClick={(e) => e?.stopPropagation()} >
               <DropdownToggle
                 tag="a"
                 className="btn btn-light btn-sm"
               >
                 <i className="ri-more-2-fill align-middle"></i>
               </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-end">
+              <DropdownMenu className="dropdown-menu-end" >
                 <li>
                   <DropdownItem>
-                    <div className="d-flex justify-content-start aligns-item-center">
-                      <i className="mdi mdi-eye-circle-outline  align-bottom me-2 text-muted"></i>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <i className="mdi mdi-eye-circle-outline  align-bottom me-2 text -muted text-primary-emphasis"></i>
                       <div>{t("common.view")}</div>
+                    </div>
+                  </DropdownItem>
+                </li>
+                <li>
+                  <DropdownItem>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <i className=" bx bxs-edit  align-bottom me-2 text -muted text-primary-emphasis"></i>{" "}
+                      <div>{t("common.edit")}</div>
+                    </div>
+                  </DropdownItem>
+                </li>
+                <li>
+                  <DropdownItem>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <i className=" ri-delete-bin-5-line align-bottom me-2 text- muted text-primary-emphasis"></i>{" "}
+                      <div>{t("common.delete")}</div>
                     </div>
                   </DropdownItem>
                 </li>
@@ -91,36 +106,21 @@ export default function Teacher() {
         }
       }
     ]);
-  
-  // ____________________________________________________________________
-  
-  const getProfileData = async () => {
-    try {
-      setLoadingProfile(true);
-      const response = await allUser();    
-      console.log("ahmed response", response);
-              
-      if(response){
-        const result = response?.data?.filter((item) => {
-          return item.role == "TEACHER";
-        });
-        setProductsData(result);
-        setTotalPage(response?.meta?.total)
-        setCurrentPage(response?.meta?.page)
-        setLimit(response?.meta?.limit)
-        setLoadingProfile(false);
-      }
-    } catch (error) {
-      setLoadingProfile(false);
-      console.log("Error in fetching profile data:", error);
-    }
-  };
 
   // ____________________________________________________________________
-  
+  const { data: Teachers = [], isLoading: LoadingTeacher } = useGetAllUser();
+
   useEffect(() => {
-    getProfileData();
-  }, []);
+    if(Teachers){
+      const result = Teachers?.data?.filter((item) => {
+        return item.role == "TEACHER";
+      });
+      setProductsData(result);
+      setTotalPage(Teachers?.meta?.total)
+      setCurrentPage(Teachers?.meta?.page)
+      setLimit(Teachers?.meta?.limit)
+    }
+  }, [Teachers]);
 
   return (
     <React.Fragment>
@@ -152,7 +152,7 @@ export default function Teacher() {
               <div className="card-body pt-0">
                 <Card>
                   <CardBody className="pt-0">
-                    {loadingProfile?
+                    {LoadingTeacher?
                       <div
                         style={{
                           display: "flex",
@@ -172,7 +172,7 @@ export default function Teacher() {
                         {console.log("ahmed productsData", productsData)}
 
                         <TableContainerComponent
-                          columns={productSettingsColumns || []}
+                          columns={tableDataColumns || []}
                           data={productsData || [] }
                           customPagination={true}
                           pages={productsData?.meta?.page}

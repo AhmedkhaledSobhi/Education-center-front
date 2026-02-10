@@ -6,15 +6,14 @@ import ButtonLoader from '../../Components/Common/ButtonLoader';
 import Alert from '../../Components/Common/Alert';
 import TopTablesButtons from '../../Components/Common/TopTablesButtons';
 import TableContainerComponent from '../../Components/Common/TableContainerComponent/TableContainerComponent';
-import { allUser } from '../../helpers/fakebackend_helper';
 import { useNavigate } from 'react-router-dom';
+import { useGetAllUser } from '../../helpers/getAllApiSelect';
 
 export default function Student() {
   const { t, i18n } = useTranslation();
   const nav = useNavigate();
   
   const [isInfoOpen, setIsInfoOpen] = useState(true);
-  const [loadingProfile, setLoadingProfile] = useState(false);
   const [productsData, setProductsData] = useState([]);
   const [totalPage, setTotalPage] = useState([]);
   const [currentPage, setCurrentPage] = useState([]);
@@ -22,7 +21,7 @@ export default function Student() {
 
   // ____________________________________________________________________
 
-  const productSettingsColumns = useMemo(
+  const tableDataColumns = useMemo(
     () => [
       {
         Header: t("Student.name"),
@@ -75,12 +74,28 @@ export default function Student() {
               >
                 <i className="ri-more-2-fill align-middle"></i>
               </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-end">
+              <DropdownMenu className="dropdown-menu-end" >
                 <li>
                   <DropdownItem>
-                    <div className="d-flex justify-content-start aligns-item-center">
-                      <i className="mdi mdi-eye-circle-outline  align-bottom me-2 text-muted"></i>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <i className="mdi mdi-eye-circle-outline  align-bottom me-2 text -muted text-primary-emphasis"></i>
                       <div>{t("common.view")}</div>
+                    </div>
+                  </DropdownItem>
+                </li>
+                <li>
+                  <DropdownItem>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <i className=" bx bxs-edit  align-bottom me-2 text -muted text-primary-emphasis"></i>{" "}
+                      <div>{t("common.edit")}</div>
+                    </div>
+                  </DropdownItem>
+                </li>
+                <li>
+                  <DropdownItem>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <i className=" ri-delete-bin-5-line align-bottom me-2 text- muted text-primary-emphasis"></i>{" "}
+                      <div>{t("common.delete")}</div>
                     </div>
                   </DropdownItem>
                 </li>
@@ -92,34 +107,18 @@ export default function Student() {
     ]);
 
   // ____________________________________________________________________
-
-  const getProfileData = async () => {
-    try {
-      setLoadingProfile(true);
-      const response = await allUser();    
-      console.log("ahmed response", response);
-              
-      if(response){
-        const result = response?.data?.filter((item) => {
-          return item.role == "STUDENT";
-        });
-        setProductsData(result);
-        setTotalPage(response?.meta?.total)
-        setCurrentPage(response?.meta?.page)
-        setLimit(response?.meta?.limit)
-        setLoadingProfile(false);
-      }
-    } catch (error) {
-      setLoadingProfile(false);
-      console.log("Error in fetching profile data:", error);
-    }
-  };
-
-  // ____________________________________________________________________
-
+  const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser();
   useEffect(() => {
-    getProfileData();
-  }, []);
+    if(Students){
+      const result = Students?.data?.filter((item) => {
+        return item.role == "STUDENT";
+      });
+      setProductsData(result);
+      setTotalPage(Students?.meta?.total)
+      setCurrentPage(Students?.meta?.page)
+      setLimit(Students?.meta?.limit)
+    }
+  }, [Students]);
 
   return (
     <React.Fragment>
@@ -151,7 +150,7 @@ export default function Student() {
               <div className="card-body pt-0">
                 <Card>
                   <CardBody className="pt-0">
-                    {loadingProfile?
+                    {LoadingStudent?
                       <div
                         style={{
                           display: "flex",
@@ -166,12 +165,9 @@ export default function Student() {
                           width="70"
                           height="70"
                         />
-                      </div>
-                      :<div> 
-                        {console.log("ahmed productsData", productsData)}
-
+                      </div> : <div> 
                         <TableContainerComponent
-                          columns={productSettingsColumns || []}
+                          columns={tableDataColumns || []}
                           data={productsData || [] }
                           customPagination={true}
                           pages={productsData?.meta?.page}

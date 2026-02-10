@@ -3,52 +3,38 @@ import { Card, CardBody, CardText, Container } from 'reactstrap'
 import BreadCrumb from '../../Components/Common/BreadCrumb'
 import { useTranslation } from 'react-i18next';
 import ButtonLoader from '../../Components/Common/ButtonLoader';
-import axios from 'axios';
-import configService from '../../helpers/config';
 import { checkUserRoles } from '../../helpers';
 import avatar1 from "../../assets/images/user-avatar.png";
-import { getLoggedInUser, profile } from '../../helpers/fakebackend_helper';
+import { useGetProfile } from '../../helpers/getAllApiSelect';
 
 export default function ProfileAccount() {
   const { t, i18n } = useTranslation();
   document.title = t("ProfileDropdown.Profile");
   const [profileData, setProfileData] = useState();
-  const [loadingProfile, setLoadingProfile] = useState(false);
-
   const [userDataModal, setUserDataModal] = useState(false);
 
   const roleCheckChangePassword = checkUserRoles(
     "Auth_private",
     "Auth_private_change_password"
   );
-  const getProfileData = async () => {
-    try {
-      setLoadingProfile(true);      
-      const user = getLoggedInUser();
+// _________________________________________________________________________________________________
+  const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
+// _________________________________________________________________________________________________
 
-      const data ={id: Number(user?.id) }
-      const response = await profile(data); 
-      if(response){
-        const phone = response?.phone?.replace(/^\(\+20\)/, "");
-        setProfileData((prev) => {
-          return {
-            name: response?.first_name + " " + response?.last_name,
-            phone: phone,
-            email: response?.email,
-            phone_code_id: "996",
-            avatar: response?.image_path != "null" ? response?.image_path : avatar1,
-          };
-        });
-        setLoadingProfile(false);
-      }
-    } catch (error) {
-      setLoadingProfile(false);
-      console.log("Error in fetching profile data:", error);
-    }
-  };
   useEffect(() => {
-    getProfileData();
-  }, []);
+    const phone = Profile?.phone?.replace(/^\(\+20\)/, "");
+    setProfileData((prev) => {
+      return {
+        name: Profile?.first_name + " " + Profile?.last_name,
+        phone: phone,
+        email: Profile?.email,
+        phone_code_id: "996",
+        avatar: Profile?.image_path != "null" ? Profile?.image_path : avatar1,
+      };
+    });
+  }, [Profile]);
+// _________________________________________________________________________________________________
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -58,7 +44,7 @@ export default function ProfileAccount() {
             subTitle={t("ProfileDropdown.Settings")}
             pageTitle={t("ProfileDropdown.Profile")}
           />
-          {loadingProfile?
+          {profileLoading?
             <div
               style={{
                 display: "flex",

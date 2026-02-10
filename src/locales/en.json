@@ -52,10 +52,14 @@
     "save": "save",
     "SaveNew": "Save New",
     "SaveAsADraft": "Save As A Draft",
+    "settings": "Settings",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
     "main": "Home",
     "NumberOfDisplayed": "Number of displayed",
     "noData": "There is no data available",
-    "settings": "Settings"
+    "": ""
   },
   "ProfileDropdown":{
     "Welcome": "Welcome",

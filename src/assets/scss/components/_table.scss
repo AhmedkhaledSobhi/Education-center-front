@@ -65,9 +65,10 @@ $value in $theme-colors {
     }
 }
 
-.table>:not(caption)>*>* {
-    color: var(--vz-table-color-state), var(--vz-table-color-type, var(--vz-table-color));
-}
+// .table>:not(caption)>*>* {
+//     // color: var(--vz-table-color-state), var(--vz-table-color-type, var(--vz-table-color));
+//     // color: black;
+// }
 
 .table {
     .form-check {

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Container } from 'reactstrap';
 import BreadCrumb from '../../Components/Common/BreadCrumb';
-import ButtonLoader from '../../Components/Common/ButtonLoader';
 import avatar1 from "../../assets/images/user-avatar.png";
 import { toast } from 'react-toastify';
 import * as Yup from "yup";
@@ -14,61 +13,51 @@ import AddressComponents from './Components/AddressComponents';
 import ContactInformationComponents from './Components/ContactInformationComponents';
 import BasicInformation from './Components/BasicInformation';
 import Select from "react-select";
+import { useGetProfile } from '../../helpers/getAllApiSelect';
 
 export default function UserSettings() {
   const { t, i18n } = useTranslation();
   document.title = t("ProfileDropdown.accountSettings");
   const nav = useNavigate();
   const [profileData, setProfileData] = useState();
-  const [loadingProfile, setLoadingProfile] = useState(false);
-  const [loadsave, setLoadSave] = useState(false);
   const [initialValues, setInitialValues] = useState({});
+  const [loadsave, setLoadSave] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [disableEdit, setDisableEdit] = useState(false);
 
+// _________________________________________________________________________________________________
 
+  const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
+// _________________________________________________________________________________________________
 
-  const getProfileData = async () => {
-    try {
-      setLoadingProfile(true);
-      const user = getLoggedInUser()
-      const data ={id: Number(user?.id) }
-      const response = await profile(data);      
-      if(response){
-        const phone = response?.phone?.replace(/^\(\+20\)/, "");
-        setInitialValues({
-          first_name: response?.first_name,
-          last_name: response?.last_name,
-          Center_name: response?.first_name + " " + response?.last_name, 
-          phone: phone,
-          email: response?.email,
-          age: response?.age,
-          address: response?.address || "",
-          role: response?.role,
-          country: { 
-            id: "65", 
-            name: "Egypt", 
-            name_ar: "مصر",
-            name_en: "Egypt",
-          },
-          region: "",
-          city: "",
-        })
-        setProfileData((prev) => {
-          return {
-            avatar: response?.image_path != "null" ? response?.image_path : avatar1,
-          };
-        });
-        setLoadingProfile(false);
-      }
-    } catch (error) {
-      setLoadingProfile(false);
-      console.log("Error in fetching profile data:", error);
-    }
-  };
   useEffect(() => {
-    getProfileData();
-  }, []);
+    if(Profile){
+      const phone = Profile?.phone?.replace(/^\(\+20\)/, "");
+      setInitialValues({
+        first_name: Profile?.first_name,
+        last_name: Profile?.last_name,
+        Center_name: Profile?.first_name + " " + Profile?.last_name, 
+        phone: phone,
+        email: Profile?.email,
+        age: Profile?.age,
+        address: Profile?.address || "",
+        role: Profile?.role,
+        country: { 
+          id: "65", 
+          name: "Egypt", 
+          name_ar: "مصر",
+          name_en: "Egypt",
+        },
+        region: "",
+        city: "",
+      })
+      setProfileData((prev) => {
+        return {
+          avatar: Profile?.image_path != "null" ? Profile?.image_path : avatar1,
+        };
+      });
+    }
+  }, [Profile]);
   
   // ________________________________________________________________________________________
 
@@ -179,7 +168,7 @@ export default function UserSettings() {
                   setFieldTouched={setFieldTouched}
                   touched={touched}
                   errors={errors}
-                  loadingProfile={loadingProfile}
+                  loadingProfile={profileLoading}
                   disableEdit={disableEdit}
                 />
 
@@ -190,7 +179,7 @@ export default function UserSettings() {
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
-                  loadingProfile={loadingProfile}
+                  loadingProfile={profileLoading}
                 />
                 {/* ---------------- العنوان ---------------- */}
                 <AddressComponents
@@ -199,7 +188,7 @@ export default function UserSettings() {
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
-                  loadingProfile={loadingProfile}
+                  loadingProfile={profileLoading}
                 />
               </form>
             )}

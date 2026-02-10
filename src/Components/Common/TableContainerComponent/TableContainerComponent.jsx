@@ -77,12 +77,11 @@ export default function TableContainerComponent({
 
       {/* {!tablePagination && page.length > 0 && customPagination && ( */}
       {!tablePagination && customPagination && (
-
         <TablePaginationComponent
-          value={params.per_page}
-          setParams={setParams}
-          totalPage={totalPage}
-          currentPage={currentPage}
+          // value={params.per_page}
+          // setParams={setParams}
+          // totalPage={totalPage}
+          // currentPage={currentPage}
         />
       )}
     </React.Fragment>
