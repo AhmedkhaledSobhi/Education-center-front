@@ -18,16 +18,11 @@ import i18n from "../../i18n.js";
 // import { useMediaQuery } from "@mui/material";
 import { performLogoutCleanup } from "../../helpers/logoutCleanup";
 import MySVG from "../../SVG/SVGIcons";
+import { useGetProfile } from "../../helpers/getAllApiSelect.js";
 
 const ProfileDropdown = () => {
   const nav = useNavigate();
   const { t } = useTranslation();
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 576);
-  useEffect(() => {
-    const handleResize = () => setIsSmallScreen(window.innerWidth < 576);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   // const { profileData } = useContext(CartContext);
 
   //Dropdown Toggle
@@ -36,6 +31,7 @@ const ProfileDropdown = () => {
     setIsProfileDropdown(!isProfileDropdown);
   };
   const [userInfo, setUserInfo] = useState();
+  const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
   const getProfileData = async () => {
     try {
       const user = getLoggedInUser();
@@ -50,8 +46,10 @@ const ProfileDropdown = () => {
   };
 
   useEffect(() => {
-    getProfileData();
-  }, [localStorage.getItem("authUser")]);
+    if (Profile && Profile?.id !== userInfo?.id) {
+      setUserInfo(Profile);
+    }
+  }, [Profile]);
 
   const handleLogOut = async () => {
     // logout()
@@ -65,6 +63,12 @@ const ProfileDropdown = () => {
     performLogoutCleanup();
     nav("/login");
   };
+  
+  const handleExternalLink = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  // _________________________________________________________________________________________________
 
   const checkUpgradeUserRole = checkUserRoles(
     "Auth_private",
@@ -75,10 +79,14 @@ const ProfileDropdown = () => {
     "Auth_private_change_password"
   );
 
-  const handleExternalLink = (url) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
+  // _________________________________________________________________________________________________
 
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 576);
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 576);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <React.Fragment>
       <Dropdown

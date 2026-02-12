@@ -1,4 +1,9 @@
+import { performLogoutCleanup } from "./logoutCleanup";
 
+const handleUnauthenticated = () => {
+  performLogoutCleanup();
+  window.location.href = "/Home";
+};
 
 function hasEmptyValue(obj) {
   return Object.values(obj).some(
@@ -48,8 +53,27 @@ const checkUserRoles = (moduleName, permissionName, mainAdmin) => {
     return enabled;
   }
 };
+
+const isEmpty = (value) => {
+  if (value == null) return true;
+  if (typeof value === "string" || Array.isArray(value))
+    return value.length === 0;
+  if (typeof value === "object") return Object.keys(value).length === 0;
+  return false;
+};
+const safeParse = (value) => {
+  try {
+    if (!value || value === "undefined") return null;
+    return JSON.parse(value);
+  } catch {
+    return null;
+  }
+};
 export {
+  handleUnauthenticated,
   hasEmptyValue,
   checkModuleExists,
   checkUserRoles,
+  isEmpty,
+  safeParse,
 }

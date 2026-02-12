@@ -1,6 +1,9 @@
 import React from 'react'
+import { Container } from 'reactstrap'
+import { useTranslation } from 'react-i18next';
+import BreadCrumb from '../../../Components/Common/BreadCrumb';
 
-export default function PreviewStudent() {
+export default function AddStudent() {
   const { t, i18n } = useTranslation();
 
   return (

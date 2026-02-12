@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Card, CardBody, Col, FormGroup, Input, Label, Row } from 'reactstrap'
+import { Card, CardBody, CardHeader, Col, FormGroup, Input, Label, Row } from 'reactstrap'
 import Select from "react-select";
 import { BiX } from 'react-icons/bi';
 import AddImg from "../../../assets/images/static/gallery-add.png";
@@ -104,10 +104,12 @@ export default function BasicInformation({
   return (
     <React.Fragment>
       {/* ---------------- المعلومات الاساسيه ---------------- */}
-      <Card className="">
-        <div className="sub-title fs-24">
-          {t("AccountSettings.Basic_information")}
-        </div>
+      <Card>
+        <CardHeader>
+          <div className="sub-title">
+            {t("AccountSettings.Basic_information")}
+          </div>
+        </CardHeader>
         <CardBody>
           {loadingProfile ?
             <div

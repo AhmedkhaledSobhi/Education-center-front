@@ -412,3 +412,11 @@ html[lang="ar"] {
 .table-head {
   background-color: #eaeced !important;
 }
+
+.card-header {
+  background-color: rgba($primary, .1);
+  padding: 0px;
+}
+// .css-16xfy0z-control , .form-control:disabled  {
+//   background-color: rgba($primary, .1) !important;
+// }

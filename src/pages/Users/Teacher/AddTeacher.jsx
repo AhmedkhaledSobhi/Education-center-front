@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container } from 'reactstrap'
-import BreadCrumb from '../../Components/Common/BreadCrumb'
+import BreadCrumb from '../../../Components/Common/BreadCrumb'
 import { useTranslation } from 'react-i18next';
 
-export default function AddStudent() {
+export default function AddTeacher() {
   const { t, i18n } = useTranslation();
-
+  
   return (
     <React.Fragment>
       <div className="page-content">
@@ -13,9 +13,9 @@ export default function AddStudent() {
           <BreadCrumb
             title={t("LayoutMenuData.Users")}
             subTitle={t("LayoutMenuData.Users")}
-            pageTitle={t("Student.Students")}
-            pageTitleLink={"/student"}
-            subPageTitle={t("Student.AddStudent")}
+            pageTitle={t("Teacher.Teachers")}
+            pageTitleLink={"/teacher"}
+            subPageTitle={t("Teacher.AddTeacher")}
           />
           
         </Container>

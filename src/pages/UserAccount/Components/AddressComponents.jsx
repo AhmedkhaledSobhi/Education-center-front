@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { Card, CardBody, Col, FormGroup, Input, Label, Row } from 'reactstrap'
+import { Card, CardBody, CardHeader, Col, FormGroup, Input, Label, Row } from 'reactstrap'
 import Select from "react-select";
 import CountryData from "../../../localesJson/Country.json";
 import RegionData from "../../../localesJson/Region.json";
@@ -22,10 +22,12 @@ export default function AddressComponents({
 
   return (
     <React.Fragment>
-      <Card className="">
-        <div className="sub-title fs-24">
-          {t("AccountSettings.Address")}
-        </div>
+      <Card>
+        <CardHeader>
+          <div className="sub-title fs-24">
+            {t("AccountSettings.Address")}
+          </div>
+        </CardHeader>
         <CardBody>
           {loadingProfile ?
             <div

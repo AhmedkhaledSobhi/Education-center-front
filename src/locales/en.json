@@ -53,13 +53,19 @@
     "SaveNew": "Save New",
     "SaveAsADraft": "Save As A Draft",
     "settings": "Settings",
+    "add": "Add",
     "view": "View",
     "edit": "Edit",
     "delete": "Delete",
+    "cancel": "Cancel",
     "main": "Home",
     "NumberOfDisplayed": "Number of displayed",
     "noData": "There is no data available",
     "": ""
+  },
+  "home": {
+    "Welcome": "Welcome ",
+    "Center_Education": "Center_Education Platform is a comprehensive electronic system for managing educational centers, transforming traditional academic and administrative processes into a smart digital system. It includes the management of students, teachers, schedules, and attendance, enhancing efficiency and communication between administration, parents, and students."
   },
   "ProfileDropdown":{
     "Welcome": "Welcome",
@@ -82,7 +88,8 @@
     "Students": "Students",
     "Employee": "Employee",
     "Assistants": "Assistants",
-    "rolesPermissions": "roles Permissions"
+    "rolesPermissions": "Roles Permissions",
+    "Section": "Section"
   },
   "Teacher": {
     "Teachers": "Teachers",
@@ -107,5 +114,8 @@
     "Account_type": "Account type",
     
     "": ""
+  },
+  "section": {
+    "Section": "Section"
   }
 }

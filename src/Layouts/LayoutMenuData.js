@@ -258,8 +258,8 @@ const Navdata = () => {
         },
         {
           id: "setting",
-          label: t("LayoutMenuData.additionalTerms"),
-          link: "/additional-items",
+          label: t("LayoutMenuData.Section"),
+          link: "/section",
         },
       ].filter(Boolean),
     },

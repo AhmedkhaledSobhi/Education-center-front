@@ -40,6 +40,36 @@ axios.interceptors.request.use(
     // Remove any existing Authorization header first
     // delete config.headers.Authorization;
 
+    // ------------- new ----------------
+    // Attach Authorization header dynamically from localStorage (if present)
+    try {
+      const stored = localStorage.getItem("authUser");
+      const authUser = stored ? JSON.parse(stored) : null;
+      let token =
+        authUser?.token || authUser?.access_token || localStorage.getItem("access_token") || localStorage.getItem("token");
+
+      if (token && typeof token === "string") {
+        token = token.trim();
+        // Remove surrounding quotes if token was stored as a quoted string
+        if ((token.startsWith('"') && token.endsWith('"')) || (token.startsWith("'") && token.endsWith("'"))) {
+          token = token.slice(1, -1);
+        }
+        // Remove duplicate 'Bearer ' prefix if present
+        if (token.toLowerCase().startsWith("bearer ")) {
+          token = token.slice(7).trim();
+        }
+      }
+
+      if (token) {
+        config.headers["Authorization"] = `Bearer ${token}`;
+      } else {
+        delete config.headers["Authorization"];
+      }
+    } catch (e) {
+      delete config.headers["Authorization"];
+    }
+    // ------------- new ----------------
+
     return config;
   },
   (error) => {
@@ -130,8 +160,6 @@ class APIClient {
         }
       );
       if (response?.message === "Unauthenticated") {
-        console.log("ahmed response", response);
-        
         performLogoutCleanup();
         window.location.href = "/login";
       }

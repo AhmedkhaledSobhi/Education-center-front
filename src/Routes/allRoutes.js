@@ -3,13 +3,15 @@ import { Navigate } from "react-router-dom";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Home from "../pages/Home/Home";
-import Student from "../pages/Student/Student";
 import Teacher from "../pages/Teacher/Teacher";
+import Assistant from "../pages/Assistant/Assistant";
+import AddTeacher from "../pages/Users/Teacher/AddTeacher";
+import Student from "../pages/Users/Student/Student";
+import AddStudent from "../pages/Users/Student/AddStudent";
 import UserSettings from "../pages/UserAccount/UserSettings";
 import ProfileAccount from "../pages/UserAccount/ProfileAccount";
-import Assistant from "../pages/Assistant/Assistant";
-import AddTeacher from "../pages/Teacher/AddTeacher";
-import AddStudent from "../pages/Student/AddStudent";
+import Section from "../pages/Setting/Section/Section";
+import AddSection from "../pages/Setting/Section/AddSection";
 
 const publicRoutes = [
   { path: "/login", component: <Login /> },
@@ -58,7 +60,17 @@ const authProtectedRoutes = [
     path: "/assistant",
     component: <Assistant/>,
     moduleName: "Assistant"
-  }
+  },
+  {
+    path: "/section",
+    component: <Section/>,
+    moduleName: "Section"
+  },
+  {
+    path: "/addSection",
+    component: <AddSection/>,
+    moduleName: "Section"
+  },
 ]
 
 

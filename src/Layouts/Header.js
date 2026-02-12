@@ -49,10 +49,11 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 // _________________________________________________________________________________________________
 
   useEffect(() => {
-    if(Profile){
+    if (Profile && Profile?.id !== userInfo?.id) {
       setUserInfo(Profile);
     }
-  }, [localStorage.getItem("authUser")]);
+  }, [Profile]);
+  // }, [localStorage.getItem("authUser")]);
 
   const [search, setSearch] = useState(false);
   const toogleSearch = () => {

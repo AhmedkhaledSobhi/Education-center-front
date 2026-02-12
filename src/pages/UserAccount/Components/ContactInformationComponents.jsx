@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Card, CardBody, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, FormGroup, Input, Label, Row } from 'reactstrap';
 import SimpleBar from 'simplebar-react';
 import phoneCodeData from "../../../localesJson/PhoneCode.json";
 import ButtonLoader from '../../../Components/Common/ButtonLoader';
@@ -25,10 +25,12 @@ export default function ContactInformationComponents({
 
   return (
     <React.Fragment>
-      <Card className="">
-        <div className="sub-title fs-24">
-          {t("AccountSettings.Contact_information")}
-        </div>
+      <Card>
+        <CardHeader>
+          <div className="sub-title fs-24">
+            {t("AccountSettings.Contact_information")}
+          </div>
+        </CardHeader>
         <CardBody>
           {loadingProfile ?
             <div

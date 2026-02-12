@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next';
-import BreadCrumb from '../../Components/Common/BreadCrumb';
 import { Card, CardBody, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap';
-import ButtonLoader from '../../Components/Common/ButtonLoader';
-import Alert from '../../Components/Common/Alert';
-import TopTablesButtons from '../../Components/Common/TopTablesButtons';
-import TableContainerComponent from '../../Components/Common/TableContainerComponent/TableContainerComponent';
+import BreadCrumb from '../../../Components/Common/BreadCrumb';
+import Alert from '../../../Components/Common/Alert';
+import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
+import ButtonLoader from '../../../Components/Common/ButtonLoader';
+import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
+import { useGetAllUser } from '../../../helpers/getAllApiSelect';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useGetAllUser } from '../../helpers/getAllApiSelect';
 
-export default function Student() {
+export default function Section() {
   const { t, i18n } = useTranslation();
   const nav = useNavigate();
   
@@ -18,13 +18,13 @@ export default function Student() {
   const [totalPage, setTotalPage] = useState([]);
   const [currentPage, setCurrentPage] = useState([]);
   const [limit, setLimit] = useState([]);
-
+  
   // ____________________________________________________________________
 
   const tableDataColumns = useMemo(
     () => [
       {
-        Header: t("Student.name"),
+        Header: t("section.name"),
         accessor: "first_name",
         filterable: false,
         Cell: (cellProps)=>{
@@ -32,12 +32,12 @@ export default function Student() {
         }
       },
       {
-        Header: t("Student.email"),
+        Header: t("section.Number_students"),
         accessor: "email",
         filterable: false,
       },
       {
-        Header: t("Student.phoneNumber"),
+        Header: t("section.Whiteboard"),
         accessor: "phone",
         filterable: false,
         Cell: (cellProps)=>{
@@ -46,17 +46,17 @@ export default function Student() {
         }
       },
       {
-        Header: t("Student.age"),
+        Header: t("section.Screen"),
         accessor: "age",
         filterable: false,
       },
       {
-        Header: t("Student.Address"),
+        Header: t("section.Branch"),
         accessor: "address",
         filterable: false,
       },
       {
-        Header: t("Student.Account_type"),
+        Header: t("common.status"),
         accessor: "role",
         filterable: false,
         Cell: (cellProps)=>{
@@ -78,7 +78,7 @@ export default function Student() {
                 <li>
                   <DropdownItem>
                     <div className="d-flex justify-content-start align-items-center">
-                      <i className="mdi mdi-eye-circle-outline  align-bottom me-2 text -muted text-primary-emphasis"></i>
+                      <i className={`mdi mdi-eye-circle-outline  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>
                       <div>{t("common.view")}</div>
                     </div>
                   </DropdownItem>
@@ -86,7 +86,7 @@ export default function Student() {
                 <li>
                   <DropdownItem>
                     <div className="d-flex justify-content-start align-items-center">
-                      <i className=" bx bxs-edit  align-bottom me-2 text -muted text-primary-emphasis"></i>{" "}
+                      <i className={`bx bxs-edit  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
                       <div>{t("common.edit")}</div>
                     </div>
                   </DropdownItem>
@@ -94,7 +94,7 @@ export default function Student() {
                 <li>
                   <DropdownItem>
                     <div className="d-flex justify-content-start align-items-center">
-                      <i className=" ri-delete-bin-5-line align-bottom me-2 text- muted text-primary-emphasis"></i>{" "}
+                      <i className={`ri-delete-bin-5-line align-bottom text- muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
                       <div>{t("common.delete")}</div>
                     </div>
                   </DropdownItem>
@@ -105,7 +105,7 @@ export default function Student() {
         }
       }
     ]);
-
+  
   // ____________________________________________________________________
   const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser();
   useEffect(() => {
@@ -125,9 +125,9 @@ export default function Student() {
       <div className="page-content">
         <Container fluid>
           <BreadCrumb
-            title={t("LayoutMenuData.Users")}
-            subTitle={t("LayoutMenuData.Users")}
-            pageTitle={t("Student.Students")}
+            title={t("LayoutMenuData.Setting")}
+            subTitle={t("LayoutMenuData.Setting")}
+            pageTitle={t("section.Section")}
           />
           <Row>
             <Col xs={12}>
@@ -139,9 +139,9 @@ export default function Student() {
             </Col>
             <Col xs={12}>
               <TopTablesButtons 
-                PageTittle={`${t("Student.Students")}`}
-                addTitle={t("Student.AddStudent")}
-                link={() => nav("/addStudent")}
+                PageTittle={`${t("section.Section")}`}
+                addTitle={`${t("common.add")} ${t("section.Section")}`}
+                link={() => nav("/addSection")}
                 information={()=> setIsInfoOpen(!isInfoOpen)}
               />
             </Col>

@@ -18,7 +18,9 @@ export default function Home() {
   const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
 
   useEffect(() => {
-    setUserInfo(Profile)
+    if (Profile && Profile?.id !== userInfo?.id) {
+      setUserInfo(Profile);
+    }
   }, [Profile]);
 
   useEffect(() => {
@@ -49,23 +51,24 @@ export default function Home() {
                 <img
                   // src={logoDark}
                   src={MySVG.logoSm}
-                  alt="fatoorah logo"
+                  alt="Center_Education logo"
                   style={{width: "50px", height: "50px"}}
                 />
                 <div
                   className="fs-4 fw-semibold my-2"
                   style={{ color: "rgba(40, 60, 71, 1)" }}
                 >
-                  {t("Home.Welcome")}
-                  
+                  {t("home.Welcome")}
+                  {" "}
                   <span 
                     style={{ 
-                      color: "rgba(42, 157, 148, 1)",
+                      color: "rgba(13, 110, 253, 1)",
                       direction: "ltr",
                       unicodeBidi: "isolate",
                    }}
                   >
                     {userInfo?.first_name} {userInfo?.last_name}
+                    {" "}
                   </span>
                   <img
                     src={waving}
@@ -74,12 +77,12 @@ export default function Home() {
                   />
                   
                 </div>
-                <div className="fs-5 pe-3">{t("Home.Center_Education")}</div>
+                <div className="fs-5 pe-3">{t("home.Center_Education")}</div>
               </div>
               <img
                 style={style}
                 src={logoWhite}
-                alt="fatoorah logo"
+                alt="Center_Education logo"
               />
             </CardBody>
           </Card>

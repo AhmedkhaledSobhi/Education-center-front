@@ -163,10 +163,13 @@
 
         &.active {
           color: var(--#{$prefix}vertical-menu-item-active-color);
-          border: 1px solid transparent;
-          border-radius: 0 20px 20px 0;
-          background-color: #fafafa ;
-
+          background-color: #fafafa !important ;
+          [dir="rtl"] & {
+            border-radius: 0 20px 20px 0;
+          }
+          [dir="ltr"] & {
+            border-radius: 20px 0px 0px 20px;
+          }
           &:before {
             background-color: var(--#{$prefix}vertical-menu-item-active-color);
           }

@@ -22,16 +22,19 @@ export default function ProfileAccount() {
 // _________________________________________________________________________________________________
 
   useEffect(() => {
-    const phone = Profile?.phone?.replace(/^\(\+20\)/, "");
-    setProfileData((prev) => {
-      return {
-        name: Profile?.first_name + " " + Profile?.last_name,
-        phone: phone,
-        email: Profile?.email,
-        phone_code_id: "996",
-        avatar: Profile?.image_path != "null" ? Profile?.image_path : avatar1,
-      };
-    });
+    if (Profile && Profile?.id !== profileData?.id) {
+      const phone = Profile?.phone?.replace(/^\(\+20\)/, "");
+      setProfileData(() => {
+        return {
+          id: Profile?.id,
+          name: Profile?.first_name + " " + Profile?.last_name,
+          phone: phone,
+          email: Profile?.email,
+          phone_code_id: "996",
+          avatar: Profile?.image_path != "null" ? Profile?.image_path : avatar1,
+        };
+      });
+    }
   }, [Profile]);
 // _________________________________________________________________________________________________
 
