@@ -3,8 +3,8 @@ import { Navigate } from "react-router-dom";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Home from "../pages/Home/Home";
-import Teacher from "../pages/Teacher/Teacher";
-import Assistant from "../pages/Assistant/Assistant";
+import Teacher from "../pages/Users/Teacher/Teacher";
+import Assistant from "../pages/Users/Assistant/Assistant";
 import AddTeacher from "../pages/Users/Teacher/AddTeacher";
 import Student from "../pages/Users/Student/Student";
 import AddStudent from "../pages/Users/Student/AddStudent";
@@ -12,6 +12,10 @@ import UserSettings from "../pages/UserAccount/UserSettings";
 import ProfileAccount from "../pages/UserAccount/ProfileAccount";
 import Section from "../pages/Setting/Section/Section";
 import AddSection from "../pages/Setting/Section/AddSection";
+import Branches from "../pages/Setting/Branches/Branches";
+import AddBranche from "../pages/Setting/Branches/AddBranche";
+import Subjects from "../pages/Setting/Subjects/Subjects";
+import AddSubject from "../pages/Setting/Subjects/AddSubject";
 
 const publicRoutes = [
   { path: "/login", component: <Login /> },
@@ -70,6 +74,26 @@ const authProtectedRoutes = [
     path: "/addSection",
     component: <AddSection/>,
     moduleName: "Section"
+  },
+  {
+    path: "/branches",
+    component: <Branches/>,
+    moduleName: "Branches"
+  },
+  {
+    path: "/addBranche",
+    component: <AddBranche/>,
+    moduleName: "Branches"
+  },
+  {
+    path: "/subjects",
+    component: <Subjects/>,
+    moduleName: "Subjects"
+  },
+  {
+    path: "/addSubject",
+    component: <AddSubject/>,
+    moduleName: "Subjects"
   },
 ]
 

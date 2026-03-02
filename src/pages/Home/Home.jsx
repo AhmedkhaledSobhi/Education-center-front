@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import BreadCrumb from '../../Components/Common/BreadCrumb';
 import { Card, CardBody, Container } from 'reactstrap';
 import logoDark from "../../assets/images/Fatoorah2.png";
-import logoWhite from "../../assets/images/Logo.png";
+// import logoWhite from "../../assets/images/Logo.png";
+import logoWhite from "../../assets/images/logo2.svg";
+
 import waving from "../../assets/images/Waving Hand.png";
 import { useGetProfile } from '../../helpers/getAllApiSelect';
 import MySVG from '../../SVG/SVGIcons';
@@ -13,7 +15,7 @@ import MySVG from '../../SVG/SVGIcons';
 export default function Home() {
   const { t, i18n } = useTranslation();
   document.title = t("Registers.Center_Educations");
-  const [style, setStyle] = useState({ maxWidth: "100%" });
+  const [style, setStyle] = useState({ maxWidth: "100%"});
   const [userInfo, setUserInfo] = useState();
   const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
 
@@ -26,9 +28,9 @@ export default function Home() {
   useEffect(() => {
     const updateStyle = () => {
       if (window.innerWidth <= 768) {
-        setStyle({ maxWidth: "80px" });
+        setStyle({ maxWidth: "80px", opacity: "0.7" });
       } else {
-        setStyle({ maxWidth: "100%" });
+        setStyle({ maxWidth: "100%", opacity: "0.7" });
       }
     };
     updateStyle();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import ButtonLoader from '../../Components/Common/ButtonLoader'
-import BreadCrumb from '../../Components/Common/BreadCrumb'
+import ButtonLoader from '../../../Components/Common/ButtonLoader'
+import BreadCrumb from '../../../Components/Common/BreadCrumb'
 import { Container } from 'reactstrap'
 import { useTranslation } from 'react-i18next';
 

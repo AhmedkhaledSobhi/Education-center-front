@@ -58,9 +58,44 @@
     "edit": "Edit",
     "delete": "Delete",
     "cancel": "Cancel",
+    "status": "Status",
+    "active": "Active",
+    "Inactive": "Inactive",
+    "Gender": "Gender",
+    "Male": "Male",
+    "Female": "Female",
     "main": "Home",
     "NumberOfDisplayed": "Number of displayed",
     "noData": "There is no data available",
+
+    "Primary_Stage": "Primary Stage",
+    "Middle_School": "Middle School",
+    "High_School": "High School",
+    "University_Stage": "University Stage",
+    "Other": "Other",
+    "Basic_information": "Basic information",
+    "Parent_Information": "Parent Information",
+    "Attachments": "Attachments",
+    "country": "Country",
+    "city": "City",
+    "Region": "Region",
+    "": ""
+  },
+  "required": {
+    "required": "Required",
+    "email": "Invalid email address",
+    "mobileNumberValidation": "Mobile number validation",
+    "enterSaudiCorrectNumber": "Enter a valid phone number",
+    "PasswordDoesNotmatch": "Password does not match",
+    "passwordValidation": "Password validation",
+    "PasswordConfirmationRequired": "Password confirmation is required",
+    "EmailIncorrect": "Email is incorrect",
+    "EmailRequired": "Email is required",
+    "phoneNumber": "Phone number is required",
+    "must_be_integer": "Must be a whole number",
+    "must_be_at_least_one": "Must be at least 1",
+    "enter_valid_number": "Enter a valid number",
+    "enterEgyptianValidNumber": "Enter a valid Egyptian phone number",
     "": ""
   },
   "home": {
@@ -89,7 +124,9 @@
     "Employee": "Employee",
     "Assistants": "Assistants",
     "rolesPermissions": "Roles Permissions",
-    "Section": "Section"
+    "Section": "Section",
+    "Branches": "Branches",
+    "subjects": "Subjects"
   },
   "Teacher": {
     "Teachers": "Teachers",
@@ -117,5 +154,11 @@
   },
   "section": {
     "Section": "Section"
+  },
+  "branches": {
+    "Branches": "Branches"
+  },
+  "Subject": {
+    "Subjects": "Subjects"
   }
 }

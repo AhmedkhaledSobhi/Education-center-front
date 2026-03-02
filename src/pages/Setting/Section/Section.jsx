@@ -24,6 +24,14 @@ export default function Section() {
   const tableDataColumns = useMemo(
     () => [
       {
+        Header: t("section.Identification_number"),
+        accessor: "id",
+        filterable: false,
+        Cell: (cellProps)=>{
+          return ( <span> {cellProps?.row?.original?.id} </span>)
+        }
+      },
+      {
         Header: t("section.name"),
         accessor: "first_name",
         filterable: false,
@@ -60,7 +68,25 @@ export default function Section() {
         accessor: "role",
         filterable: false,
         Cell: (cellProps)=>{
-          return cellProps?.row?.original?.role
+          let statusText = "";
+          let className = "";
+          if (cellProps?.row?.original?.role === "STUDENT") {
+            statusText = t("common.active");
+            className = "badge bg-success bg- primary text-white";
+          } else if (cellProps?.row?.original?.role === "STUDENT") {
+            statusText = t("common.Inactive");
+            className = "badge bg-danger text-white";
+          } 
+          return (
+            <span className={className} 
+              style={{ 
+                padding: "6px", 
+                boxSizing: "border-box",
+              }}
+            >
+              {statusText}
+            </span>
+          )
         }
       },
       {
@@ -122,7 +148,7 @@ export default function Section() {
 
   return (
     <React.Fragment>
-      <div className="page-content">
+      <div className="page-content ">
         <Container fluid>
           <BreadCrumb
             title={t("LayoutMenuData.Setting")}

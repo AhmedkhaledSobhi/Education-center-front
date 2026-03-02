@@ -54,6 +54,7 @@
     "SaveAsADraft": "حفظ كمسودة",
     "settings": "الاعدادات",
     "add": "اضافة",
+    "new": "جديد",
     "view": "عرض",
     "edit": "تعديل",
     "delete": "حذف",
@@ -61,6 +62,10 @@
     "status": "الحالة",
     "active": "نشط",
     "Inactive": "غير نشط",
+    "Gender": "النوع",
+    "Male": "ذكر",
+    "Female": "أنثى",
+
     "traditional": "عادية",
     "smart": "ذكية",
     "Display_screen": "شاشة عرض",
@@ -75,8 +80,35 @@
 
     "NumberOfDisplayed": "عدد المعروض",
     "noData": "لا يوجد بيانات متوفرة",
-    
 
+    "Primary_Stage": "المرحلة الابتدائية",
+    "Middle_School": "المرحلة الإعدادية",
+    "High_School": "المرحلة الثانوية",
+    "University_Stage": "المرحلة الجامعية",
+    "Other": "اخري",
+    "Basic_information": "المعلومات الأساسية",
+    "Parent_Information": "معلومات الوالد",
+    "Attachments": "المرفقات",
+    "country": "الدولة",
+    "city": "المدينة",
+    "Region": "المحافظه",
+    "": ""
+  },
+  "required": {
+    "required": "مطلوب",
+    "email": "البريد الإلكتروني غير صحيح",
+    "mobileNumberValidation": "التحقق من رقم الجوال",
+    "enterSaudiCorrectNumber": "أدخل الرقم الهاتف الصحيح",
+    "PasswordDoesNotmatch": "كلمة المرور غير متطابقة",
+    "passwordValidation": "التحقق من صحة كلمة المرور",
+    "PasswordConfirmationRequired": "يلزم تأكيد كلمة المرور",
+    "EmailIncorrect": "البريد الإلكتروني غير صحيح",
+    "EmailRequired": "البريد الإلكتروني مطلوب",
+    "phoneNumber": "رقم الهاتف مطلوب",
+    "must_be_integer": "يجب أن يكون رقم صحيح",
+    "must_be_at_least_one": "يجب أن يكون على الأقل 1",
+    "enter_valid_number": "أدخل رقم صحيح",
+    "enterEgyptianValidNumber": "أدخل رقم هاتف مصري صحيح",
     "": ""
   },
   "home": {
@@ -131,43 +163,77 @@
     "Employee": "موظف",
     "Assistants": "المساعدين",
     "rolesPermissions": "الأدوار و الصلاحيات",
-    "Section": "سكشن"
+    "Section": "الغرف",
+    "Branches": "الفروع",
+    "subjects": "المواد الدراسية"
   },
   
   "Teacher":{
     "Teachers": "المدرسين",
+    "teacher": "اسم المدرس",
     "AddTeacher": "اضافه مدرس",
+    "Identification_number": "الرقم التعريفي",
+    "Name_Subject": "اسم المادة",
+    "Educational_Stages": "المراحل التعليمية",
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "phoneNumber": "رقم الهاتف",
     "age": "العمر",
     "Address": "العنوان",
     "Account_type": "نوع الحساب",
-
+    "Basic_information": "المعلومات الأساسية",
     "": ""
   },
   "Student": {
     "Students": "الطلاب",
+    "student": "اسم الطالب",
     "AddStudent": "اضافه طالب",
-
+    "Identification_number": "الرقم التعريفي",
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "phoneNumber": "رقم الهاتف",
     "age": "العمر",
     "Address": "العنوان",
+    "Gender": "النوع",
     "Account_type": "نوع الحساب",
+    "Subjects": "المواد الدراسية",
+    "New_Course": "مادة دراسية جديدة",
+    "Name_Subject": "اسم المادة",
+    "Course_Price" : "سعر المادة",
+
+    "Father_name": "اسم الوالد",
     "": ""
   },
   "section":{
-    "Section": "سكشن",
-    "Section_Contents":"محتويات السكشن",
-    "name": "اسم السكشن",
+    "Section": "غرفه",
+    "Section_Contents":"محتويات الغرفه",
+    "Identification_number": "الرقم التعريفي",
+    "name": "اسم الغرفه",
     "Number_students": "عدد الطلاب",
     "Whiteboard": "سبورة",
     "Screen": "شاشة",
-    "Branch": "فرع",
-
+    "Branch": "الفرع",
 
     "": ""
+  },
+  "branches": {
+    "Branches": "الفروع",
+    "Basic_information": "معلومات أساسية",
+    "Identification_number": "الرقم التعريفي",
+    "name": "اسم الفرع",
+    "Number_rooms": "عدد الغرف",
+    "Address": "العنوان",
+    "": ""
+  },
+  "Subject": {
+    "Subjects": "المواد الدراسية",
+    "subject": "مادة دراسية",
+    "name": "اسم المادة",
+    "teacher_name": "اسم المدرس",
+    "Identification_number": "الرقم التعريفي",
+    "Educational_Stages": "المراحل التعليمية",
+    "Course_Price": "سعر المادة",
+    "": ""
   }
+  
 }

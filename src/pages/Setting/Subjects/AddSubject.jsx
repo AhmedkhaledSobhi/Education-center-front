@@ -1,59 +1,52 @@
 import React, { useState } from 'react'
-import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next';
-import BreadCrumb from '../../../Components/Common/BreadCrumb';
-import Alert from '../../../Components/Common/Alert';
-import { Formik } from 'formik';
-import * as Yup from "yup";
-import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from "yup";
+import BreadCrumb from '../../../Components/Common/BreadCrumb';
+import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
+import Alert from '../../../Components/Common/Alert';
+import TopPageButttons from '../../../Components/Common/TopPageButttons';
+import { Formik } from 'formik';
 import Select from "react-select";
-import { getBranch, getScreen, getStatus, getWhiteboard } from '../../../helpers/dataLocal';
+import { getEducationalStages, getStatus } from '../../../helpers/dataLocal';
 import ComponentLoader from '../../../Components/Common/ComponentLoader';
 
-export default function AddSection() {
-  const { t, i18n } = useTranslation();
-  document.title = `${t("common.add")} ${t("section.Section")}`;
-  const nav = useNavigate();
 
+export default function AddSubject() {
+  const { t, i18n } = useTranslation();
+  document.title = `${t("common.add")} ${t("Subject.subject")} ${t("common.new")}`;
+  const nav = useNavigate();
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [loadsave, setLoadSave] = useState(false);
   const loadingProfile= false
-
   // ________________________________________________________________________________________
 
-  const Whiteboard = getWhiteboard();
-  const Screen = getScreen();
-  const Branch = getBranch();
   const Status = getStatus();
-  
+  const EducationalStages = getEducationalStages();
+
   // ________________________________________________________________________________________
+
   const [initialValues, setInitialValues] = useState({
     name: "",
-    NumberStudents: "",
-    Whiteboard: Whiteboard?.[0],
-    Screen: Screen?.[0],
-    Branch: Branch?.[0],
-    status: Status?.[0],
+    EducationalStages: [],
+    status: {name: t("common.active") , id: 0, value:"active"},
     Description: "",
   });
+  // ________________________________________________________________________________________
 
   const validationSchema = Yup.object({
     name: Yup.string().required(`${t("Subject.name")} ${t("common.required")}`),
-    NumberStudents: Yup.number().required(`${t("section.Number_students")} ${t("common.required")}`),
-    Whiteboard: Yup.object().required(`${t("section.Whiteboard")} ${t("common.required")}`),
-    Screen: Yup.object().required(`${t("section.Screen")} ${t("common.required")}`),
-    Branch: Yup.object().required(`${t("section.Branch")} ${t("common.required")}`),
+    EducationalStages: Yup.array().min(1, `${t("Teacher.Educational_Stages")} ${t("common.required")}`),
     status: Yup.object().required(`${t("common.status")} ${t("common.required")}`),
-  });
+  })
+  // ________________________________________________________________________________________
 
   const handleSaveNew = async (values, action) =>{
     try{
       setLoadSave(true)
       console.log("ahmed values", values);
       await validationSchema.validate(values, { abortEarly: false });
-      
-      setLoadSave(false)
+
     } 
     catch(error){
       if (error.name === "ValidationError") {
@@ -63,8 +56,7 @@ export default function AddSection() {
       }
       return;
     }
-  };
-
+  }
   return (
     <React.Fragment>
       <div className="page-content">
@@ -72,9 +64,9 @@ export default function AddSection() {
           <BreadCrumb
             title={t("LayoutMenuData.Setting")}
             subTitle={t("LayoutMenuData.Setting")}
-            pageTitle={t("section.Section")}
-            pageTitleLink={"/section"}
-            subPageTitle={`${t("common.add")} ${t("section.Section")}`}
+            pageTitle={t("Subject.Subjects")}
+            pageTitleLink={"/subjects"}
+            subPageTitle={`${t("common.add")} ${t("Subject.subject")} ${t("common.new")}`}
           />
           <Row>
             <Col xxl={12}>
@@ -116,36 +108,35 @@ export default function AddSection() {
                     }}
                   >
                     <TopPageButttons
-                      PageTittle={`${t("common.add")} ${t("section.Section")}`}
+                      PageTittle={`${t("common.add")} ${t("Subject.subject")}`}
                       handleSave={() => handleSaveNew(values)}
                       loadsave={loadsave}
-                      close={() => {nav("/section")}}
+                      close={() => {nav("/branches")}}
                       information={()=> setIsInfoOpen(!isInfoOpen)}
                     />
                     <Card>
                       <CardHeader>
                         <div className="sub-title">
-                          {t("section.Section_Contents")}
+                          {t("branches.Basic_information")}
                         </div>
                       </CardHeader>
                       <CardBody>
                         {loadingProfile ?
-                          <ComponentLoader /> : 
+                          <ComponentLoader /> :
                             <Row>
-                              {/* ------ اسم السكشن ------ */}
+                              {/* ------ اسم المادة ------ */}
                               <Col lg={4}>
                                 <FormGroup>
                                   <Label
                                     htmlFor="name"
-                                    className="form-label"
                                   >
-                                    {t("section.name")}{" "}
+                                    {t("Subject.name")}{" "}
                                     <span className="text-danger">*</span>
                                   </Label>
                                   <Input
                                     type="text"
-                                    placeholder={`${t("common.enter")} ${t("section.name")} ${t("common.placeholder")}`}
-                                    title={t("section.name")}
+                                    placeholder={`${t("common.enter")} ${t("Subject.name")} ${t("common.placeholder")}`}
+                                    title={t("Subject.name")}
                                     name="name"
                                     id="name"
                                     onChange={(e) =>
@@ -162,44 +153,14 @@ export default function AddSection() {
                                 </FormGroup>
                               </Col>
 
-                              {/* ------ عدد الطلاب ------ */}
+                              {/* ------ المراحل التعليمية ------ */}
                               <Col lg={4}>
                                 <FormGroup>
                                   <Label
-                                    htmlFor="NumberStudents"
+                                    htmlFor="EducationalStages"
+                                    className="form-label"
                                   >
-                                    {t("section.Number_students")}{" "}
-                                    <span className="text-danger">*</span>
-                                  </Label>
-                                  <Input
-                                    type="number"
-                                    placeholder={`${t("common.enter")} ${t("section.Number_students")} ${t("common.placeholder")}`}
-                                    title={t("section.Number_students")}
-                                    name="NumberStudents"
-                                    id="NumberStudents"
-                                    onChange={(e) =>
-                                      setFieldValue("NumberStudents", e.target.value)
-                                    }
-                                    value={values?.NumberStudents}
-                                    onBlur={handleBlur}
-                                    onWheel={(e) => e.target.blur()} // disables scroll increment
-
-                                  />
-                                  {touched?.NumberStudents && errors?.NumberStudents ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.NumberStudents}
-                                    </div>
-                                  ) : null}
-                                </FormGroup>
-                              </Col>
-
-                              {/* ------ سبورة ------ */}
-                              <Col lg={4}>
-                                <FormGroup>
-                                  <Label
-                                    htmlFor="Whiteboard"
-                                  >
-                                    {t("section.Whiteboard")}{" "}
+                                    {t("Teacher.Educational_Stages")}{" "}
                                     <span className="text-danger">*</span>
                                   </Label>
                                   <Select
@@ -223,139 +184,28 @@ export default function AddSection() {
                                         zIndex: 9999,
                                       }),
                                     }}
-                                    id="Whiteboard"
-                                    name="Whiteboard"
-                                    placeholder={`${t("common.Select")} ${t("section.Whiteboard")} ${t("common.placeholder")}`}    
-                                    options={Whiteboard}
+                                    id="EducationalStages"
+                                    name="EducationalStages"
+                                    placeholder={`${t("common.Select")} ${t("Teacher.Educational_Stages")} ${t("common.placeholder")}`}    
+                                    options={EducationalStages}
                                     getOptionLabel={(option) => option?.name}
                                     getOptionValue={(option) => option?.id}
                                     value={
-                                      Whiteboard.find((option)=>{
-                                        return  option?.value === values?.Whiteboard?.value
+                                      EducationalStages.find((option)=>{
+                                        return  option?.value === values?.EducationalStages
                                       }) 
                                     } 
                                     onChange={(option) => {
-                                      setFieldValue("Whiteboard", option);
+                                      setFieldValue("EducationalStages", option);
                                     }}
                                     onBlur={() => {
-                                      setFieldTouched("Whiteboard", true);
+                                      setFieldTouched("EducationalStages", true);
                                     }}
+                                    isMulti
                                   />
-                                  {touched?.Whiteboard && errors?.Whiteboard ? (
+                                  {touched?.EducationalStages && errors?.EducationalStages ? (
                                     <div style={{ color: "red" }}>
-                                      {errors?.Whiteboard}
-                                    </div>
-                                  ) : null}
-                                </FormGroup>
-                              </Col>
-                              
-                              {/* ------ شاشة ------ */}
-                              <Col lg={4}>
-                                <FormGroup>
-                                  <Label
-                                    htmlFor="Screen"
-                                  >
-                                    {t("section.Screen")}{" "}
-                                    <span className="text-danger">*</span>
-                                  </Label>
-                                  <Select
-                                    theme={(theme) => ({
-                                      ...theme,
-                                      colors: {
-                                        ...theme.colors,
-                                        primary25: "#BEC4C7",
-                                        primary: "#283C47",
-                                      },
-                                      cursor: "default",
-                                      ":active": {
-                                        backgroundColor: "#BEC4C7",
-                                      },
-                                    })}
-                                    menuPortalTarget={document.body}
-                                    menuPosition="fixed"
-                                    styles={{
-                                      menuPortal: (base) => ({
-                                        ...base,
-                                        zIndex: 9999,
-                                      }),
-                                    }}
-                                    id="Screen"
-                                    name="Screen"
-                                    placeholder={`${t("common.Select")} ${t("section.Screen")} ${t("common.placeholder")}`}    
-                                    options={Screen}
-                                    getOptionLabel={(option) => option?.name}
-                                    getOptionValue={(option) => option?.id}
-                                    value={
-                                      Screen.find((option)=>{
-                                        return  option?.value === values?.Screen?.value
-                                      }) 
-                                    } 
-                                    onChange={(option) => {
-                                      setFieldValue("Screen", option);
-                                    }}
-                                    onBlur={() => {
-                                      setFieldTouched("Screen", true);
-                                    }}
-                                  />
-                                  {touched?.Screen && errors?.Screen ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.Screen}
-                                    </div>
-                                  ) : null}
-                                </FormGroup>
-                              </Col>
-
-                              {/* ------ فرع ------ */}
-                              <Col lg={4}>
-                                <FormGroup>
-                                  <Label
-                                    htmlFor="Branch"
-                                  >
-                                    {t("section.Branch")}{" "}
-                                    <span className="text-danger">*</span>
-                                  </Label>
-                                  <Select
-                                    theme={(theme) => ({
-                                      ...theme,
-                                      colors: {
-                                        ...theme.colors,
-                                        primary25: "#BEC4C7",
-                                        primary: "#283C47",
-                                      },
-                                      cursor: "default",
-                                      ":active": {
-                                        backgroundColor: "#BEC4C7",
-                                      },
-                                    })}
-                                    menuPortalTarget={document.body}
-                                    menuPosition="fixed"
-                                    styles={{
-                                      menuPortal: (base) => ({
-                                        ...base,
-                                        zIndex: 9999,
-                                      }),
-                                    }}
-                                    id="Branch"
-                                    name="Branch"
-                                    placeholder={`${t("common.Select")} ${t("section.Branch")} ${t("common.placeholder")}`}    
-                                    options={Branch}
-                                    getOptionLabel={(option) => option?.name}
-                                    getOptionValue={(option) => option?.id}
-                                    value={
-                                      Branch.find((option)=>{
-                                        return  option?.value === values?.Branch?.value
-                                      }) 
-                                    } 
-                                    onChange={(option) => {
-                                      setFieldValue("Branch", option);
-                                    }}
-                                    onBlur={() => {
-                                      setFieldTouched("Branch", true);
-                                    }}
-                                  />
-                                  {touched?.Branch && errors?.Branch ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.Branch}
+                                      {errors?.EducationalStages}
                                     </div>
                                   ) : null}
                                 </FormGroup>
@@ -417,12 +267,11 @@ export default function AddSection() {
                                 </FormGroup>
                               </Col>
 
-                              {/* ------ ملاحظات ------ */}
+                              {/* ------ الوصف ------ */}
                               <Col lg={12}>
                                 <FormGroup>
                                   <Label
                                     htmlFor="Description"
-                                    className="form-label"
                                   >
                                     {t("common.Description")}{" "}
                                   </Label>

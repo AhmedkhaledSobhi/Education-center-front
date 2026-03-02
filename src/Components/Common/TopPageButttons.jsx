@@ -63,8 +63,6 @@ export default function TopPageButttons({
               icon={" ri-close-circle-line"}
               onClick={close}
               iconStyle={{ fontSize: "20px", fontWeight: 500, }}
-              loading={loadsaveDraft}
-              disabled={loadsave || loadsaveDraft}
               style={{ color: "#D60000", borderColor: "#D60000", padding: "8px 18px" }}
             />
           )}

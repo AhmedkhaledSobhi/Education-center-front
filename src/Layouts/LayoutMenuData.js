@@ -251,15 +251,25 @@ const Navdata = () => {
       },
       stateVariables: isJobList,
       subItems: [
-        {
-          id: "setting",
-          label: t("LayoutMenuData.rolesPermissions"),
-          link: "/user-roles",
-        },
+        // {
+        //   id: "setting",
+        //   label: t("LayoutMenuData.rolesPermissions"),
+        //   link: "/user-roles",
+        // },
         {
           id: "setting",
           label: t("LayoutMenuData.Section"),
           link: "/section",
+        },
+        {
+          id: "setting",
+          label: t("LayoutMenuData.Branches"),
+          link: "/branches",
+        },
+        {
+          id: "setting",
+          label: t("LayoutMenuData.subjects"),
+          link: "/subjects",
         },
       ].filter(Boolean),
     },

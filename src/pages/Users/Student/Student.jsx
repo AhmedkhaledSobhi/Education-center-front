@@ -24,6 +24,14 @@ export default function Student() {
   const tableDataColumns = useMemo(
     () => [
       {
+        Header: t("Student.Identification_number"),
+        accessor: "id",
+        filterable: false,
+        Cell: (cellProps)=>{
+          return ( <span> {cellProps?.row?.original?.id} </span>)
+        }
+      },
+      {
         Header: t("Student.name"),
         accessor: "first_name",
         filterable: false,

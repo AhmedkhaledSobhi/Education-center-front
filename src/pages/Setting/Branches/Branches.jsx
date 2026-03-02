@@ -1,31 +1,30 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next';
-import { Card, CardBody, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap'
-import BreadCrumb from '../../../Components/Common/BreadCrumb';
-import ButtonLoader from '../../../Components/Common/ButtonLoader';
-import { useNavigate } from 'react-router-dom';
-import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
-import Alert from '../../../Components/Common/Alert';
-import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
 import { useGetAllUser } from '../../../helpers/getAllApiSelect';
+import { Card, CardBody, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import BreadCrumb from '../../../Components/Common/BreadCrumb';
+import Alert from '../../../Components/Common/Alert';
+import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
+import ButtonLoader from '../../../Components/Common/ButtonLoader';
+import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
 
-export default function Teacher() {
+export default function Branches() {
   const { t, i18n } = useTranslation();
   const nav = useNavigate();
   
   const [isInfoOpen, setIsInfoOpen] = useState(true);
-  
   const [productsData, setProductsData] = useState([]);
   const [totalPage, setTotalPage] = useState([]);
   const [currentPage, setCurrentPage] = useState([]);
   const [limit, setLimit] = useState([]);
-
+  
   // ____________________________________________________________________
 
   const tableDataColumns = useMemo(
     () => [
       {
-        Header: t("Teacher.Identification_number"),
+        Header: t("branches.Identification_number"),
         accessor: "id",
         filterable: false,
         Cell: (cellProps)=>{
@@ -33,7 +32,7 @@ export default function Teacher() {
         }
       },
       {
-        Header: t("Teacher.name"),
+        Header: t("branches.name"),
         accessor: "first_name",
         filterable: false,
         Cell: (cellProps)=>{
@@ -41,49 +40,53 @@ export default function Teacher() {
         }
       },
       {
-        Header: t("Teacher.email"),
+        Header: t("branches.Number_rooms"),
         accessor: "email",
         filterable: false,
       },
       {
-        Header: t("Teacher.phoneNumber"),
-        accessor: "phone",
-        filterable: false,
-        Cell: (cellProps)=>{
-          const phone = cellProps?.row?.original?.phone ?.replace(/^\(\+20\)/, "");
-          return ( <span> {phone} </span>)
-        }
-      },
-      {
-        Header: t("Teacher.age"),
+        Header: t("branches.Address"),
         accessor: "age",
         filterable: false,
       },
       {
-        Header: t("Teacher.Address"),
-        accessor: "address",
-        filterable: false,
-      },
-      {
-        Header: t("Teacher.Account_type"),
+        Header: t("common.status"),
         accessor: "role",
         filterable: false,
         Cell: (cellProps)=>{
-          return cellProps?.row?.original?.role
+          let statusText = "";
+          let className = "";
+          if (cellProps?.row?.original?.role === "STUDENT") {
+            statusText = t("common.active");
+            className = "badge bg-success text-white";
+          } else if (cellProps?.row?.original?.role === "STUDENT") {
+            statusText = t("common.Inactive");
+            className = "badge bg-danger text-white";
+          } 
+          return (
+            <span className={className} 
+              style={{ 
+                padding: "6px", 
+                boxSizing: "border-box",
+              }}
+            >
+              {statusText}
+            </span>
+          )
         }
       },
       {
         Header: t("common.settings"),
         Cell: (cellProps) => {
           return (
-            <UncontrolledDropdown onClick={(e) => e?.stopPropagation()} >
+            <UncontrolledDropdown onClick={(e) => e?.stopPropagation()}>
               <DropdownToggle
                 tag="a"
                 className="btn btn-light btn-sm"
               >
                 <i className="ri-more-2-fill align-middle"></i>
               </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-end" >
+              <DropdownMenu className="dropdown-menu-end " >
                 <li>
                   <DropdownItem>
                     <div className="d-flex justify-content-start align-items-center">
@@ -114,30 +117,29 @@ export default function Teacher() {
         }
       }
     ]);
-
+  
   // ____________________________________________________________________
-  const { data: Teachers = [], isLoading: LoadingTeacher } = useGetAllUser();
-
+  const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser();
   useEffect(() => {
-    if(Teachers){
-      const result = Teachers?.data?.filter((item) => {
-        return item.role == "TEACHER";
+    if(Students){
+      const result = Students?.data?.filter((item) => {
+        return item.role == "STUDENT";
       });
       setProductsData(result);
-      setTotalPage(Teachers?.meta?.total)
-      setCurrentPage(Teachers?.meta?.page)
-      setLimit(Teachers?.meta?.limit)
+      setTotalPage(Students?.meta?.total)
+      setCurrentPage(Students?.meta?.page)
+      setLimit(Students?.meta?.limit)
     }
-  }, [Teachers]);
+  }, [Students]);
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
           <BreadCrumb
-            title={t("LayoutMenuData.Users")}
-            subTitle={t("LayoutMenuData.Users")}
-            pageTitle={t("Teacher.Teachers")}
+            title={t("LayoutMenuData.Setting")}
+            subTitle={t("LayoutMenuData.Setting")}
+            pageTitle={t("branches.Branches")}
           />
           <Row>
             <Col xs={12}>
@@ -149,9 +151,9 @@ export default function Teacher() {
             </Col>
             <Col xs={12}>
               <TopTablesButtons 
-                PageTittle={`${t("Teacher.Teachers")}`}
-                addTitle={t("Teacher.AddTeacher")}
-                link={() => nav("/addTeacher")}
+                PageTittle={`${t("branches.Branches")}`}
+                addTitle={`${t("common.add")} ${t("branches.Branches")}`}
+                link={() => nav("/addBranche")}
                 information={()=> setIsInfoOpen(!isInfoOpen)}
               />
             </Col>
@@ -160,7 +162,7 @@ export default function Teacher() {
               <div className="card-body pt-0">
                 <Card>
                   <CardBody className="pt-0">
-                    {LoadingTeacher?
+                    {LoadingStudent?
                       <div
                         style={{
                           display: "flex",
@@ -175,10 +177,7 @@ export default function Teacher() {
                           width="70"
                           height="70"
                         />
-                      </div>
-                      :<div> 
-                        {console.log("ahmed productsData", productsData)}
-
+                      </div> : <div> 
                         <TableContainerComponent
                           columns={tableDataColumns || []}
                           data={productsData || [] }
@@ -198,8 +197,6 @@ export default function Teacher() {
               </div>
             </Col>
           </Row>
-
-
         </Container>
       </div>
     </React.Fragment>
