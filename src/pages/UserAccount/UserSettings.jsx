@@ -15,6 +15,7 @@ import BasicInformation from './Components/BasicInformation';
 import Select from "react-select";
 import { useGetProfile } from '../../helpers/getAllApiSelect';
 import Alert from '../../Components/Common/Alert';
+import { getAccountType, getGender, getLanguage } from '../../helpers/dataLocal';
 
 export default function UserSettings() {
   const { t, i18n } = useTranslation();
@@ -27,6 +28,8 @@ export default function UserSettings() {
   const [disableEdit, setDisableEdit] = useState(false);
 
 // _________________________________________________________________________________________________
+  const Account_type = getAccountType()
+  const language = getLanguage();
 
   const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
 // _________________________________________________________________________________________________
@@ -44,6 +47,7 @@ export default function UserSettings() {
         age: Profile?.age,
         address: Profile?.address || "",
         role: Profile?.role,
+        language: language?.[0],
         country: { 
           id: "65", 
           name: "Egypt", 
@@ -181,6 +185,8 @@ export default function UserSettings() {
                       errors={errors}
                       loadingProfile={profileLoading}
                       disableEdit={disableEdit}
+                      Account_type={Account_type}
+                      language={language}
                     />
 
                     {/* ---------------- بيانات الاتصال ---------------- */}

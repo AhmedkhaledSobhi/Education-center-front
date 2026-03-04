@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next';
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
-import AddressComponents from '../../UserAccount/Components/AddressComponents';
 import Alert from '../../../Components/Common/Alert';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from "yup";
@@ -13,13 +12,14 @@ import BasicInformation from './Components/BasicInformation';
 import { toast } from 'react-toastify';
 import { getEducationalStages, getGender, getStatus } from '../../../helpers/dataLocal';
 import ParentInformation from './Components/ParentInformation';
+import AddressComponents from '../../../Components/Common/AddressComponents';
 
 export default function AddStudent() {
   const { t, i18n } = useTranslation();
   document.title = `${t("common.add")} ${t("Student.Students")}`;
   const nav = useNavigate();
   // ________________________________________________________________________________________________________________________________________
-
+  const loadingProfile = true
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [loadsave, setLoadSave] = useState(false);
   // ________________________________________________________________________________________
@@ -258,7 +258,6 @@ export default function AddStudent() {
                             <FormGroup>
                               <Label
                                 htmlFor="comments"
-                                className="form-label"
                               >
                                 {t("common.enter")} {t("common.comments")}{" "}
                               </Label>
@@ -275,11 +274,13 @@ export default function AddStudent() {
                                 value={values?.comments}
                                 onBlur={handleBlur}
                               />
-                              {touched?.comments && errors?.comments ? (
-                                <div style={{ color: "red" }}>
-                                  {errors?.comments}
-                                </div>
-                              ) : null}
+                              {touched?.comments && errors?.comments && (
+                                <ErrorMessage
+                                  name="comments"
+                                  component="div"
+                                  className="text-danger"
+                                />
+                              )}
                             </FormGroup>
                           </CardBody>
                         </Card>

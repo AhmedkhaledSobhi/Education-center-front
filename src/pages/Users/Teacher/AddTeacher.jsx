@@ -4,12 +4,12 @@ import BreadCrumb from '../../../Components/Common/BreadCrumb'
 import { useTranslation } from 'react-i18next';
 import Alert from '../../../Components/Common/Alert';
 import { useNavigate } from 'react-router-dom';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import * as Yup from "yup";
-import AddressComponents from '../../UserAccount/Components/AddressComponents';
 import BasicInformation from './Components/BasicInformation';
 import { getEducationalStages, getGender, getStatus, getSubjects } from '../../../helpers/dataLocal';
+import AddressComponents from '../../../Components/Common/AddressComponents';
 
 export default function AddTeacher() {
   const { t, i18n } = useTranslation();
@@ -192,11 +192,13 @@ export default function AddTeacher() {
                                 value={values?.comments}
                                 onBlur={handleBlur}
                               />
-                              {touched?.comments && errors?.comments ? (
-                                <div style={{ color: "red" }}>
-                                  {errors?.comments}
-                                </div>
-                              ) : null}
+                              {touched?.comments && errors?.comments && (
+                                <ErrorMessage
+                                  name="comments"
+                                  component="div"
+                                  className="text-danger"
+                                />
+                              )}
                             </FormGroup>
                           </CardBody>
                         </Card>

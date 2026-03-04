@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Card, CardBody, CardHeader, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, FormGroup, Input, Label, Row } from 'reactstrap';
 import SimpleBar from 'simplebar-react';
 import phoneCodeData from "../../../../localesJson/PhoneCode.json";
+import { ErrorMessage } from 'formik';
 
 export default function ParentInformation({
   values,
@@ -55,11 +56,13 @@ export default function ParentInformation({
                   value={values?.FatherName}
                   onBlur={handleBlur}
                 />
-                {touched?.FatherName && errors?.FatherName ? (
-                  <div style={{ color: "red" }}>
-                    {errors?.FatherName}
-                  </div>
-                ) : null}
+                {touched?.FatherName && errors?.FatherName && (
+                  <ErrorMessage
+                    name="FatherName"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
 
@@ -142,11 +145,13 @@ export default function ParentInformation({
                     </SimpleBar>
                   </DropdownMenu>
                 </Dropdown>
-                {touched?.FatherPhone && errors?.FatherPhone ? (
-                  <div style={{ color: "red" }}>
-                    {errors?.FatherPhone}
-                  </div>
-                ) : null}
+                {touched?.FatherPhone && errors?.FatherPhone && (
+                  <ErrorMessage
+                    name="FatherPhone"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
 
@@ -174,9 +179,13 @@ export default function ParentInformation({
                   value={values?.FatherEmail}
                   onBlur={handleBlur}
                 />
-                {touched.FatherEmail && errors.FatherEmail ? (
-                  <div style={{ color: "red" }}>{errors.FatherEmail}</div>
-                ) : null}
+                {touched.FatherEmail && errors.FatherEmail && (
+                  <ErrorMessage
+                    name="FatherEmail"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
           </Row>

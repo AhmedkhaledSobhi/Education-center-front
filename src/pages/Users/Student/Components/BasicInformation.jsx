@@ -4,6 +4,7 @@ import { Card, CardBody, CardHeader, Col, Dropdown, DropdownItem, DropdownMenu, 
 import Select from "react-select";
 import SimpleBar from 'simplebar-react';
 import phoneCodeData from "../../../../localesJson/PhoneCode.json";
+import { ErrorMessage } from 'formik';
 
 export default function BasicInformation({
   values,
@@ -62,11 +63,13 @@ export default function BasicInformation({
                   value={values?.name}
                   onBlur={handleBlur}
                 />
-                {touched?.name && errors?.name ? (
-                  <div style={{ color: "red" }}>
-                    {errors?.name}
-                  </div>
-                ) : null}
+                {touched?.name && errors?.name && (
+                  <ErrorMessage
+                    name="name"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
 
@@ -75,7 +78,6 @@ export default function BasicInformation({
               <FormGroup>
                 <Label
                   htmlFor="EducationalStages"
-                  className="form-label"
                 >
                   {t("Teacher.Educational_Stages")}{" "}
                   <span className="text-danger">*</span>
@@ -121,11 +123,13 @@ export default function BasicInformation({
                   // isMulti
                   // isDisabled
                 />
-                {touched?.EducationalStages && errors?.EducationalStages ? (
-                  <div style={{ color: "red" }}>
-                    {errors?.EducationalStages}
-                  </div>
-                ) : null}
+                {touched?.EducationalStages && errors?.EducationalStages && (
+                  <ErrorMessage
+                    name="EducationalStages"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
 
@@ -134,7 +138,6 @@ export default function BasicInformation({
               <FormGroup>
                 <Label
                   htmlFor="phone"
-                  className="form-label"
                 >
                   {t("AccountSettings.phone")}{" "}
                   <span className="text-danger">*</span>
@@ -207,11 +210,13 @@ export default function BasicInformation({
                     </SimpleBar>
                   </DropdownMenu>
                 </Dropdown>
-                {touched?.phone && errors?.phone ? (
-                  <div style={{ color: "red" }}>
-                    {errors?.phone}
-                  </div>
-                ) : null}
+                {touched?.phone && errors?.phone && (
+                  <ErrorMessage
+                    name="phone"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
 
@@ -237,9 +242,13 @@ export default function BasicInformation({
                   value={values?.email}
                   onBlur={handleBlur}
                 />
-                {touched.email && errors.email ? (
-                  <div style={{ color: "red" }}>{errors.email}</div>
-                ) : null}
+                {touched.email && errors.email && (
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
 
@@ -248,7 +257,6 @@ export default function BasicInformation({
               <FormGroup>
                 <Label
                   htmlFor="Gender"
-                  className="form-label"
                 >
                   {t("common.Gender")}{" "}
                   <span className="text-danger">*</span>
@@ -292,11 +300,13 @@ export default function BasicInformation({
                     setFieldTouched("Gender", true);
                   }}
                 />
-                {touched?.Gender && errors?.Gender ? (
-                  <div style={{ color: "red" }}>
-                    {errors?.Gender}
-                  </div>
-                ) : null}
+                {touched?.Gender && errors?.Gender && (
+                  <ErrorMessage
+                    name="Gender"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
             
@@ -305,7 +315,6 @@ export default function BasicInformation({
               <FormGroup>
                 <Label
                   htmlFor="status"
-                  className="form-label"
                 >
                   {t("common.status")}{" "}
                   <span className="text-danger">*</span>
@@ -349,11 +358,13 @@ export default function BasicInformation({
                     setFieldTouched("status", true);
                   }}
                 />
-                {touched?.status && errors?.status ? (
-                  <div style={{ color: "red" }}>
-                    {errors?.status}
-                  </div>
-                ) : null}
+                {touched?.status && errors?.status && (
+                  <ErrorMessage
+                    name="status"
+                    component="div"
+                    className="text-danger"
+                  />
+                )}
               </FormGroup>
             </Col>
           </Row>

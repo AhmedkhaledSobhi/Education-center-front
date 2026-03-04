@@ -4,6 +4,8 @@ import { Card, CardBody, CardHeader, Col, Dropdown, DropdownItem, DropdownMenu, 
 import SimpleBar from 'simplebar-react';
 import phoneCodeData from "../../../localesJson/PhoneCode.json";
 import ButtonLoader from '../../../Components/Common/ButtonLoader';
+import ComponentLoader from '../../../Components/Common/ComponentLoader';
+import { ErrorMessage } from 'formik';
 
 export default function ContactInformationComponents({
   values,
@@ -33,27 +35,13 @@ export default function ContactInformationComponents({
         </CardHeader>
         <CardBody>
           {loadingProfile ?
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                height: 200,
-              }}
-            >
-              <ButtonLoader
-                color="#0d6efd"
-                width="70"
-                height="70"
-              />
-            </div>: (
+            <ComponentLoader/>
+            : (
               <Row>
                 {/* ----------- البريد الإلكتروني ----------- */}
                 <Col lg={4}>
                   <FormGroup className="mb-3">
                     <Label
-                      className="form-label"
                       htmlFor="email"
                     >
                       {t("AccountSettings.email")}
@@ -71,11 +59,14 @@ export default function ContactInformationComponents({
                       }
                       value={values?.email}
                       onBlur={handleBlur}
-                      // disabled={disableEdit}
                     />
-                    {touched.email && errors.email ? (
-                      <div style={{ color: "red" }}>{errors.email}</div>
-                    ) : null}
+                    {touched.email && errors.email && (
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-danger"
+                      />
+                    )}
                   </FormGroup>
                 </Col>
 
@@ -84,7 +75,6 @@ export default function ContactInformationComponents({
                   <FormGroup>
                     <Label
                       htmlFor="phone"
-                      className="form-label"
                     >
                       {t("AccountSettings.phone")}{" "}
                       <span className="text-danger">*</span>
@@ -159,11 +149,13 @@ export default function ContactInformationComponents({
                         </SimpleBar>
                       </DropdownMenu>
                     </Dropdown>
-                    {touched?.phone && errors?.phone ? (
-                      <div style={{ color: "red" }}>
-                        {errors?.phone}
-                      </div>
-                    ) : null}
+                    {touched?.phone && errors?.phone && (
+                      <ErrorMessage
+                        name="phone"
+                        component="div"
+                        className="text-danger"
+                      />
+                    )}
                   </FormGroup>
                 </Col>
               </Row>

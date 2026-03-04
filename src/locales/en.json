@@ -32,6 +32,7 @@
     "PasswordDoesNotmatch": "Password not matched",
     "passwordValidation": "Verify password",
     "PasswordConfirmationRequired": "Password confirmation required",
+    "passwordMinLength": "Minimum password length (6)",
     "loginByEmail": "Login using email",
     "LoginByMobile": "Login using mobile number",
     
@@ -64,6 +65,9 @@
     "Gender": "Gender",
     "Male": "Male",
     "Female": "Female",
+    "language": "Language",
+    "Arabic": "Arabic",
+    "English": "English",
     "main": "Home",
     "NumberOfDisplayed": "Number of displayed",
     "noData": "There is no data available",

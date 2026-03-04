@@ -31,7 +31,7 @@
     "PasswordDoesNotmatch": "كلمة المرور غير متطابقة",
     "passwordValidation": "التحقق من صحة كلمة المرور",
     "PasswordConfirmationRequired": "يلزم تأكيد كلمة المرور",
-
+    "passwordMinLength": "الحد الأدنى لطول كلمة المرور (6)",
     "loginByEmail": "تسجيل الدخول عن طريق الايميل",
     "LoginByMobile": "تسجيل الدخول عن طريق رقم الجوال",
 
@@ -65,7 +65,9 @@
     "Gender": "النوع",
     "Male": "ذكر",
     "Female": "أنثى",
-
+    "language": "اللغة",
+    "Arabic": "العربية",
+    "English": "الإنجليزية",
     "traditional": "عادية",
     "smart": "ذكية",
     "Display_screen": "شاشة عرض",

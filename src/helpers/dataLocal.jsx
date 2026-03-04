@@ -10,7 +10,23 @@ const getStatus = () => [
 const getGender = () => [
   {name: i18n.t("common.Male") , id: 1, value:"male"},
   {name: i18n.t("common.Female") , id: 2, value:"female"},
-]
+];
+
+// ----------- اللغة -----------
+const getLanguage = () => [
+  { name: i18n.t("common.Arabic"), id: 1, value: "ar" },
+  { name: i18n.t("common.English"), id: 2, value: "en" },
+];
+
+// ----------- نوع الحساب -----------
+const getAccountType = () => [
+  { name: i18n.t("Registers.Admin"), id: 0, value: "ADMIN" },
+  { name: i18n.t("Registers.Teacher"), id: 1, value: "TEACHER" },
+  { name: i18n.t("Registers.Student"), id: 2, value: "STUDENT" },
+  { name: i18n.t("Registers.Employee"), id: 3, value: "EMPLOYEE" },
+  { name: i18n.t("Registers.Assistant"), id: 4, value: "ASSISTANT" },
+  { name: i18n.t("Registers.User"), id: 5, value: "USER" },
+];
 
 // ----------- المراحل التعليمية -----------
 const getEducationalStages = () => [
@@ -56,4 +72,6 @@ export {
   getBranch,
   getScreen,
   getWhiteboard,
+  getLanguage,
+  getAccountType,
 }

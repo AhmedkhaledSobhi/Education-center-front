@@ -4,7 +4,8 @@ import { Card, CardBody, CardHeader, Col, FormGroup, Input, Label, Row } from 'r
 import Select from "react-select";
 import { BiX } from 'react-icons/bi';
 import AddImg from "../../../assets/images/static/gallery-add.png";
-import ButtonLoader from '../../../Components/Common/ButtonLoader';
+import ComponentLoader from '../../../Components/Common/ComponentLoader';
+import { ErrorMessage } from 'formik';
 
 export default function BasicInformation({
   values,
@@ -15,7 +16,9 @@ export default function BasicInformation({
   errors,
   profileData,
   loadingProfile,
-  disableEdit
+  disableEdit,
+  Account_type,
+  language,
 }) {
   const { t, i18n } = useTranslation();
   const [isSelected, setIsSelected] = useState(false);
@@ -26,15 +29,6 @@ export default function BasicInformation({
     profileData?.image_path || null
   );
 
-  const Account_type =[
-    {name: t("Registers.Admin") , id: 0, value:"ADMIN"},
-    {name: t("Registers.Teacher") , id: 1, value:"TEACHER"},
-    {name: t("Registers.Student") , id: 2, value:"STUDENT"},
-    {name: t("Registers.Employee") , id: 3, value:"EMPLOYEE"},
-    {name: t("Registers.Assistant") , id: 4, value:"ASSISTANT"},
-    {name: t("Registers.User") , id: 5, value:"USER"},
-
-  ]
 
   // ________________________________________________________________________________________
   const removeImageHandler = () => {
@@ -112,21 +106,8 @@ export default function BasicInformation({
         </CardHeader>
         <CardBody>
           {loadingProfile ?
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                height: 200,
-              }}
-            >
-              <ButtonLoader
-                color="#0d6efd"
-                width="70"
-                height="70"
-              />
-            </div> : (
+            <ComponentLoader/>
+             : (
               <Row>
                 <Col lg={8} >
                   <Row>
@@ -135,7 +116,6 @@ export default function BasicInformation({
                       <FormGroup>
                         <Label
                           htmlFor="first_name"
-                          className="form-label"
                         >
                           {t("Registers.first_Name")}{" "}
                           <span className="text-danger">*</span>
@@ -143,8 +123,8 @@ export default function BasicInformation({
                         <Input
                           type="text"
                           placeholder={`${t("common.enter")} ${t("Registers.first_Name")} ${t("common.placeholder")}`}
+                          title={t("Registers.first_Name")}
                           name="first_name"
-                          title="first_name"
                           id="first_name"
                           onChange={(e) =>
                             setFieldValue("first_name", e.target.value)
@@ -152,11 +132,13 @@ export default function BasicInformation({
                           value={values?.first_name}
                           onBlur={handleBlur}
                         />
-                        {touched?.first_name && errors?.first_name ? (
-                          <div style={{ color: "red" }}>
-                            {errors?.first_name}
-                          </div>
-                        ) : null}
+                        {touched?.first_name && errors?.first_name && (
+                          <ErrorMessage
+                            name="first_name"
+                            component="div"
+                            className="text-danger"
+                          />
+                        )}
                       </FormGroup>
                     </Col>
 
@@ -165,28 +147,29 @@ export default function BasicInformation({
                       <FormGroup>
                         <Label
                           htmlFor="last_name"
-                          className="form-label"
                         >
                           {t("Registers.last_Name")}{" "}
                           <span className="text-danger">*</span>
                         </Label>
                         <Input
-                          name="last_name"
                           type="text"
-                          placeholder={`${t("common.enter")} ${t("Registers.last_Name")} ${t("common.placeholder")}`}
-                          title="last_name"
+                          name="last_name"
                           id="last_name"
+                          title={t("Registers.last_Name")}
+                          placeholder={`${t("common.enter")} ${t("Registers.last_Name")} ${t("common.placeholder")}`}
                           onChange={(e) =>
                             setFieldValue("last_name", e.target.value)
                           }
                           value={values?.last_name}
                           onBlur={handleBlur}
                         />
-                        {touched?.last_name && errors?.last_name ? (
-                          <div style={{ color: "red" }}>
-                            {errors?.last_name}
-                          </div>
-                        ) : null}
+                        {touched?.last_name && errors?.last_name && (
+                          <ErrorMessage
+                            name="last_name"
+                            component="div"
+                            className="text-danger"
+                          />
+                        )}
                       </FormGroup>
                     </Col>
 
@@ -194,18 +177,17 @@ export default function BasicInformation({
                     <Col lg={6}>
                       <FormGroup className="mb-3">
                         <Label
-                          className="form-label"
-                          htmlFor="Licensing"
+                          htmlFor="Center_name"
                         >
                           {t("AccountSettings.Center_Name")}{" "}
                         </Label>
                         <Input
                           type={"text"}
+                          id="Center_name"
+                          name="Center_name"
+                          title={t("AccountSettings.Center_Name")}
                           className="form-control pe5 password-input"
                           placeholder={`${t("common.enter")} ${t("AccountSettings.Center_Name")} ${t("common.placeholder")}`}
-                          id="Center_name"
-                          title="Center_name"
-                          name="Center_name"
                           onChange={(e) =>
                             setFieldValue("Center_name", e.target.value)
                           }
@@ -213,6 +195,13 @@ export default function BasicInformation({
                           onBlur={handleBlur}
                           disabled
                         />
+                        {touched?.Center_name && errors?.Center_name && (
+                          <ErrorMessage
+                            name="Center_name"
+                            component="div"
+                            className="text-danger"
+                          />
+                        )}
                       </FormGroup>
                     </Col>
 
@@ -221,7 +210,6 @@ export default function BasicInformation({
                       <FormGroup>
                         <Label
                           htmlFor="role"
-                          className="form-label"
                         >
                           {t("Registers.Account_type")}{" "}
                           <span className="text-danger">*</span>
@@ -266,11 +254,13 @@ export default function BasicInformation({
                           }}
                           isDisabled
                         />
-                        {touched?.role && errors?.role ? (
-                          <div style={{ color: "red" }}>
-                            {errors?.role}
-                          </div>
-                        ) : null}
+                        {touched?.role && errors?.role && (
+                          <ErrorMessage
+                            name="role"
+                            component="div"
+                            className="text-danger"
+                          />
+                        )}
                       </FormGroup>
                     </Col>
 
@@ -279,17 +269,16 @@ export default function BasicInformation({
                       <FormGroup>
                         <Label
                           htmlFor="age"
-                          className="form-label"
                         >
                           {t("Registers.age")}{" "}
                           <span className="text-danger">*</span>
                         </Label>
                         <Input
-                          name="age"
-                          type="text"
-                          placeholder={`${t("common.enter")} ${t("Registers.age")} ${t("common.placeholder")}`}
-                          title="age"
+                          type="number"
                           id="age"
+                          name="age"
+                          title={t("Registers.age")}
+                          placeholder={`${t("common.enter")} ${t("Registers.age")} ${t("common.placeholder")}`}
                           onChange={(e) =>{
                             const value = e.target.value.replace(/\D/g, "");
                             setFieldValue("age", value)
@@ -298,12 +287,73 @@ export default function BasicInformation({
                           value={values?.age}
                           onBlur={handleBlur}
                           maxLength={2}
+                          onWheel={(e) => e.target.blur()}
                         />
-                        {touched?.age && errors?.age ? (
-                          <div style={{ color: "red" }}>
-                            {errors?.age}
-                          </div>
-                        ) : null}
+                        {touched?.age && errors?.age && (
+                          <ErrorMessage
+                            name="age"
+                            component="div"
+                            className="text-danger"
+                          />
+                        )}
+                      </FormGroup>
+                    </Col>
+
+                    {/* ------ اللغة ------ */}
+                    <Col lg={6}>
+                      <FormGroup>
+                        <Label
+                          htmlFor="language"
+                        >
+                          {t("common.language")}{" "}
+                          <span className="text-danger">*</span>
+                        </Label>
+                        <Select
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#BEC4C7",
+                              primary: "#283C47",
+                            },
+                            cursor: "default",
+                            ":active": {
+                              backgroundColor: "#BEC4C7",
+                            },
+                          })}
+                          menuPortalTarget={document.body}
+                          menuPosition="fixed"
+                          styles={{
+                            menuPortal: (base) => ({
+                              ...base,
+                              zIndex: 9999,
+                            }),
+                          }}
+                          id="language"
+                          name="language"
+                          placeholder={`${t("common.Select")} ${t("common.language")} ${t("common.placeholder")}`}    
+                          options={language}
+                          getOptionLabel={(option) => option?.name}
+                          getOptionValue={(option) => option?.id}
+                          value={
+                            language?.find((option)=>{
+                              return  option?.value === values?.language?.value
+                            }) 
+                          } 
+                          onChange={(option) => {
+                            setFieldValue("language", option);
+                          }}
+                          onBlur={() => {
+                            setFieldTouched("language", true);
+                          }}
+                        />
+                        {touched?.language && errors?.language && (
+                          <ErrorMessage
+                            name="language"
+                            component="div"
+                            className="text-danger"
+                          />
+                        )}
                       </FormGroup>
                     </Col>
                   </Row>
@@ -439,9 +489,13 @@ export default function BasicInformation({
                               ></i>
                             </div>
                           )}
-                          {touched.photo && errors.photo ? (
-                            <div style={{ color: "red" }}>{errors.photo}</div>
-                          ) : null}
+                          {touched.photo && errors.photo && (
+                            <ErrorMessage
+                              name="photo"
+                              component="div"
+                              className="text-danger"
+                            />
+                          )}
                         </>
                       )}
                       </div>

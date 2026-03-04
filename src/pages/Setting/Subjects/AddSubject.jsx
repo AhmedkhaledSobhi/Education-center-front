@@ -6,7 +6,7 @@ import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
 import Alert from '../../../Components/Common/Alert';
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import Select from "react-select";
 import { getEducationalStages, getStatus } from '../../../helpers/dataLocal';
 import ComponentLoader from '../../../Components/Common/ComponentLoader';
@@ -145,11 +145,13 @@ export default function AddSubject() {
                                     value={values?.name}
                                     onBlur={handleBlur}
                                   />
-                                  {touched?.name && errors?.name ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.name}
-                                    </div>
-                                  ) : null}
+                                  {touched?.name && errors?.name && (
+                                    <ErrorMessage
+                                      name="name"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -158,7 +160,6 @@ export default function AddSubject() {
                                 <FormGroup>
                                   <Label
                                     htmlFor="EducationalStages"
-                                    className="form-label"
                                   >
                                     {t("Teacher.Educational_Stages")}{" "}
                                     <span className="text-danger">*</span>
@@ -203,11 +204,13 @@ export default function AddSubject() {
                                     }}
                                     isMulti
                                   />
-                                  {touched?.EducationalStages && errors?.EducationalStages ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.EducationalStages}
-                                    </div>
-                                  ) : null}
+                                  {touched?.EducationalStages && errors?.EducationalStages && (
+                                    <ErrorMessage
+                                      name="EducationalStages"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -259,11 +262,13 @@ export default function AddSubject() {
                                       setFieldTouched("status", true);
                                     }}
                                   />
-                                  {touched?.status && errors?.status ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.status}
-                                    </div>
-                                  ) : null}
+                                  {touched?.status && errors?.status && (
+                                    <ErrorMessage
+                                      name="status"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -287,11 +292,6 @@ export default function AddSubject() {
                                     value={values?.Description}
                                     onBlur={handleBlur}
                                   />
-                                  {touched?.Description && errors?.Description ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.Description}
-                                    </div>
-                                  ) : null}
                                 </FormGroup>
                               </Col>
                             </Row>

@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -274,7 +274,6 @@ export default function Login() {
                                 <FormGroup>
                                   <Label
                                     htmlFor="phone"
-                                    className="form-label"
                                   >
                                     {t("Registers.phone")}{" "}
                                     <span className="text-danger">*</span>
@@ -284,7 +283,6 @@ export default function Login() {
                                     isOpen={dropdownOpen}
                                     toggle={toggle}
                                     readOnly
-                                    
                                   >
                                     <DropdownToggle
                                       as="button"
@@ -349,11 +347,13 @@ export default function Login() {
                                       </SimpleBar>
                                     </DropdownMenu>
                                   </Dropdown>
-                                  {touched?.phone && errors?.phone ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.phone}
-                                    </div>
-                                  ) : null}
+                                  {touched?.phone && errors?.phone && (
+                                    <ErrorMessage
+                                      name="phone"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -362,7 +362,6 @@ export default function Login() {
                                 <FormGroup className="mb-3">
                                   <Label
                                     htmlFor="password"
-                                    className="form-label"
                                   >
                                     {t("Registers.password")}{" "}
                                     <span className="text-danger">*</span>
@@ -390,11 +389,13 @@ export default function Login() {
                                         className="ri-eye-fill align-middle"
                                       ></i>
                                     </button>
-                                    {touched?.password && errors?.password ? (
-                                      <div style={{ color: "red" }}>
-                                        {errors?.password}
-                                      </div>
-                                    ) : null}
+                                    {touched?.password && errors?.password && (
+                                      <ErrorMessage
+                                        name="password"
+                                        component="div"
+                                        className="text-danger"
+                                      />
+                                    )}
                                   </div>
                                 </FormGroup>
                               </Col>
@@ -518,7 +519,6 @@ export default function Login() {
                                 <FormGroup className="mb-3">
                                   <Label
                                     htmlFor="email"
-                                    className="form-label"
                                   >
                                     {t("Registers.email")}{" "}
                                     <span className="text-danger">*</span>
@@ -535,11 +535,13 @@ export default function Login() {
                                     value={values?.email}
                                     onBlur={handleBlur}
                                   />
-                                  {touched?.email && errors?.email ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.email}
-                                    </div>
-                                  ) : null}
+                                  {touched?.email && errors?.email && (
+                                    <ErrorMessage
+                                      name="email"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -548,7 +550,6 @@ export default function Login() {
                                 <FormGroup className="mb-3">
                                   <Label
                                     htmlFor="password"
-                                    className="form-label"
                                   >
                                     {t("Registers.password")}{" "}
                                     <span className="text-danger">*</span>
@@ -576,11 +577,13 @@ export default function Login() {
                                         className="ri-eye-fill align-middle"
                                       ></i>
                                     </button>
-                                    {touched?.password && errors?.password ? (
-                                      <div style={{ color: "red" }}>
-                                        {errors?.password}
-                                      </div>
-                                    ) : null}
+                                    {touched?.password && errors?.password && (
+                                      <ErrorMessage
+                                        name="password"
+                                        component="div"
+                                        className="text-danger"
+                                      />
+                                    )}
                                   </div>
                                 </FormGroup>
                               </Col>

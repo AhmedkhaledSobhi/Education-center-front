@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Ro
 import { useTranslation } from 'react-i18next';
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import Alert from '../../../Components/Common/Alert';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import * as Yup from "yup";
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import { useNavigate } from 'react-router-dom';
@@ -130,14 +130,14 @@ export default function AddSection() {
                       </CardHeader>
                       <CardBody>
                         {loadingProfile ?
-                          <ComponentLoader /> : 
+                          <ComponentLoader /> 
+                          :(
                             <Row>
                               {/* ------ اسم السكشن ------ */}
                               <Col lg={4}>
                                 <FormGroup>
                                   <Label
                                     htmlFor="name"
-                                    className="form-label"
                                   >
                                     {t("section.name")}{" "}
                                     <span className="text-danger">*</span>
@@ -154,11 +154,13 @@ export default function AddSection() {
                                     value={values?.name}
                                     onBlur={handleBlur}
                                   />
-                                  {touched?.name && errors?.name ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.name}
-                                    </div>
-                                  ) : null}
+                                  {touched?.name && errors?.name && (
+                                    <ErrorMessage
+                                      name="name"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -183,13 +185,14 @@ export default function AddSection() {
                                     value={values?.NumberStudents}
                                     onBlur={handleBlur}
                                     onWheel={(e) => e.target.blur()} // disables scroll increment
-
                                   />
-                                  {touched?.NumberStudents && errors?.NumberStudents ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.NumberStudents}
-                                    </div>
-                                  ) : null}
+                                  {touched?.NumberStudents && errors?.NumberStudents && (
+                                     <ErrorMessage
+                                      name="NumberStudents"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -241,11 +244,13 @@ export default function AddSection() {
                                       setFieldTouched("Whiteboard", true);
                                     }}
                                   />
-                                  {touched?.Whiteboard && errors?.Whiteboard ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.Whiteboard}
-                                    </div>
-                                  ) : null}
+                                  {touched?.Whiteboard && errors?.Whiteboard && (
+                                    <ErrorMessage
+                                      name="Whiteboard"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
                               
@@ -297,11 +302,13 @@ export default function AddSection() {
                                       setFieldTouched("Screen", true);
                                     }}
                                   />
-                                  {touched?.Screen && errors?.Screen ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.Screen}
-                                    </div>
-                                  ) : null}
+                                  {touched?.Screen && errors?.Screen && (
+                                    <ErrorMessage
+                                      name="Screen"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -353,11 +360,13 @@ export default function AddSection() {
                                       setFieldTouched("Branch", true);
                                     }}
                                   />
-                                  {touched?.Branch && errors?.Branch ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.Branch}
-                                    </div>
-                                  ) : null}
+                                  {touched?.Branch && errors?.Branch && (
+                                    <ErrorMessage
+                                      name="Branch"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -409,11 +418,13 @@ export default function AddSection() {
                                       setFieldTouched("status", true);
                                     }}
                                   />
-                                  {touched?.status && errors?.status ? (
-                                    <div style={{ color: "red" }}>
-                                      {errors?.status}
-                                    </div>
-                                  ) : null}
+                                  {touched?.status && errors?.status && (
+                                    <ErrorMessage
+                                      name="status"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
                                 </FormGroup>
                               </Col>
 
@@ -422,7 +433,6 @@ export default function AddSection() {
                                 <FormGroup>
                                   <Label
                                     htmlFor="Description"
-                                    className="form-label"
                                   >
                                     {t("common.Description")}{" "}
                                   </Label>
@@ -438,14 +448,15 @@ export default function AddSection() {
                                     value={values?.Description}
                                     onBlur={handleBlur}
                                   />
-                                  {touched?.Description && errors?.Description ? (
+                                  {touched?.Description && errors?.Description && (
                                     <div style={{ color: "red" }}>
                                       {errors?.Description}
                                     </div>
-                                  ) : null}
+                                  )}
                                 </FormGroup>
                               </Col>
                             </Row>
+                          )
                           }
                       </CardBody>
                     </Card>

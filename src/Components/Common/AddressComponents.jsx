@@ -2,11 +2,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { Card, CardBody, CardHeader, Col, FormGroup, Input, Label, Row } from 'reactstrap'
 import Select from "react-select";
-import CountryData from "../../../localesJson/Country.json";
-import RegionData from "../../../localesJson/Region.json";
-import CityData from "../../../localesJson/City.json";
-import ButtonLoader from '../../../Components/Common/ButtonLoader';
+import CountryData from "../../localesJson/Country.json";
+import RegionData from "../../localesJson/Region.json";
+import CityData from "../../localesJson/City.json";
 import { ErrorMessage } from 'formik';
+import ComponentLoader from './ComponentLoader';
 
 export default function AddressComponents({
   values,
@@ -31,21 +31,7 @@ export default function AddressComponents({
         </CardHeader>
         <CardBody>
           {loadingProfile ?
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                height: 200,
-              }}
-            >
-              <ButtonLoader
-                color="#0d6efd"
-                width="70"
-                height="70"
-              />
-            </div>
+            <ComponentLoader/>
           : (
             <Row>
               {/* ----------- الدولة ----------- */}
@@ -219,7 +205,6 @@ export default function AddressComponents({
                       )
                     }
                     onBlur={handleBlur}
-                    // disabled={disableEdit}
                     value={values?.AdditionalAddress}
                   />
                 </FormGroup>

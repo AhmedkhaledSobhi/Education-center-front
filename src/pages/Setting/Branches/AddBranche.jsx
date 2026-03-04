@@ -5,13 +5,13 @@ import { Card, CardBody, CardHeader, Col, Container, Dropdown, DropdownItem, Dro
 import * as Yup from "yup";
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import Alert from '../../../Components/Common/Alert';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import Select from "react-select";
-import AddressComponents from '../../UserAccount/Components/AddressComponents';
 import phoneCodeData from "../../../localesJson/PhoneCode.json";
 import SimpleBar from 'simplebar-react';
 import { getStatus } from '../../../helpers/dataLocal';
+import AddressComponents from '../../../Components/Common/AddressComponents';
 
 export default function AddBranche() {
   const { t, i18n } = useTranslation();
@@ -180,11 +180,13 @@ export default function AddBranche() {
                                 value={values?.name}
                                 onBlur={handleBlur}
                               />
-                              {touched?.name && errors?.name ? (
-                                <div style={{ color: "red" }}>
-                                  {errors?.name}
-                                </div>
-                              ) : null}
+                              {touched?.name && errors?.name && (
+                                <ErrorMessage
+                                  name="name"
+                                  component="div"
+                                  className="text-danger"
+                                />
+                              )}
                             </FormGroup>
                           </Col>
 
@@ -209,13 +211,14 @@ export default function AddBranche() {
                                 value={values?.NumberRooms}
                                 onBlur={handleBlur}
                                 onWheel={(e) => e.target.blur()} // disables scroll increment
-
                               />
-                              {touched?.NumberRooms && errors?.NumberRooms ? (
-                                <div style={{ color: "red" }}>
-                                  {errors?.NumberRooms}
-                                </div>
-                              ) : null}
+                              {touched?.NumberRooms && errors?.NumberRooms && (
+                                <ErrorMessage
+                                  name="NumberRooms"
+                                  component="div"
+                                  className="text-danger"
+                                />
+                              )}
                             </FormGroup>
                           </Col>
 
@@ -296,11 +299,13 @@ export default function AddBranche() {
                                   </SimpleBar>
                                 </DropdownMenu>
                               </Dropdown>
-                              {touched?.phone && errors?.phone ? (
-                                <div style={{ color: "red" }}>
-                                  {errors?.phone}
-                                </div>
-                              ) : null}
+                              {touched?.phone && errors?.phone && (
+                                <ErrorMessage
+                                  name="phone"
+                                  component="div"
+                                  className="text-danger"
+                                />
+                              )}
                             </FormGroup>
                           </Col>
 
@@ -352,11 +357,13 @@ export default function AddBranche() {
                                   setFieldTouched("status", true);
                                 }}
                               />
-                              {touched?.status && errors?.status ? (
-                                <div style={{ color: "red" }}>
-                                  {errors?.status}
-                                </div>
-                              ) : null}
+                              {touched?.status && errors?.status && (
+                                <ErrorMessage
+                                  name="status"
+                                  component="div"
+                                  className="text-danger"
+                                />
+                              )}
                             </FormGroup>
                           </Col>
 
@@ -365,7 +372,6 @@ export default function AddBranche() {
                             <FormGroup>
                               <Label
                                 htmlFor="Description"
-                                className="form-label"
                               >
                                 {t("common.Description")}{" "}
                               </Label>
@@ -381,11 +387,6 @@ export default function AddBranche() {
                                 value={values?.Description}
                                 onBlur={handleBlur}
                               />
-                              {touched?.Description && errors?.Description ? (
-                                <div style={{ color: "red" }}>
-                                  {errors?.Description}
-                                </div>
-                              ) : null}
                             </FormGroup>
                           </Col>
                         </Row>
