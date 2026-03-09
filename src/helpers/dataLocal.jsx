@@ -18,6 +18,10 @@ const getLanguage = () => [
   { name: i18n.t("common.English"), id: 2, value: "en" },
 ];
 
+const getType = () =>[
+  { name: i18n.t("common.offline"), id: 1, value: "OFFLINE" },
+  { name: i18n.t("common.online"), id: 2, value: "ONLINE" },
+]
 // ----------- نوع الحساب -----------
 const getAccountType = () => [
   { name: i18n.t("Registers.Admin"), id: 0, value: "ADMIN" },
@@ -74,4 +78,5 @@ export {
   getWhiteboard,
   getLanguage,
   getAccountType,
+  getType,
 }

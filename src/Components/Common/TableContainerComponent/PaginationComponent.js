@@ -55,10 +55,9 @@ const PaginationComponent = ({ totalPages, currentPage, setPage }) => {
       <Button
         color="light"
         size="sm"
-        disabled={currentPage === 1 || true}
+        disabled={currentPage === 1}
         onClick={() => setPage(currentPage - 1)}
         className="me-1"
-        
       >
         <i className="ri-arrow-right-s-line"></i>
       </Button>
@@ -72,9 +71,14 @@ const PaginationComponent = ({ totalPages, currentPage, setPage }) => {
             <Button
               color={currentPage === page ? "primary" : "light"}
               size="sm"
-              onClick={() => setPage(page)}
+              // onClick={() => setPage(page)}
+              onClick={() => {
+                if (page !== currentPage) {
+                  setPage(page);
+                }
+              }}
               className="me-1"
-              disabled
+              disabled={currentPage === page}
             >
               {page}
             </Button>
@@ -86,7 +90,7 @@ const PaginationComponent = ({ totalPages, currentPage, setPage }) => {
       <Button
         color="light"
         size="sm"
-        disabled={currentPage === totalPages || true}
+        disabled={currentPage === totalPages}
         onClick={() => setPage(currentPage + 1)}
       >
         <i className="ri-arrow-left-s-line"></i>

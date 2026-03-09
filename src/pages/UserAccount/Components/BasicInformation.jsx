@@ -139,6 +139,7 @@ export default function BasicInformation({
                             className="text-danger"
                           />
                         )}
+
                       </FormGroup>
                     </Col>
 
@@ -341,7 +342,7 @@ export default function BasicInformation({
                             }) 
                           } 
                           onChange={(option) => {
-                            setFieldValue("language", option);
+                            setFieldValue("language", option?.value);
                           }}
                           onBlur={() => {
                             setFieldTouched("language", true);

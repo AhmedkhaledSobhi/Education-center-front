@@ -8,8 +8,10 @@ import * as Yup from "yup";
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import { useNavigate } from 'react-router-dom';
 import Select from "react-select";
-import { getBranch, getScreen, getStatus, getWhiteboard } from '../../../helpers/dataLocal';
+import { getBranch, getScreen, getStatus, getType, getWhiteboard } from '../../../helpers/dataLocal';
 import ComponentLoader from '../../../Components/Common/ComponentLoader';
+import { createRoom } from '../../../helpers/fakebackend_helper';
+import { toast } from 'react-toastify';
 
 export default function AddSection() {
   const { t, i18n } = useTranslation();
@@ -26,7 +28,7 @@ export default function AddSection() {
   const Screen = getScreen();
   const Branch = getBranch();
   const Status = getStatus();
-  
+  const type = getType();
   // ________________________________________________________________________________________
   const [initialValues, setInitialValues] = useState({
     name: "",
@@ -35,11 +37,12 @@ export default function AddSection() {
     Screen: Screen?.[0],
     Branch: Branch?.[0],
     status: Status?.[0],
+    type: type?.[0],
     Description: "",
   });
 
   const validationSchema = Yup.object({
-    name: Yup.string().required(`${t("Subject.name")} ${t("common.required")}`),
+    name: Yup.string().required(`${t("section.name")} ${t("common.required")}`),
     NumberStudents: Yup.number().required(`${t("section.Number_students")} ${t("common.required")}`),
     Whiteboard: Yup.object().required(`${t("section.Whiteboard")} ${t("common.required")}`),
     Screen: Yup.object().required(`${t("section.Screen")} ${t("common.required")}`),
@@ -50,16 +53,41 @@ export default function AddSection() {
   const handleSaveNew = async (values, action) =>{
     try{
       setLoadSave(true)
-      console.log("ahmed values", values);
       await validationSchema.validate(values, { abortEarly: false });
-      
-      setLoadSave(false)
+      const payload = {
+        name: values?.name || "",
+        type: values?.type?.value?.toUpperCase() || "", // ONLINE / OFFLINE
+        capacity: values?.NumberStudents ? parseInt(values.NumberStudents, 10) : 0,
+        location: values?.Branch?.value || "",
+        isActive: values?.status?.value === "active", // boolean
+      };
+      const res = createRoom(payload)
+      if (!res && !res?.status) {
+        toast.success("res?.message success", {
+          position: "top-center",
+          hideProgressBar: false,
+          progress: undefined,
+          toastId: "",
+        });
+        nav("/section")
+        setLoadSave(false)
+      }
+      else {
+        toast.error("res?.message error", {
+          position: "top-center",
+          hideProgressBar: false,
+          progress: undefined,
+          toastId: "",
+        });
+        setLoadSave(false)
+      }
     } 
     catch(error){
       if (error.name === "ValidationError") {
         setLoadSave(false)
       }else {
         console.error(error);
+        setLoadSave(false)
       }
       return;
     }
@@ -421,6 +449,64 @@ export default function AddSection() {
                                   {touched?.status && errors?.status && (
                                     <ErrorMessage
                                       name="status"
+                                      component="div"
+                                      className="text-danger"
+                                    />
+                                  )}
+                                </FormGroup>
+                              </Col>
+
+                              {/* ------ النوع ------ */}
+                              <Col lg={4}>
+                                <FormGroup>
+                                  <Label
+                                    htmlFor="type"
+                                  >
+                                    {t("common.type")}{" "}
+                                    <span className="text-danger">*</span>
+                                  </Label>
+                                  <Select
+                                    theme={(theme) => ({
+                                      ...theme,
+                                      colors: {
+                                        ...theme.colors,
+                                        primary25: "#BEC4C7",
+                                        primary: "#283C47",
+                                      },
+                                      cursor: "default",
+                                      ":active": {
+                                        backgroundColor: "#BEC4C7",
+                                      },
+                                    })}
+                                    menuPortalTarget={document.body}
+                                    menuPosition="fixed"
+                                    styles={{
+                                      menuPortal: (base) => ({
+                                        ...base,
+                                        zIndex: 9999,
+                                      }),
+                                    }}
+                                    id="type"
+                                    name="type"
+                                    placeholder={`${t("common.Select")} ${t("common.type")} ${t("common.placeholder")}`}    
+                                    options={type}
+                                    getOptionLabel={(option) => option?.name}
+                                    getOptionValue={(option) => option?.id}
+                                    value={
+                                      type.find((option)=>{
+                                        return  option?.value === values?.type?.value
+                                      }) 
+                                    } 
+                                    onChange={(option) => {
+                                      setFieldValue("type", option);
+                                    }}
+                                    onBlur={() => {
+                                      setFieldTouched("type", true);
+                                    }}
+                                  />
+                                  {touched?.type && errors?.type && (
+                                    <ErrorMessage
+                                      name="type"
                                       component="div"
                                       className="text-danger"
                                     />

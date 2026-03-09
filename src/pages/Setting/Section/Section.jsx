@@ -3,22 +3,27 @@ import { Card, CardBody, Col, Container, DropdownItem, DropdownMenu, DropdownTog
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import Alert from '../../../Components/Common/Alert';
 import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
-import ButtonLoader from '../../../Components/Common/ButtonLoader';
 import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
-import { useGetAllUser } from '../../../helpers/getAllApiSelect';
+import { useGetAllRoom } from '../../../helpers/getAllApiSelect';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import ComponentLoader from '../../../Components/Common/ComponentLoader';
 
 export default function Section() {
   const { t, i18n } = useTranslation();
   const nav = useNavigate();
-  
+
   const [isInfoOpen, setIsInfoOpen] = useState(true);
-  const [productsData, setProductsData] = useState([]);
-  const [totalPage, setTotalPage] = useState([]);
-  const [currentPage, setCurrentPage] = useState([]);
-  const [limit, setLimit] = useState([]);
-  
+  const [roomsData, setroomsData] = useState([]);
+
+  const [page, setPage] = useState(1);
+  const [per_page, setPer_page] = useState({ label: 5, id: 5 });
+  const [totalItems, setTotalItems] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [params, setParams] = useState({
+    page: page ?? 1,
+    limit: per_page?.id ?? 5,
+  });
   // ____________________________________________________________________
 
   const tableDataColumns = useMemo(
@@ -33,15 +38,15 @@ export default function Section() {
       },
       {
         Header: t("section.name"),
-        accessor: "first_name",
+        accessor: "name",
         filterable: false,
         Cell: (cellProps)=>{
-          return ( <span> {cellProps?.row?.original?.first_name } {cellProps?.row?.original?.last_name} </span>)
+          return ( <span> {cellProps?.row?.original?.name}</span>)
         }
       },
       {
         Header: t("section.Number_students"),
-        accessor: "email",
+        accessor: "capacity",
         filterable: false,
       },
       {
@@ -60,20 +65,38 @@ export default function Section() {
       },
       {
         Header: t("section.Branch"),
-        accessor: "address",
+        accessor: "location",
         filterable: false,
       },
       {
+        Header: t("common.type"),
+        accessor: "type",
+        filterable: false,
+        Cell: (cellProps)=>{
+          let typeText = "";
+          if (cellProps?.row?.original?.type === "OFFLINE") {
+            typeText = t("common.offline");
+          } else if(cellProps?.row?.original?.type === "ONLINE"){
+            typeText = t("common.online");
+          }
+          return (
+            <span className="">
+              {typeText}
+            </span>
+          )
+        }
+      },
+      {
         Header: t("common.status"),
-        accessor: "role",
+        accessor: "isActive",
         filterable: false,
         Cell: (cellProps)=>{
           let statusText = "";
           let className = "";
-          if (cellProps?.row?.original?.role === "STUDENT") {
+          if (cellProps?.row?.original?.isActive === true) {
             statusText = t("common.active");
             className = "badge bg-success bg- primary text-white";
-          } else if (cellProps?.row?.original?.role === "STUDENT") {
+          } else if (cellProps?.row?.original?.isActive === false) {
             statusText = t("common.Inactive");
             className = "badge bg-danger text-white";
           } 
@@ -131,20 +154,24 @@ export default function Section() {
         }
       }
     ]);
-  
   // ____________________________________________________________________
-  const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser();
+  const { data: Rooms, isLoading: LoadingRoom } = useGetAllRoom( {...params} );
+
   useEffect(() => {
-    if(Students){
-      const result = Students?.data?.filter((item) => {
-        return item.role == "STUDENT";
-      });
-      setProductsData(result);
-      setTotalPage(Students?.meta?.total)
-      setCurrentPage(Students?.meta?.page)
-      setLimit(Students?.meta?.limit)
-    }
-  }, [Students]);
+    setParams((prev) => ({
+      ...prev,
+      limit : per_page?.id,
+      page: page,
+    }));
+  }, [per_page, page]);
+
+  useEffect(() => {
+    if (!Rooms) return;
+    setroomsData(Rooms?.data);
+    setTotalItems(Rooms?.pagination?.total);
+    setTotalPage(Rooms?.pagination?.totalPages);
+  }, [Rooms]);
+  // ____________________________________________________________________
 
   return (
     <React.Fragment>
@@ -176,35 +203,22 @@ export default function Section() {
               <div className="card-body pt-0">
                 <Card>
                   <CardBody className="pt-0">
-                    {LoadingStudent?
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          width: "100%",
-                          height: 200,
-                        }}
-                      >
-                        <ButtonLoader
-                          color="#0d6efd"
-                          width="70"
-                          height="70"
-                        />
-                      </div> : <div> 
+                    {LoadingRoom?
+                      <ComponentLoader /> 
+                      : (
                         <TableContainerComponent
                           columns={tableDataColumns || []}
-                          data={productsData || [] }
-                          customPagination={true}
-                          pages={productsData?.meta?.page}
-                          
-                          limit={limit}
+                          data={roomsData || [] }
+                          customPagination={true}  
+                          currentPage={page}
+                          totalItem={totalItems}
                           totalPage={totalPage}
-                          currentPage={currentPage}
-                          setParams={productsData}
-                          params={limit}
+                          per_page={per_page}
+                          setPer_page={setPer_page}
+                          setPage={setPage}
+                          previewItem={"/teacher"}
                         /> 
-                      </div>            
+                      )           
                     }  
                   </CardBody>
                 </Card>

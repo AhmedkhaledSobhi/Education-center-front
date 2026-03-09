@@ -30,3 +30,10 @@ export const editAccountInformation = (data) =>{
   const user = getLoggedInUser();
   api.update(`${url.EDIT_ACCOUNT_INFORMATION}${user?.id}`, data);
 }
+
+// _____________________________________________
+
+export const createRoom = (data) => {
+  api.create(url.ROOM, data)
+}
+export const allRoom = (data) => api.get(url.ROOM, data);

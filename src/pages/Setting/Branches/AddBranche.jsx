@@ -80,7 +80,6 @@ export default function AddBranche() {
   const handleSaveNew = async (values, action) =>{
     try{
       setLoadSave(true)
-      console.log("ahmed values", values);
       await validationSchema.validate(values, { abortEarly: false });
 
     } 

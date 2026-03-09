@@ -11,3 +11,6 @@ export const ALLUSERS = `auth/users`;
 
 
 export const EDIT_ACCOUNT_INFORMATION = `user/`;
+
+// Room
+export const ROOM = `room`;

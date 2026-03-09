@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { allUser, getLoggedInUser, profile } from "./fakebackend_helper";
+import { allRoom, allUser, getLoggedInUser, profile } from "./fakebackend_helper";
 import { toast } from "react-toastify";
-import { handleUnauthenticated, isEmpty, safeParse } from "./index";
+import { cleanParams, handleUnauthenticated, isEmpty, safeParse } from "./index";
 
 // _________________________________________________________________________________________________________________________
 
@@ -22,7 +22,6 @@ const useGetProfile = () => {
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
     onError: (error) => {
-      console.log("ahmed error", error);
       handleUnauthenticated();
 
       toast.error(error?.message || "Error fetching profile",{
@@ -37,19 +36,57 @@ const useGetProfile = () => {
 };
 
 // ------------ get المستخدمين ------------
-const useGetAllUser = () => {
+const useGetAllUser = (params) => {
+  params = cleanParams(params);
   return useQuery({
-    queryKey: ["allUser",],
-    queryFn: () => allUser().then((res) => res || []),
+    queryKey: ["allUser", params],
+    queryFn: () => allUser(params).then((res) => res || []),
     staleTime: 5000 * 10 * 5,
     refetchInterval: 50000,  // ⏱️ كل 5 ثواني
   });
 };
 
+// ------------ get المدرسين ------------
+const useGetAllTeacher = (params) => {
+  params = cleanParams(params);
+  return useQuery({
+    queryKey: ["allUser", params],
+    queryFn: () => allUser(params).then((res) => res || []),
+    staleTime: 5000 * 10 * 5,
+    refetchInterval: 50000,  // ⏱️ كل 5 ثواني
+  });
+};
+
+// ------------ get الطلاب ------------
+const useGetAllStudent = (params) => {
+  params = cleanParams(params);
+  return useQuery({
+    queryKey: ["allUser", params],
+    queryFn: () => allUser(params).then((res) => res || []),
+    staleTime: 5000 * 10 * 5,
+    refetchInterval: 50000,  // ⏱️ كل 5 ثواني
+  });
+};
+
+// ------------ get الغرف ( السكشن ) ------------
+const useGetAllRoom = (params) => {
+  params = cleanParams(params);
+  return useQuery({
+    queryKey: ["allRoom", params],
+    queryFn: () => allRoom(params).then((res) => {            
+      return res || []
+    }),
+    staleTime: 5000 * 10 * 5,
+    // refetchInterval: 10000,  // ⏱️ كل 5 ثواني
+  });
+};
 // _________________________________________________________________________________________________________________________
 
 export {
   useGetProfile,
   useGetAllUser,
+  useGetAllTeacher,
+  useGetAllStudent,
+  useGetAllRoom,
 }
 

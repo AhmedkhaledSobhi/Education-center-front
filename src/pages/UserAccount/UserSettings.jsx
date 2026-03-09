@@ -69,43 +69,47 @@ export default function UserSettings() {
   // ________________________________________________________________________________________
 
   const validationSchema = Yup.object({
+    first_name: Yup.string().required(`${t("Registers.first_Name")} ${t("common.required")}`),
+    last_name: Yup.string().required(`${t("Registers.last_Name")} ${t("common.required")}`),
+    Center_name: Yup.string().required(`${t("AccountSettings.Center_Name")} ${t("common.required")}`),
 
   })
 
-  const onSubmitForm = async (values, action) => {
-
-    console.log("ahmed values Form", values);
-
-    const params = {
-      ...values,
-      role: values?.role?.value ?? values?.role,
-      country: values?.country?.id,
-      region: values?.region?.id,
-      city: values?.city?.id,
-    }
-    const formData = new FormData();
-    for (const key in params) {
-      if (Object.hasOwnProperty.call(params, key) && params[key]) {
-        formData.append(key, params[key]);
-      }
-    }
-
-    if (values?.photo) {
-      formData.append("image_path", values?.photo[0]);
-    }
+  const handleSaveNew = async (values, action) => {
     try {
+      await validationSchema.validate(values, { abortEarly: false });
+      setLoadSave(true)
+  
+      const params = {
+        ...values,
+        role: values?.role?.value ?? values?.role,
+        language: values?.language?.value,
+        country: values?.country?.id,
+        region: values?.region?.id,
+        city: values?.city?.id,
+      }
+      const formData = new FormData();
+      for (const key in params) {
+        if (Object.hasOwnProperty.call(params, key) && params[key]) {
+          formData.append(key, params[key]);
+        }
+      }
+      if (values?.photo) {
+        formData.append("image_path", values?.photo[0]);
+      }
       editAccountInformation(formData).then((res) => {
+        console.log("ahmed res Form", res);
         if (res && res.status) {
-          toast.success(res?.message, {
-            position: "top-right",
+          toast.success("res?.message", {
+            position: "top-center",
             hideProgressBar: false,
             progress: undefined,
             toastId: "",
           });
-          setLoadSave(true)
+          setLoadSave(false)
         } else{
-          toast.error(res?.message, {
-            position: "top-right",
+          toast.error("res?.message", {
+            position: "top-center",
             hideProgressBar: false,
             progress: undefined,
             toastId: "",
@@ -114,9 +118,14 @@ export default function UserSettings() {
         }
       })
     } catch (error) {
-      console.log("Error in editing profile data:", error);
+      if (error.name === "ValidationError") {
+        setLoadSave(false)
+      } else {
+        console.error(error);
+        setLoadSave(false)
+      }
+      return;
     }
-
   }
 
   return (
@@ -142,8 +151,8 @@ export default function UserSettings() {
                 validationSchema={() => {
                   return validationSchema;
                 }}
-                onSubmit={(values, action) => {
-                  onSubmitForm(values, action);
+                onSubmit={(values, formikBag) => {
+                  formikBag.setErrors({});
                 }}
                 enableReinitialize={true}
               >
@@ -169,9 +178,9 @@ export default function UserSettings() {
                   >
                     <TopPageButttons
                       PageTittle={`${t("common.edit")} ${t("AccountSettings.ProfileInformation")}`}
-                      handleSave={() => handleSubmit(values)}
+                      handleSave={() => handleSaveNew(values)}
                       loadsave={loadsave}
-                      close={() => {nav("/teacher")}}
+                      close={() => {nav("/Home")}}
                       information={()=> setIsInfoOpen(!isInfoOpen)}
                     />
 

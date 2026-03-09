@@ -61,6 +61,18 @@ const isEmpty = (value) => {
   if (typeof value === "object") return Object.keys(value).length === 0;
   return false;
 };
+const cleanParams = (params) => {
+  return Object.keys(params)
+    .filter(
+      (key) =>
+        params[key] !== null && params[key] !== undefined && params[key] !== ""
+    )
+    .reduce((acc, key) => {
+      acc[key] = params[key];
+      return acc;
+    }, {});
+};
+
 const safeParse = (value) => {
   try {
     if (!value || value === "undefined") return null;
@@ -75,5 +87,6 @@ export {
   checkModuleExists,
   checkUserRoles,
   isEmpty,
+  cleanParams,
   safeParse,
 }

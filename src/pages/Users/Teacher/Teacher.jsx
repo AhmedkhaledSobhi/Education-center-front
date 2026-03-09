@@ -2,24 +2,28 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Card, CardBody, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap'
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
-import ButtonLoader from '../../../Components/Common/ButtonLoader';
 import { useNavigate } from 'react-router-dom';
 import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
 import Alert from '../../../Components/Common/Alert';
 import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
-import { useGetAllUser } from '../../../helpers/getAllApiSelect';
+import { useGetAllTeacher } from '../../../helpers/getAllApiSelect';
+import ComponentLoader from '../../../Components/Common/ComponentLoader';
 
 export default function Teacher() {
   const { t, i18n } = useTranslation();
   const nav = useNavigate();
   
   const [isInfoOpen, setIsInfoOpen] = useState(true);
-  
   const [productsData, setProductsData] = useState([]);
-  const [totalPage, setTotalPage] = useState([]);
-  const [currentPage, setCurrentPage] = useState([]);
-  const [limit, setLimit] = useState([]);
 
+  const [page, setPage] = useState(1);
+  const [per_page, setPer_page] = useState({ label: 5, id: 5 });
+  const [totalItems, setTotalItems] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [params, setParams] = useState({
+    page: page ?? 1,
+    limit: per_page?.id ?? 5,
+  });
   // ____________________________________________________________________
 
   const tableDataColumns = useMemo(
@@ -116,17 +120,27 @@ export default function Teacher() {
     ]);
 
   // ____________________________________________________________________
-  const { data: Teachers = [], isLoading: LoadingTeacher } = useGetAllUser();
+  const { data: Teachers = [], isLoading: LoadingTeacher } = useGetAllTeacher({...params});
 
   useEffect(() => {
+    setParams((prev) => ({
+      ...prev,
+      limit : per_page?.id,
+      page: page,
+    }));
+  }, [per_page, page]);
+  
+  useEffect(() => {
+    if (!Teachers) return;
+
     if(Teachers){
       const result = Teachers?.data?.filter((item) => {
         return item.role == "TEACHER";
       });
       setProductsData(result);
-      setTotalPage(Teachers?.meta?.total)
-      setCurrentPage(Teachers?.meta?.page)
-      setLimit(Teachers?.meta?.limit)
+      
+      setTotalItems(Teachers?.pagination?.total);
+      setTotalPage(Teachers?.pagination?.totalPages);
     }
   }, [Teachers]);
 
@@ -161,37 +175,23 @@ export default function Teacher() {
                 <Card>
                   <CardBody className="pt-0">
                     {LoadingTeacher?
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          width: "100%",
-                          height: 200,
-                        }}
-                      >
-                        <ButtonLoader
-                          color="#0d6efd"
-                          width="70"
-                          height="70"
-                        />
-                      </div>
-                      :<div> 
-                        {console.log("ahmed productsData", productsData)}
-
+                      <ComponentLoader /> 
+                      : ( 
                         <TableContainerComponent
                           columns={tableDataColumns || []}
                           data={productsData || [] }
                           customPagination={true}
-                          pages={productsData?.meta?.page}
-                          
-                          limit={limit}
+
+                          currentPage={page}
+                          handlePageChange={setPage}
+                          totalItem={totalItems}
                           totalPage={totalPage}
-                          currentPage={currentPage}
-                          setParams={productsData}
-                          params={limit}
+                          per_page={per_page}
+                          setPer_page={setPer_page}
+                          setPage={setPage}
+                          previewItem={"/teacher"}
                         /> 
-                      </div>            
+                      )           
                     }  
                   </CardBody>
                 </Card>

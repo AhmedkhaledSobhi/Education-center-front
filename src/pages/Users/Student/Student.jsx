@@ -7,7 +7,8 @@ import Alert from '../../../Components/Common/Alert';
 import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
 import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
 import { useNavigate } from 'react-router-dom';
-import { useGetAllUser } from '../../../helpers/getAllApiSelect';
+import { useGetAllStudent, useGetAllUser } from '../../../helpers/getAllApiSelect';
+import ComponentLoader from '../../../Components/Common/ComponentLoader';
 
 export default function Student() {
   const { t, i18n } = useTranslation();
@@ -15,9 +16,15 @@ export default function Student() {
   
   const [isInfoOpen, setIsInfoOpen] = useState(true);
   const [productsData, setProductsData] = useState([]);
-  const [totalPage, setTotalPage] = useState([]);
-  const [currentPage, setCurrentPage] = useState([]);
-  const [limit, setLimit] = useState([]);
+
+  const [page, setPage] = useState(1);
+  const [per_page, setPer_page] = useState({ label: 5, id: 5 });
+  const [totalItems, setTotalItems] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [params, setParams] = useState({
+    page: page ?? 1,
+    limit: per_page?.id ?? 5,
+  });
 
   // ____________________________________________________________________
 
@@ -115,16 +122,27 @@ export default function Student() {
     ]);
 
   // ____________________________________________________________________
-  const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser();
+  const { data: Students = [], isLoading: LoadingStudent } = useGetAllStudent( {...params} );
+  
   useEffect(() => {
+    setParams((prev) => ({
+      ...prev,
+      limit : per_page?.id,
+      page: page,
+    }));
+  }, [per_page, page]);
+
+  useEffect(() => {
+    if (!Students) return;
+
     if(Students){
       const result = Students?.data?.filter((item) => {
         return item.role == "STUDENT";
       });
       setProductsData(result);
-      setTotalPage(Students?.meta?.total)
-      setCurrentPage(Students?.meta?.page)
-      setLimit(Students?.meta?.limit)
+
+      setTotalItems(Students?.pagination?.total);
+      setTotalPage(Students?.pagination?.totalPages);
     }
   }, [Students]);
 
@@ -159,34 +177,23 @@ export default function Student() {
                 <Card>
                   <CardBody className="pt-0">
                     {LoadingStudent?
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          width: "100%",
-                          height: 200,
-                        }}
-                      >
-                        <ButtonLoader
-                          color="#0d6efd"
-                          width="70"
-                          height="70"
-                        />
-                      </div> : <div> 
+                      <ComponentLoader /> 
+                      : ( 
                         <TableContainerComponent
                           columns={tableDataColumns || []}
                           data={productsData || [] }
                           customPagination={true}
-                          pages={productsData?.meta?.page}
                           
-                          limit={limit}
+                          currentPage={page}
+                          handlePageChange={setPage}
+                          totalItem={totalItems}
                           totalPage={totalPage}
-                          currentPage={currentPage}
-                          setParams={productsData}
-                          params={limit}
+                          per_page={per_page}
+                          setPer_page={setPer_page}
+                          setPage={setPage}
+                          previewItem={"/teacher"}
                         /> 
-                      </div>            
+                      )            
                     }  
                   </CardBody>
                 </Card>

@@ -11,7 +11,6 @@ import {
 } from "react-table";
 import { DefaultColumnFilter } from "./filters";
 import TablePaginationComponent from "./TablePaginationComponent";
-// import { DefaultColumnFilter } from "../filters";
 
 export default function TableContainerComponent({
   columns,
@@ -26,12 +25,13 @@ export default function TableContainerComponent({
   dataType,
   totalPage,
   currentPage,
+  setPage,
   previewAccount,
   previewInvoices,
-  setParams,
-  params,
   previewItem,
   tablePagination,
+  setPer_page,
+  per_page,
 }) {
   const {
     page,
@@ -70,18 +70,15 @@ export default function TableContainerComponent({
         dataType={dataType}
         customPageSize={customPageSize}
       />
-      {console.log("ahmed tablePagination", tablePagination)}
-      {console.log("ahmed page", page)}
-      {console.log("ahmed customPagination", customPagination)}
-
 
       {/* {!tablePagination && page.length > 0 && customPagination && ( */}
       {!tablePagination && customPagination && (
         <TablePaginationComponent
-          // value={params.per_page}
-          // setParams={setParams}
-          // totalPage={totalPage}
-          // currentPage={currentPage}
+          totalPage={totalPage}
+          currentPage={currentPage}
+          setPage={setPage}
+          setPer_page={setPer_page}
+          per_page={per_page}
         />
       )}
     </React.Fragment>
