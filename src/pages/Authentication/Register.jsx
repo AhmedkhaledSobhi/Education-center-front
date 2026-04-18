@@ -79,7 +79,7 @@ export default function Register() {
     email: "",
     password_confirmation: "",
     role: Account_type[1],
-    // age: "",
+    age: 0,
     // address: "",
   });
 
@@ -87,7 +87,7 @@ export default function Register() {
   
   const register = async (values) => {
     try {
-      const { password_confirmation, age, address, ...payload } = values;
+      const { password_confirmation, address, ...payload } = values;
       
       // تحويل role من object لـ string
       if (payload.role && payload.role.value) {
@@ -96,8 +96,6 @@ export default function Register() {
       
       payload.phone = `(${seletedCountry?.code})${payload.phone}`;
       payload.image_path = "null";
-      // payload.age = parseInt(payload.age);
-
       const BASE_URL = configService.apiBaseUrl;
       const res = await axios.post(`${BASE_URL}${REGISTER}`, payload, {
         headers: {
@@ -118,14 +116,25 @@ export default function Register() {
         sessionStorage.setItem("authUser", JSON.stringify(res?.data?.user));
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
-        localStorage.setItem("access_token", JSON.stringify(res?.data?.access_token));
+        if (res?.data?.access_token !== undefined) {
+          localStorage.setItem("access_token", JSON.stringify(res?.data?.access_token));          
+        }
         localStorage.setItem("I18N_LANGUAGE", lang);
 
-        const authUser = JSON.parse(localStorage.getItem("authUser"));
-        const accessToken = JSON.parse(localStorage.getItem("access_token"));
+        const authUser = JSON.parse(localStorage.getItem("authUser") || "null");
+        const accessToken = JSON.parse(localStorage.getItem("access_token") || "null");
         const loginToken = accessToken;
         const idUser = authUser?.id
-    
+        if (!loginToken || !idUser) {
+          toast.error(res?.message, {
+            position: "top-center",
+            hideProgressBar: false,
+            autoClose: 3000,
+            progress: undefined,
+            toastId: "",
+          });
+          return
+        }
         if (loginToken || idUser) {
           axios.defaults.headers.common["Authorization"] =
             `Bearer ${loginToken}`;

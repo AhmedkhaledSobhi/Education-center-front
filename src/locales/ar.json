@@ -1,6 +1,7 @@
 {
   "Registers":{
     "Register": "تسجيل",
+    "Create_new_account": "انشاء حساب جديد",
     "Login": "تسجيل دخول",
     "Center_Education": "🎓 Center_Education",
     "Center_Educations": "Center Education ",
@@ -119,7 +120,13 @@
   "home": {
     "Welcome": "مرحبا بك ",
     "Center_Education": "منصة Center_Education نظام إلكتروني متكامل لإدارة المراكز التعليمية، يحوّل العمليات الأكاديمية والإدارية التقليدية إلى نظام رقمي ذكي. يشمل إدارة الطلاب، المعلمين، الجداول، الحضور، بما يعزز الكفاءة والتواصل بين الإدارة وأولياء الأمور والطلاب.",
-
+    "QuickLinks": "روابط سريعة",
+    "AddTeacher": "اضافه مدرس",
+    "AddStudent": "اضافه طالب",
+    "AddAssistant": "اضافه مساعد",
+    "subject": "مادة دراسية",
+    "AddBranch": "اضافه فرع",
+    "All_premium_services": "جميع الخدمات المميزة",
     "": ""
   },
   "ProfileDropdown":{

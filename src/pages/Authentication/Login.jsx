@@ -108,7 +108,6 @@ export default function Login() {
           toastId: "",
         });
       }
-
     } catch (error){
       console.error("error", error)
     }
@@ -168,7 +167,7 @@ export default function Login() {
                         navigate("/register")
                       }}
                     >
-                      {t("Registers.Register")}
+                      {t("Registers.Create_new_account")}
                        <i
                         className={`fs-3 ${
                           i18n.dir() === "rtl"

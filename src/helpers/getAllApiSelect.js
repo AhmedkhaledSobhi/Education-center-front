@@ -36,7 +36,7 @@ const useGetProfile = () => {
 };
 
 // ------------ get المستخدمين ------------
-const useGetAllUser = (params) => {
+const useGetAllUser = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
     queryKey: ["allUser", params],
@@ -47,7 +47,7 @@ const useGetAllUser = (params) => {
 };
 
 // ------------ get المدرسين ------------
-const useGetAllTeacher = (params) => {
+const useGetAllTeacher = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
     queryKey: ["allUser", params],
@@ -58,7 +58,7 @@ const useGetAllTeacher = (params) => {
 };
 
 // ------------ get الطلاب ------------
-const useGetAllStudent = (params) => {
+const useGetAllStudent = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
     queryKey: ["allUser", params],
@@ -69,7 +69,7 @@ const useGetAllStudent = (params) => {
 };
 
 // ------------ get الغرف ( السكشن ) ------------
-const useGetAllRoom = (params) => {
+const useGetAllRoom = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
     queryKey: ["allRoom", params],
