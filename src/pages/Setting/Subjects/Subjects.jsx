@@ -7,7 +7,7 @@ import Alert from '../../../Components/Common/Alert';
 import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
 import ButtonLoader from '../../../Components/Common/ButtonLoader';
 import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
-import { useGetAllUser } from '../../../helpers/getAllApiSelect';
+import { useGetAllCourse, useGetAllUser } from '../../../helpers/getAllApiSelect';
 
 export default function Subjects() {
   const { t, i18n } = useTranslation();
@@ -15,9 +15,17 @@ export default function Subjects() {
 
   const [isInfoOpen, setIsInfoOpen] = useState(true);
   const [productsData, setProductsData] = useState([]);
-  const [totalPage, setTotalPage] = useState([]);
   const [currentPage, setCurrentPage] = useState([]);
   const [limit, setLimit] = useState([]);
+
+  const [page, setPage] = useState(1);
+  const [per_page, setPer_page] = useState({ label: 5, id: 5 });
+  const [totalItems, setTotalItems] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [params, setParams] = useState({
+    page: page ?? 1,
+    limit: per_page?.id ?? 5,
+  });
   // ____________________________________________________________________
 
   const tableDataColumns = useMemo(
@@ -115,17 +123,24 @@ export default function Subjects() {
 
   // ____________________________________________________________________
 
-  const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser();
+  const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser( {...params} );
+  // const { data: Courses = [], isLoading: LoadingCourse } = useGetAllCourse();
+  
   useEffect(() => {
-    if(Students){
-      const result = Students?.data?.filter((item) => {
-        return item.role == "STUDENT";
-      });
-      setProductsData(result);
-      setTotalPage(Students?.meta?.total)
-      setCurrentPage(Students?.meta?.page)
-      setLimit(Students?.meta?.limit)
-    }
+    setParams((prev) => ({
+      ...prev,
+      limit : per_page?.id,
+      page: page,
+    }));
+  }, [per_page, page]);
+
+  useEffect(() => {
+    if (!Students) return;
+      console.log("ahmed Students", Students);
+
+    setProductsData(Students?.data);
+    setTotalItems(Students?.meta?.total);
+    setTotalPage(Students?.meta?.totalPages);
   }, [Students]);
 
   return (
@@ -177,13 +192,13 @@ export default function Subjects() {
                           columns={tableDataColumns || []}
                           data={productsData || [] }
                           customPagination={true}
-                          pages={productsData?.meta?.page}
-                          
-                          limit={limit}
+                          currentPage={page}
+                          totalItem={totalItems}
                           totalPage={totalPage}
-                          currentPage={currentPage}
-                          setParams={productsData}
-                          params={limit}
+                          per_page={per_page}
+                          setPer_page={setPer_page}
+                          setPage={setPage}
+                          previewItem={"/teacher"}
                         /> 
                       </div>            
                     }  

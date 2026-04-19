@@ -15,5 +15,8 @@ export const EDIT_ACCOUNT_INFORMATION = `api/user/`;
 // Room
 export const ROOM = `room`;
 
+// allCourse
+export const COURSE = `api/course` 
+
 // upload-file
 export const UPLOAD_FILE = `api/upload-file`;

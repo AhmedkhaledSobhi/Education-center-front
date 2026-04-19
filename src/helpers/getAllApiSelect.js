@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { allRoom, allUser, getLoggedInUser, profile } from "./fakebackend_helper";
+import { allCourse, allRoom, allUser, getLoggedInUser, profile } from "./fakebackend_helper";
 import { toast } from "react-toastify";
 import { cleanParams, handleUnauthenticated, isEmpty, safeParse } from "./index";
 
 // _________________________________________________________________________________________________________________________
 
-// ------------ get المستخدمين ------------
+// _____________/ get المستخدمين \_____________
 const useGetProfile = () => {
   const storedUser = safeParse(localStorage.getItem("authUser"));
   const user = getLoggedInUser() || storedUser;
@@ -35,7 +35,7 @@ const useGetProfile = () => {
   });
 };
 
-// ------------ get المستخدمين ------------
+// _____________/ get المستخدمين \_____________
 const useGetAllUser = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
@@ -46,7 +46,7 @@ const useGetAllUser = (params = {}) => {
   });
 };
 
-// ------------ get المدرسين ------------
+// _____________/ get المدرسين \_____________
 const useGetAllTeacher = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
@@ -57,7 +57,7 @@ const useGetAllTeacher = (params = {}) => {
   });
 };
 
-// ------------ get الطلاب ------------
+// _____________/ get الطلاب \_____________
 const useGetAllStudent = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
@@ -68,12 +68,25 @@ const useGetAllStudent = (params = {}) => {
   });
 };
 
-// ------------ get الغرف ( السكشن ) ------------
+// _____________/ get الغرف ( السكشن ) \_____________
 const useGetAllRoom = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
     queryKey: ["allRoom", params],
     queryFn: () => allRoom(params).then((res) => {            
+      return res || []
+    }),
+    staleTime: 5000 * 10 * 5,
+    // refetchInterval: 10000,  // ⏱️ كل 5 ثواني
+  });
+};
+
+// _____________/ get المواد الدراسية \_____________
+const useGetAllCourse = (params = {}) => {
+  params = cleanParams(params);
+  return useQuery({
+    queryKey: ["allCourse", params],
+    queryFn: () => allCourse(params).then((res) => {            
       return res || []
     }),
     staleTime: 5000 * 10 * 5,
@@ -88,5 +101,6 @@ export {
   useGetAllTeacher,
   useGetAllStudent,
   useGetAllRoom,
+  useGetAllCourse,
 }
 

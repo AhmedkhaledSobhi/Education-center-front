@@ -38,6 +38,9 @@ export const createRoom = (data) => {
 }
 export const allRoom = (data) => api.get(url.ROOM, data);
 
+// Course
+export const allCourse = (data) => api.get(url.COURSE, data);
+
 // upload-file
 export const uploadFiles = (data) => {
   const formData = new FormData();
