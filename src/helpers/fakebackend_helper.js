@@ -37,3 +37,13 @@ export const createRoom = (data) => {
   api.create(url.ROOM, data)
 }
 export const allRoom = (data) => api.get(url.ROOM, data);
+
+// upload-file
+export const uploadFiles = (data) => {
+  const formData = new FormData();
+  formData.append("file", data); // أو "photo" حسب الـ backend
+
+  return api.create(url.UPLOAD_FILE, formData, {
+    "Content-Type": "multipart/form-data",
+  });
+}

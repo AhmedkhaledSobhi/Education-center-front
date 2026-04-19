@@ -10,7 +10,10 @@ export const ALLUSERS = `auth/users`;
 // Edit Account Information
 
 
-export const EDIT_ACCOUNT_INFORMATION = `user/`;
+export const EDIT_ACCOUNT_INFORMATION = `api/user/`;
 
 // Room
 export const ROOM = `room`;
+
+// upload-file
+export const UPLOAD_FILE = `api/upload-file`;

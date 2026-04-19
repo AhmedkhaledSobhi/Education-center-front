@@ -5,7 +5,7 @@ import BreadCrumb from '../../Components/Common/BreadCrumb';
 import avatar1 from "../../assets/images/user-avatar.png";
 import { toast } from 'react-toastify';
 import * as Yup from "yup";
-import { editAccountInformation, getLoggedInUser, profile } from '../../helpers/fakebackend_helper';
+import { editAccountInformation, getLoggedInUser, profile, uploadFiles } from '../../helpers/fakebackend_helper';
 import { Formik } from 'formik';
 import TopPageButttons from '../../Components/Common/TopPageButttons';
 import { useNavigate } from 'react-router-dom';
@@ -41,26 +41,27 @@ export default function UserSettings() {
         id: Profile?.id,
         first_name: Profile?.first_name,
         last_name: Profile?.last_name,
-        Center_name: Profile?.first_name + " " + Profile?.last_name, 
+        Center_name: Profile?.Center_name, 
         phone: phone,
         email: Profile?.email,
         age: Profile?.age,
         address: Profile?.address || "",
         role: Profile?.role,
         language: language?.[0],
-        country: { 
+        country: Profile?.countryCode ?? { 
           id: "65", 
           name: "Egypt", 
           name_ar: "مصر",
           name_en: "Egypt",
         },
-        region: "",
-        city: "",
+        region: Profile?.cityCode,
+        city: Profile?.address,
+        AdditionalAddress: Profile?.AdditionalAddress
       })
       setProfileData((prev) => {
         return {
           id: Profile?.id,
-          avatar: Profile?.image_path != "null" ? Profile?.image_path : avatar1,
+          avatar: Profile?.image_path != "null" ? `http://localhost:5173/api/${Profile?.image_path}`: avatar1,
         };
       });
     }
@@ -79,9 +80,9 @@ export default function UserSettings() {
     try {
       await validationSchema.validate(values, { abortEarly: false });
       setLoadSave(true)
-  
+      const { id, ...rest } = values;
       const params = {
-        ...values,
+        ...rest,
         role: values?.role?.value ?? values?.role,
         language: values?.language?.value,
         country: values?.country?.id,
@@ -94,11 +95,22 @@ export default function UserSettings() {
           formData.append(key, params[key]);
         }
       }
+      
       if (values?.photo) {
-        formData.append("image_path", values?.photo[0]);
+        const file = values.photo; // لازم يكون File مش FileList
+        const uploadRes = await uploadFiles(file?.[0]);
+        console.log("ahmed uploadRes", uploadRes);
+
+        // عدّل ده حسب شكل الريسبونس عندك
+        const imagePath =
+          uploadRes?.data?.data?.image_path ||
+          uploadRes?.data?.image_path ||
+          uploadRes?.data;
+
+        formData.append("image_path", imagePath);
       }
+
       editAccountInformation(formData).then((res) => {
-        console.log("ahmed res Form", res);
         if (res && res.status) {
           toast.success("res?.message", {
             position: "top-center",
@@ -196,6 +208,7 @@ export default function UserSettings() {
                       disableEdit={disableEdit}
                       Account_type={Account_type}
                       language={language}
+                      profileData={profileData}
                     />
 
                     {/* ---------------- بيانات الاتصال ---------------- */}

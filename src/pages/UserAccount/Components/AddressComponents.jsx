@@ -19,7 +19,7 @@ export default function AddressComponents({
   const { t, i18n } = useTranslation();
   const country = CountryData?.countries
   const Regions = RegionData?.regions.filter((region)=> region?.country_id === (values?.country?.id ?? values?.country) )
-  const citys = CityData?.cities.filter((city)=> city?.country_id === (values?.country?.id ?? values?.country) && city?.region_id === values?.region?.id)
+  const citys = CityData?.cities.filter((city)=> city?.country_id === (values?.country?.id ?? values?.country) && city?.region_id === (values?.region?.id ?? values?.region) )
 
   return (
     <React.Fragment>
@@ -76,7 +76,7 @@ export default function AddressComponents({
                     placeholder={`${t("common.Select")} ${t("AccountSettings.country")} ${t("common.placeholder")}`}
                     options={country}
                     value={country?.find(
-                      (option) => option?.id == values?.country?.id
+                      (option) => option?.id === (values?.country?.id ?? values?.country) 
                     )}
                     getOptionLabel={(option) => option?.name}
                     getOptionValue={(option) => option?.id}
@@ -132,7 +132,7 @@ export default function AddressComponents({
                       setFieldValue("city", null);
                     }}
                     value={Regions?.find(
-                      (option) => option?.id === values?.region?.id
+                      (option) => option?.id === (values?.region?.id ?? values?.region)
                     )}
                     onBlur={handleBlur("region")}
                     isDisabled={values?.country== undefined}
@@ -181,7 +181,7 @@ export default function AddressComponents({
                       setFieldValue("city", selectedOption);
                     }}
                     value={citys?.find(
-                      (option) => option?.id == values?.city
+                      (option) => option?.id === (values?.city?.id ?? values?.city)
                     )}
                     onBlur={handleBlur("city")}
                     isDisabled={!values?.country || !values?.region}

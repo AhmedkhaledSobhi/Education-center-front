@@ -31,7 +31,7 @@ export default function ProfileAccount() {
           phone: phone,
           email: Profile?.email,
           phone_code_id: "996",
-          avatar: Profile?.image_path != "null" ? Profile?.image_path : avatar1,
+          avatar: Profile?.image_path != "null" ? `http://localhost:5173/api/${Profile?.image_path}` : avatar1,
         };
       });
     }
@@ -89,9 +89,7 @@ export default function ProfileAccount() {
                         style={{ aspectRatio: "1 / 1", width: "150px", height: "150px" }}
                       >
                         <img
-                          src={
-                            profileData?.avatar || "https://via.placeholder.com/100x100"
-                          }
+                          src={profileData?.avatar}
                           alt="Fake img"
                           style={{
                             width: "100%",
@@ -192,8 +190,8 @@ export default function ProfileAccount() {
                         <span>{t("ProfileDropdown.password")}</span>{" "}
                         <span
                           style={{
-                            color: "rgba(42, 157, 148, 1)",
-                            borderBottom: " 1px solid rgba(42, 157, 148, 1)",
+                            color: "rgba(13, 110, 253, 1)",
+                            borderBottom: " 1px solid rgba(13, 110, 253, 1)",
                             fontWeight: "600",
                             cursor: "pointer",
                           }}
