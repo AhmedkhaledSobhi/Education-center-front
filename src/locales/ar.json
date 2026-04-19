@@ -244,6 +244,9 @@
     "teacher_name": "اسم المدرس",
     "Identification_number": "الرقم التعريفي",
     "Educational_Stages": "المراحل التعليمية",
+    "Instructor": "مدرب/مُحاضر",
+    "price": "السعر",
+    "paymentType": "نوع الدفع",
     "Course_Price": "سعر المادة",
     "": ""
   }

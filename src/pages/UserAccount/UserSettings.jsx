@@ -80,7 +80,7 @@ export default function UserSettings() {
     try {
       await validationSchema.validate(values, { abortEarly: false });
       setLoadSave(true)
-      const { id, ...rest } = values;
+      const { photo, id, ...rest } = values;
       const params = {
         ...rest,
         role: values?.role?.value ?? values?.role,
@@ -99,15 +99,7 @@ export default function UserSettings() {
       if (values?.photo) {
         const file = values.photo; // لازم يكون File مش FileList
         const uploadRes = await uploadFiles(file?.[0]);
-        console.log("ahmed uploadRes", uploadRes);
-
-        // عدّل ده حسب شكل الريسبونس عندك
-        const imagePath =
-          uploadRes?.data?.data?.image_path ||
-          uploadRes?.data?.image_path ||
-          uploadRes?.data;
-
-        formData.append("image_path", imagePath);
+        formData.append("image_path", uploadRes?.url);
       }
 
       editAccountInformation(formData).then((res) => {

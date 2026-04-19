@@ -10,13 +10,13 @@ export const ALLUSERS = `auth/users`;
 // Edit Account Information
 
 
-export const EDIT_ACCOUNT_INFORMATION = `api/user/`;
+export const EDIT_ACCOUNT_INFORMATION = `user/`;
 
 // Room
 export const ROOM = `room`;
 
 // allCourse
-export const COURSE = `api/course` 
+export const COURSE = `course` 
 
 // upload-file
-export const UPLOAD_FILE = `api/upload-file`;
+export const UPLOAD_FILE = `upload-file`;

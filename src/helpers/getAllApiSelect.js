@@ -86,7 +86,7 @@ const useGetAllCourse = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
     queryKey: ["allCourse", params],
-    queryFn: () => allCourse(params).then((res) => {            
+    queryFn: () => allCourse(params).then((res) => {
       return res || []
     }),
     staleTime: 5000 * 10 * 5,

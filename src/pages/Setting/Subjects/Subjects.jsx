@@ -40,15 +40,50 @@ export default function Subjects() {
       },
       {
         Header: t("Subject.name"),
-        accessor: "first_name",
+        accessor: "title",
         filterable: false,
         Cell: (cellProps)=>{
-          return ( <span> {cellProps?.row?.original?.first_name } {cellProps?.row?.original?.last_name} </span>)
+          return ( <span> {cellProps?.row?.original?.title } </span>)
+        }
+      },
+      {
+        Header: t("Subject.Instructor"),
+        accessor: "teacher",
+        filterable: false,
+        Cell: (cellProps)=>{
+          return ( <span> {cellProps?.row?.original?.teacher?.first_name} {cellProps?.row?.original?.teacher?.last_name}</span>)
         }
       },
       {
         Header: t("Subject.Educational_Stages"),
         accessor: "email",
+        filterable: false,
+        Cell: (cellProps)=>{
+          return ( <span> {cellProps?.row?.original?.teacher?.first_name } </span>)
+        }
+      },
+      {
+        Header: t("Subject.price"),
+        accessor: "price",
+        filterable: false,
+        Cell: (cellProps)=>{
+          return ( 
+            <span> 
+              {cellProps?.row?.original?.price}
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                {/* <!-- L --> */}
+                <path d="M5 4H8V18H13V20H5V4Z" fill="currentColor"/>
+                
+                {/* <!-- E --> */}
+                <path d="M15 4H21V6H17V10H20V12H17V18H21V20H15V4Z" fill="currentColor"/>
+              </svg>
+            </span>
+          )
+        }
+      },
+      {
+        Header: t("Subject.paymentType"),
+        accessor: "paymentType",
         filterable: false,
       },
       {
@@ -124,7 +159,7 @@ export default function Subjects() {
   // ____________________________________________________________________
 
   const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser( {...params} );
-  // const { data: Courses = [], isLoading: LoadingCourse } = useGetAllCourse();
+  const { data: Courses = [], isLoading: LoadingCourse } = useGetAllCourse( {...params} );
   
   useEffect(() => {
     setParams((prev) => ({
@@ -135,13 +170,14 @@ export default function Subjects() {
   }, [per_page, page]);
 
   useEffect(() => {
-    if (!Students) return;
-      console.log("ahmed Students", Students);
+    if (!Courses) return;
+      // console.log("ahmed Students", Students);
+      console.log("ahmed Courses", Courses);
 
-    setProductsData(Students?.data);
-    setTotalItems(Students?.meta?.total);
-    setTotalPage(Students?.meta?.totalPages);
-  }, [Students]);
+    setProductsData(Courses?.data);
+    setTotalItems(Courses?.pagination?.total);
+    setTotalPage(Courses?.pagination?.totalPages);
+  }, [Students, Courses]);
 
   return (
     <React.Fragment>
@@ -160,6 +196,7 @@ export default function Subjects() {
                 onClose={()=> setIsInfoOpen(!isInfoOpen)}
               />
             </Col>
+
             <Col xs={12}>
               <TopTablesButtons 
                 PageTittle={`${t("Subject.Subjects")}`}
