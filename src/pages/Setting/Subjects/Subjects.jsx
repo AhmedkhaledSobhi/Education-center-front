@@ -171,9 +171,6 @@ export default function Subjects() {
 
   useEffect(() => {
     if (!Courses) return;
-      // console.log("ahmed Students", Students);
-      console.log("ahmed Courses", Courses);
-
     setProductsData(Courses?.data);
     setTotalItems(Courses?.pagination?.total);
     setTotalPage(Courses?.pagination?.totalPages);

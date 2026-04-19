@@ -114,10 +114,6 @@ export default function ImageComponent({
           className="section-left white"
         >
           <div>
-          {console.log("ahmed profileData", profileData)}
-          {console.log("ahmed profileImageSrc", profileImageSrc)}
-          {/* {console.log("ahmed aa", aa)} */}
-
           {profileData?.client?.image || profileImageSrc ? (
             <label
               className={"file-upload-label"}
