@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Col, Row } from 'reactstrap';
 import { BiX } from 'react-icons/bi';
@@ -20,7 +20,9 @@ export default function ImageComponent({
   const [profileImageSrc, setProfileImageSrc] = useState(
     profileData?.avatar || null
   );
-
+  useEffect(() => {
+   setProfileImageSrc(profileData?.avatar);
+  }, [profileData?.avatar]);
 
   // ________________________________________________________________________________________
   const removeImageHandler = () => {
@@ -112,6 +114,9 @@ export default function ImageComponent({
           className="section-left white"
         >
           <div>
+          {console.log("ahmed profileData", profileData)}
+          {console.log("ahmed profileImageSrc", profileImageSrc)}
+          {/* {console.log("ahmed aa", aa)} */}
 
           {profileData?.client?.image || profileImageSrc ? (
             <label
