@@ -122,7 +122,7 @@ export default function BasicInformation({
                           }
                           value={values?.Center_name}
                           onBlur={handleBlur}
-                          disabled
+                          // disabled
                         />
                         {touched?.Center_name && errors?.Center_name && (
                           <ErrorMessage
@@ -275,6 +275,7 @@ export default function BasicInformation({
                           onBlur={() => {
                             setFieldTouched("language", true);
                           }}
+                          isDisabled
                         />
                         {touched?.language && errors?.language && (
                           <ErrorMessage

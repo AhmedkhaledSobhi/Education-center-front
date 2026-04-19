@@ -81,6 +81,40 @@ const safeParse = (value) => {
     return null;
   }
 };
+
+const getChangedValues = (values, initialValues) => {
+  const changed = {};
+
+  Object.keys(values).forEach((key) => {
+    const newValue = values[key];
+    const oldValue = initialValues[key];
+
+    // لو object (زي select)
+    if (typeof newValue === "object" && newValue !== null) {
+      const newVal = newValue?.value ?? newValue?.id ?? newValue;
+      const oldVal = oldValue?.value ?? oldValue?.id ?? oldValue;
+
+      if (newVal !== oldVal) {
+        changed[key] = newValue;
+      }
+    } else {
+      if (newValue !== oldValue) {
+        changed[key] = newValue;
+      }
+    }
+  });
+
+  return changed;
+};
+
+const NoChanges =(values, initialValues)=>{
+  const clean = (obj) =>
+  JSON.stringify(obj, (key, value) =>
+    value instanceof File ? "FILE" : value
+  );
+  return clean(values) === clean(initialValues);
+}
+
 export {
   handleUnauthenticated,
   hasEmptyValue,
@@ -89,4 +123,6 @@ export {
   isEmpty,
   cleanParams,
   safeParse,
+  getChangedValues,
+  NoChanges,
 }

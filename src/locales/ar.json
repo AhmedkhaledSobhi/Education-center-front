@@ -98,6 +98,8 @@
     "country": "الدولة",
     "city": "المدينة",
     "Region": "المحافظه",
+
+    "No_data_modification_required_to_save_it": "لا توجد تعديل على البيانات لحفظها",
     "": ""
   },
   "required": {

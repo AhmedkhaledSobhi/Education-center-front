@@ -16,6 +16,7 @@ import Select from "react-select";
 import { useGetProfile } from '../../helpers/getAllApiSelect';
 import Alert from '../../Components/Common/Alert';
 import { getAccountType, getGender, getLanguage } from '../../helpers/dataLocal';
+import { getChangedValues, NoChanges } from '../../helpers';
 
 export default function UserSettings() {
   const { t, i18n } = useTranslation();
@@ -48,14 +49,14 @@ export default function UserSettings() {
         address: Profile?.address || "",
         role: Profile?.role,
         language: language?.[0],
-        country: Profile?.countryCode ?? { 
+        countryCode: Profile?.countryCode ?? { 
           id: "65", 
           name: "Egypt", 
           name_ar: "مصر",
           name_en: "Egypt",
         },
-        region: Profile?.cityCode,
-        city: Profile?.address,
+        region: Profile?.regionId,
+        city: Profile?.cityCode,
         AdditionalAddress: Profile?.AdditionalAddress
       })
       setProfileData((prev) => {
@@ -78,31 +79,45 @@ export default function UserSettings() {
 
   const handleSaveNew = async (values, action) => {
     try {
+      const formData = new FormData();
       await validationSchema.validate(values, { abortEarly: false });
       setLoadSave(true)
-      const { photo, id, ...rest } = values;
+      
+      const changedValues = getChangedValues(values, initialValues);
+      const {city, photo, id, ...rest } = changedValues;
+
       const params = {
         ...rest,
-        role: values?.role?.value ?? values?.role,
-        language: values?.language?.value,
-        country: values?.country?.id,
-        region: values?.region?.id,
-        city: values?.city?.id,
-      }
-      const formData = new FormData();
-      for (const key in params) {
-        if (Object.hasOwnProperty.call(params, key) && params[key]) {
-          formData.append(key, params[key]);
-        }
-      }
-      
-      if (values?.photo) {
-        const file = values.photo; // لازم يكون File مش FileList
-        const uploadRes = await uploadFiles(file?.[0]);
-        formData.append("image_path", uploadRes?.url);
+        countryCode: values?.countryCode?.id ?? "65",
+        region: rest?.region ? rest?.region?.id : undefined,
+        cityCode: rest?.cityCode? rest?.cityCode?.id : undefined,
+        age: rest?.age ? Number(rest.age) : undefined,
       }
 
-      editAccountInformation(formData).then((res) => {
+      const payload = Object.fromEntries(
+        Object.entries(params).filter(
+          ([_, value]) => value !== undefined && value !== null
+        )
+      );
+
+      if (values?.photo && values.photo !== initialValues.photo) {
+      const file = values.photo; // لازم يكون File مش FileList
+        const uploadRes = await uploadFiles(file?.[0]);   
+        payload.image_path = uploadRes?.url;
+      }
+
+      // مفيش أي تعديل تم
+      if (NoChanges(values, initialValues)) {
+        toast.error(t("common.No_data_modification_required_to_save_it"),{
+          position: "top-center",
+          hideProgressBar: false,
+          progress: undefined,
+          toastId: "",
+        });
+        setLoadSave(false);
+        return;
+      }
+      editAccountInformation(payload).then((res) => {
         if (res && res.status) {
           toast.success("res?.message", {
             position: "top-center",

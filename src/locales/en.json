@@ -87,6 +87,7 @@
     "country": "Country",
     "city": "City",
     "Region": "Region",
+    "No_data_modification_required_to_save_it": "No data modification is required to save it",
     "": ""
   },
   "required": {

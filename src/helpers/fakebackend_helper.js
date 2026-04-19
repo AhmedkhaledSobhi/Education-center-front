@@ -28,7 +28,9 @@ export const allUser = (data) => api.get(url.ALLUSERS, data);
 
 export const editAccountInformation = (data) =>{
   const user = getLoggedInUser();
-  api.update(`${url.EDIT_ACCOUNT_INFORMATION}${user?.id}`, data);
+  return api.update(`${url.EDIT_ACCOUNT_INFORMATION}${user?.id}`, 
+    data,
+  );
 }
 
 // _____________________________________________
