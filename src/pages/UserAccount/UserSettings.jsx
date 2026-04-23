@@ -48,7 +48,7 @@ export default function UserSettings() {
         age: Profile?.age,
         address: Profile?.address || "",
         role: Profile?.role,
-        language: language?.[0],
+        lang: Profile?.lang ?? language?.[0],
         countryCode: Profile?.countryCode ?? { 
           id: "65", 
           name: "Egypt", 
@@ -119,7 +119,7 @@ export default function UserSettings() {
       }
       editAccountInformation(payload).then((res) => {
         if (res && res.status) {
-          toast.success("res?.message", {
+          toast.success(res?.message, {
             position: "top-center",
             hideProgressBar: false,
             progress: undefined,
@@ -127,7 +127,7 @@ export default function UserSettings() {
           });
           setLoadSave(false)
         } else{
-          toast.error("res?.message", {
+          toast.error(res?.message, {
             position: "top-center",
             hideProgressBar: false,
             progress: undefined,

@@ -266,18 +266,17 @@ export default function BasicInformation({
                           getOptionValue={(option) => option?.id}
                           value={
                             language?.find((option)=>{
-                              return  option?.value === values?.language?.value
+                              return  option?.value === (values?.lang?.value ?? values?.lang)
                             }) 
                           } 
                           onChange={(option) => {
-                            setFieldValue("language", option?.value);
+                            setFieldValue("lang", option?.value);
                           }}
                           onBlur={() => {
-                            setFieldTouched("language", true);
+                            setFieldTouched("lang", true);
                           }}
-                          isDisabled
                         />
-                        {touched?.language && errors?.language && (
+                        {touched?.lang && errors?.lang && (
                           <ErrorMessage
                             name="language"
                             component="div"
