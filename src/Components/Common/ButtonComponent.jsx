@@ -52,14 +52,16 @@ export default function ButtonComponent({
                     style={iconStyle }
                   ></i>
                 ) : (
-                  <img
-                    className="hide-on-mobile"
-                    src={img}
-                    alt=""
-                    style={{
-                      filter: styleImg ?? "",
-                    }}
-                  />
+                  img && (
+                    <img
+                      className="hide-on-mobile"
+                      src={img}
+                      alt=""
+                      style={{
+                        filter: styleImg ?? "",
+                      }}
+                    />
+                  )
                 )}
               </>
               {soon ? (

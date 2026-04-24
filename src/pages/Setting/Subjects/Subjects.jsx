@@ -8,6 +8,9 @@ import TopTablesButtons from '../../../Components/Common/TopTablesButtons';
 import ButtonLoader from '../../../Components/Common/ButtonLoader';
 import TableContainerComponent from '../../../Components/Common/TableContainerComponent/TableContainerComponent';
 import { useGetAllCourse, useGetAllUser } from '../../../helpers/getAllApiSelect';
+import DeleteModal from '../../../Components/Common/DeleteModal';
+import { toast } from 'react-toastify';
+import { delete_Course } from '../../../helpers/fakebackend_helper';
 
 export default function Subjects() {
   const { t, i18n } = useTranslation();
@@ -125,7 +128,17 @@ export default function Subjects() {
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-end " >
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      nav("/previewSubject/" + cellProps?.row?.original?.id, {
+                        state: {
+                          detail: cellProps?.row?.original,
+                          edit: true,
+                        },
+                      })
+                    }}
+                  >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`mdi mdi-eye-circle-outline  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>
                       <div>{t("common.view")}</div>
@@ -133,7 +146,17 @@ export default function Subjects() {
                   </DropdownItem>
                 </li>
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      nav("/previewSubject/" + cellProps?.row?.original?.id, {
+                        state: {
+                          detail: cellProps?.row?.original,
+                          edit: false,
+                        },
+                      })
+                    }}
+                  >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`bx bxs-edit  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
                       <div>{t("common.edit")}</div>
@@ -141,7 +164,12 @@ export default function Subjects() {
                   </DropdownItem>
                 </li>
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      onClickDelete(cellProps?.row?.original?.id);
+                    }}
+                  >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`ri-delete-bin-5-line align-bottom text- muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
                       <div>{t("common.delete")}</div>
@@ -155,10 +183,57 @@ export default function Subjects() {
       }
     ]
   );
-
+  // ________________________________________________________________________________________
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const onClickDelete = (id) => {
+    setSelectedId(id);
+    setDeleteModal(true);
+  };
+  const handleDeleteTicket = async () => {
+    const data = { id: selectedId };
+    const id = selectedId;
+    try {
+      const res = await delete_Course(data);
+      if (res && res.status) {
+        toast.success(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });        
+        setDeleteModal(false);
+        const index = productsData?.findIndex(
+          (item) => item?.id === id
+        );
+        const newData = [
+          ...productsData?.slice(0, index),
+          ...productsData?.slice(index + 1),
+        ];
+        setProductsData(newData);        
+      } else {
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+      }
+    } catch (error) {
+      toast.error("An error occurred while deleting the branch", {
+        position: "top-center",
+        hideProgressBar: false,
+        autoClose: 3000,
+        progress: undefined,
+        toastId: "",
+      });
+    }
+  };
+  
   // ____________________________________________________________________
 
-  const { data: Students = [], isLoading: LoadingStudent } = useGetAllUser( {...params} );
   const { data: Courses = [], isLoading: LoadingCourse } = useGetAllCourse( {...params} );
   
   useEffect(() => {
@@ -174,10 +249,15 @@ export default function Subjects() {
     setProductsData(Courses?.data);
     setTotalItems(Courses?.pagination?.total);
     setTotalPage(Courses?.pagination?.totalPages);
-  }, [Students, Courses]);
+  }, [Courses]);
 
   return (
     <React.Fragment>
+      <DeleteModal
+        show={deleteModal}
+        onCloseClick={() => setDeleteModal(false)}
+        onDeleteClick={handleDeleteTicket}
+      />
       <div className="page-content">
         <Container fluid>
           <BreadCrumb
@@ -206,7 +286,7 @@ export default function Subjects() {
               <div className="card-body pt-0">
                 <Card>
                   <CardBody className="pt-0">
-                    {LoadingStudent?
+                    {LoadingCourse?
                       <div
                         style={{
                           display: "flex",
@@ -232,7 +312,7 @@ export default function Subjects() {
                           per_page={per_page}
                           setPer_page={setPer_page}
                           setPage={setPage}
-                          previewItem={"/teacher"}
+                          previewItem={"previewSubject"}
                         /> 
                       </div>            
                     }  

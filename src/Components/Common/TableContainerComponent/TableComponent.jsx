@@ -124,7 +124,7 @@ export default function TableComponent({
                             )
                         : previewItem
                         ? () =>
-                            navigate(previewItem + row.original.id, {
+                            navigate("/"+ previewItem + "/" + row.original.id, {
                               state: {
                                 detail: row.original,
                                 type: dataType,
@@ -133,7 +133,7 @@ export default function TableComponent({
                             })
                         : previewLink
                         ? () =>
-                            navigate(previewLink + row.original.uuid, {
+                            navigate(previewLink + row.original.id, {
                               state: {
                                 detail: row.original,
                                 type: dataType,

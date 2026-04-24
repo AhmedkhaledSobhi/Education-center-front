@@ -16,6 +16,8 @@ import Branches from "../pages/Setting/Branches/Branches";
 import AddBranche from "../pages/Setting/Branches/AddBranche";
 import Subjects from "../pages/Setting/Subjects/Subjects";
 import AddSubject from "../pages/Setting/Subjects/AddSubject";
+import PreviewSubject from "../pages/Setting/Subjects/PreviewSubject";
+import PreviewSection from "../pages/Setting/Section/PreviewSection";
 
 const publicRoutes = [
   { path: "/login", component: <Login /> },
@@ -76,6 +78,11 @@ const authProtectedRoutes = [
     moduleName: "Section"
   },
   {
+    path: "/PreviewSection/:id",
+    component: <PreviewSection/>,
+    moduleName: "Section"
+  },
+  {
     path: "/branches",
     component: <Branches/>,
     moduleName: "Branches"
@@ -95,6 +102,11 @@ const authProtectedRoutes = [
     component: <AddSubject/>,
     moduleName: "Subjects"
   },
+  {
+    path: "/previewSubject/:id",
+    component: <PreviewSubject/>,
+    moduleName: "Subjects"
+  }
 ]
 
 

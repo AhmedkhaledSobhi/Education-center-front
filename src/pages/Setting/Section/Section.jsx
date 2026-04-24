@@ -8,6 +8,9 @@ import { useGetAllRoom } from '../../../helpers/getAllApiSelect';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ComponentLoader from '../../../Components/Common/ComponentLoader';
+import { delete_Room } from '../../../helpers/fakebackend_helper';
+import { toast } from 'react-toastify';
+import DeleteModal from '../../../Components/Common/DeleteModal';
 
 export default function Section() {
   const { t, i18n } = useTranslation();
@@ -125,7 +128,17 @@ export default function Section() {
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-end" >
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      nav("/PreviewSection/" + cellProps?.row?.original?.id, {
+                        state: {
+                          detail: cellProps?.row?.original,
+                          edit: false,
+                        },
+                      })
+                    }}
+                >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`mdi mdi-eye-circle-outline  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>
                       <div>{t("common.view")}</div>
@@ -133,7 +146,17 @@ export default function Section() {
                   </DropdownItem>
                 </li>
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      nav("/PreviewSection/" + cellProps?.row?.original?.id, {
+                        state: {
+                          detail: cellProps?.row?.original,
+                          edit: false,
+                        },
+                      })
+                    }}  
+                  >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`bx bxs-edit  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
                       <div>{t("common.edit")}</div>
@@ -141,7 +164,12 @@ export default function Section() {
                   </DropdownItem>
                 </li>
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      onClickDelete(cellProps?.row?.original?.id);
+                    }}
+                  >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`ri-delete-bin-5-line align-bottom text- muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
                       <div>{t("common.delete")}</div>
@@ -154,6 +182,54 @@ export default function Section() {
         }
       }
     ]);
+  // ________________________________________________________________________________________
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const onClickDelete = (id) => {
+    setSelectedId(id);
+    setDeleteModal(true);
+  };
+  const handleDeleteTicket = async () => {
+    const data = { id: selectedId };
+    const id = selectedId;
+    try {
+      const res = await delete_Room(data);
+      if (res && res.status) {
+        toast.success(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });        
+        setDeleteModal(false);
+        const index = roomsData?.findIndex(
+          (item) => item?.id === id
+        );
+        const newData = [
+          ...roomsData?.slice(0, index),
+          ...roomsData?.slice(index + 1),
+        ];
+        setroomsData(newData);        
+      } else {
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+      }
+    } catch (error) {
+      toast.error("An error occurred while deleting the branch", {
+        position: "top-center",
+        hideProgressBar: false,
+        autoClose: 3000,
+        progress: undefined,
+        toastId: "",
+      });
+    }
+  };
   // ____________________________________________________________________
   const { data: Rooms, isLoading: LoadingRoom } = useGetAllRoom( {...params} );
 
@@ -175,6 +251,11 @@ export default function Section() {
 
   return (
     <React.Fragment>
+      <DeleteModal
+        show={deleteModal}
+        onCloseClick={() => setDeleteModal(false)}
+        onDeleteClick={handleDeleteTicket}
+      />     
       <div className="page-content ">
         <Container fluid>
           <BreadCrumb
@@ -216,7 +297,7 @@ export default function Section() {
                           per_page={per_page}
                           setPer_page={setPer_page}
                           setPage={setPage}
-                          previewItem={"/teacher"}
+                          previewItem={"PreviewSection"}
                         /> 
                       )           
                     }  

@@ -1,26 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import * as Yup from "yup";
-import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
+import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import Alert from '../../../Components/Common/Alert';
-import TopPageButttons from '../../../Components/Common/TopPageButttons';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ErrorMessage, Formik } from 'formik';
-import Select from "react-select";
+import * as Yup from "yup";
 import { getEducationalStages, getPaymentType, getStatus } from '../../../helpers/dataLocal';
-import ComponentLoader from '../../../Components/Common/ComponentLoader';
+import { createCourse, delete_Course, getCourse, update_Course } from '../../../helpers/fakebackend_helper';
 import { toast } from 'react-toastify';
-import { create_Course, createCourse } from '../../../helpers/fakebackend_helper';
+import TopPageButttons from '../../../Components/Common/TopPageButttons';
+import ComponentLoader from '../../../Components/Common/ComponentLoader';
+import Select from "react-select";
+import DeleteModal from '../../../Components/Common/DeleteModal';
 
-
-export default function AddSubject() {
+export default function PreviewSubject() {
   const { t, i18n } = useTranslation();
-  document.title = `${t("common.add")} ${t("Subject.subject")} ${t("common.new")}`;
   const nav = useNavigate();
+  const {id} = useParams();
+  const location = useLocation();
+  const [disableEdit, setDisableEdit] = useState(
+    location?.state?.edit
+  );
+  document.title = `${disableEdit?t("common.view") : t("common.edit")} ${t("Subject.subject")}`;
+
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [loadsave, setLoadSave] = useState(false);
-  const loadingProfile= false
+  const [loadingProfile, setLoadingProfile] = useState(false);
+
   // ________________________________________________________________________________________
 
   const Status = getStatus();
@@ -44,15 +51,15 @@ export default function AddSubject() {
     // EducationalStages: Yup.array().min(1, `${t("Teacher.Educational_Stages")} ${t("common.required")}`),
     status: Yup.object().required(`${t("common.status")} ${t("common.required")}`),
     price: Yup.number().required(`${t("Subject.price")} ${t("common.required")}`),
-    Description: Yup.string().required(`${t("common.Description")} ${t("common.required")}`),
   });
   // ________________________________________________________________________________________
 
   const handleSaveNew = async (values, action) =>{
     try{
       setLoadSave(true)
-      await validationSchema.validate(values, { abortEarly: false });   
+      await validationSchema.validate(values, { abortEarly: false });         
       const payload = {
+        id: id,
         title: values?.name || "",
         description: values?.Description || "",
         imagePath: "",
@@ -62,7 +69,7 @@ export default function AddSubject() {
         monthlyPrice: values?.paymentType?.value === "MONTHLY" ? Number(values?.price) : 0,
         teacherId: 63
       };
-      create_Course(payload).then((res) => {
+      update_Course(payload).then((res) => {
         if (res && res.status) {
           toast.success(res?.message, {
             position: "top-center",
@@ -93,8 +100,84 @@ export default function AddSubject() {
       return;
     }
   };
+  // ________________________________________________________________________________________
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const onClickDelete = (id) => {
+    setDeleteModal(true);
+  };
+  const handleDeleteTicket = async () => {
+    const data = { id: id };
+
+    try {
+      const res = await delete_Course(data);
+
+      if (res && res.status) {
+        toast.success(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+
+        setDeleteModal(false);
+        nav("/subjects");
+      } else {
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+      }
+    } catch (error) {
+      toast.error("An error occurred while deleting the branch", {
+        position: "top-center",
+        hideProgressBar: false,
+        autoClose: 3000,
+        progress: undefined,
+        toastId: "",
+      });
+    }
+  }
+  // ________________________________________________________________________________________
+  const getData= ()=>{    
+    setLoadingProfile(true);
+    getCourse({id}).then((res) => {
+      if (res && res.status) {
+        setInitialValues({
+          name: res?.data?.title || "",
+          EducationalStages: res?.data?.EducationalStages || [],
+          price: res?.data?.paymentType === "ONE_TIME" ? res?.data?.price :  res?.data?.monthlyPrice,
+          paymentType: PaymentType?.find((option) => option?.value === res?.data?.paymentType) || PaymentType?.[0],
+          status: Status?.find((option) => option?.value === res?.data?.status) || Status?.[0],
+          Description: res?.data?.description || "",
+        })
+        setLoadingProfile(false);
+       } else{
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          progress: undefined,
+          toastId: "",
+        });
+        setLoadingProfile(false);
+      }
+    });
+  };
+  useEffect(() => {
+    getData();
+  }, [id]);
   return (
     <React.Fragment>
+      <DeleteModal
+        show={deleteModal}
+        onCloseClick={() => setDeleteModal(false)}
+        onDeleteClick={handleDeleteTicket}
+      />
+
       <div className="page-content">
         <Container fluid>
           <BreadCrumb
@@ -102,7 +185,7 @@ export default function AddSubject() {
             subTitle={t("LayoutMenuData.Setting")}
             pageTitle={t("Subject.Subjects")}
             pageTitleLink={"/subjects"}
-            subPageTitle={`${t("common.add")} ${t("Subject.subject")} ${t("common.new")}`}
+            subPageTitle={`${disableEdit?t("common.view"): t("common.edit")} ${t("Subject.subject")}`}
           />
           <Row>
             <Col xxl={12}>
@@ -144,7 +227,11 @@ export default function AddSubject() {
                     }}
                   >
                     <TopPageButttons
-                      PageTittle={`${t("common.add")} ${t("Subject.subject")}`}
+                      edit={true}
+                      disableEdit={disableEdit}
+                      setDisableEdit={setDisableEdit}
+                      deleteButton={()=> onClickDelete(id)}
+                      PageTittle={`${disableEdit?t("common.view") : t("common.edit")} ${t("Subject.subject")}`}
                       handleSave={() => handleSaveNew(values)}
                       loadsave={loadsave}
                       close={() => {nav("/subjects")}}
@@ -180,6 +267,7 @@ export default function AddSubject() {
                                     }
                                     value={values?.name}
                                     onBlur={handleBlur}
+                                    disabled={disableEdit}
                                   />
                                   {touched?.name && errors?.name && (
                                     <ErrorMessage
@@ -239,7 +327,7 @@ export default function AddSubject() {
                                       setFieldTouched("EducationalStages", true);
                                     }}
                                     isMulti
-                                    isDisabled
+                                    isDisabled={true}
                                   />
                                   {touched?.EducationalStages && errors?.EducationalStages && (
                                     <ErrorMessage
@@ -297,6 +385,7 @@ export default function AddSubject() {
                                     onBlur={() => {
                                       setFieldTouched("paymentType", true);
                                     }}
+                                    isDisabled={disableEdit}
                                   />
                                   {touched?.paymentType && errors?.paymentType && (
                                     <ErrorMessage
@@ -328,6 +417,7 @@ export default function AddSubject() {
                                     value={values?.price}
                                     onBlur={handleBlur}
                                     onWheel={(e) => e.target.blur()}
+                                    disabled={disableEdit}
                                   />
                                   {touched?.price && errors?.price && (
                                     <ErrorMessage
@@ -386,6 +476,7 @@ export default function AddSubject() {
                                     onBlur={() => {
                                       setFieldTouched("status", true);
                                     }}
+                                    isDisabled={disableEdit}
                                   />
                                   {touched?.status && errors?.status && (
                                     <ErrorMessage
@@ -404,7 +495,6 @@ export default function AddSubject() {
                                     htmlFor="Description"
                                   >
                                     {t("common.Description")}{" "}
-                                    <span className="text-danger">*</span>
                                   </Label>
                                   <Input
                                     type="textarea"
@@ -417,14 +507,8 @@ export default function AddSubject() {
                                     }
                                     value={values?.Description}
                                     onBlur={handleBlur}
+                                    disabled={disableEdit}
                                   />
-                                  {touched?.Description && errors?.Description && (
-                                    <ErrorMessage
-                                      name="Description"
-                                      component="div"
-                                      className="text-danger"
-                                    />
-                                  )}
                                 </FormGroup>
                               </Col>
                             </Row>

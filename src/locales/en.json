@@ -60,9 +60,12 @@
     "edit": "Edit",
     "delete": "Delete",
     "cancel": "Cancel",
+    "YesDelete": "yes delete",
     "status": "Status",
     "active": "Active",
     "Inactive": "Inactive",
+    "One_Time": "One_Time",
+    "Monthly": "Monthly",
     "Gender": "Gender",
     "Male": "Male",
     "Female": "Female",
@@ -88,6 +91,8 @@
     "city": "City",
     "Region": "Region",
     "No_data_modification_required_to_save_it": "No data modification is required to save it",
+    "message_delete": "Are you sure about the deletion?",
+    "back": "If you click Yes, you cannot undo it",
     "": ""
   },
   "required": {

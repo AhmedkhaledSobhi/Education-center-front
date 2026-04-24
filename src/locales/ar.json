@@ -59,10 +59,13 @@
     "view": "عرض",
     "edit": "تعديل",
     "delete": "حذف",
+    "YesDelete": "نعم احذف",
     "cancel": "إلغاء",
     "status": "الحالة",
     "active": "نشط",
     "Inactive": "غير نشط",
+    "One_Time": "مرة واحدة",
+    "Monthly": "شهري",
     "Gender": "النوع",
     "Male": "ذكر",
     "Female": "أنثى",
@@ -100,6 +103,8 @@
     "Region": "المحافظه",
 
     "No_data_modification_required_to_save_it": "لا توجد تعديل على البيانات لحفظها",
+    "message_delete": "هل أنت متأكد من عملية الحذف؟",
+    "back": "في حالة الضغط علي نعم لا يمكن التراجع",
     "": ""
   },
   "required": {

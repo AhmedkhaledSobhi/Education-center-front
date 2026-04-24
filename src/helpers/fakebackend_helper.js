@@ -35,13 +35,25 @@ export const editAccountInformation = (data) =>{
 
 // _____________________________________________
 
-export const createRoom = (data) => {
-  api.create(url.ROOM, data)
-}
+// Room
+export const createRoom = (data) => api.create(url.ROOM, data)
 export const allRoom = (data) => api.get(url.ROOM, data);
+export const getRoom = (data) => api.get(`${url.ROOM}/${data.id}`);
+export const delete_Room = (data) => api.delete(`${url.DELETE_Room}/${data.id}`);
+export const update_Room = (data) =>{
+  const { id, ...rest } = data;
+  return api.update(`${url.UPDATE_ROOM}/${id}`, rest);
+} 
 
 // Course
 export const allCourse = (data) => api.get(url.COURSE, data);
+export const getCourse = (data) => api.get(`${url.COURSE}/${data.id}`);
+export const create_Course = (data) => api.create(url.CREATE_COURSE, data);
+export const update_Course = (data) =>{
+  const { id, ...rest } = data;
+  return api.update(`${url.UPDATE_COURSE}/${id}`, rest);
+} 
+export const delete_Course = (data) => api.delete(`${url.DELETE_COURSE}/${data.id}`);
 
 // upload-file
 export const uploadFiles = (data) => {

@@ -1,27 +1,31 @@
-import React, { useState } from 'react'
-import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
+import * as Yup from "yup";
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
+import { delete_Room, getRoom, update_Room } from '../../../helpers/fakebackend_helper';
+import { toast } from 'react-toastify';
 import Alert from '../../../Components/Common/Alert';
 import { ErrorMessage, Formik } from 'formik';
-import * as Yup from "yup";
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
-import { useNavigate } from 'react-router-dom';
 import Select from "react-select";
 import { getBranch, getScreen, getStatus, getType, getWhiteboard } from '../../../helpers/dataLocal';
 import ComponentLoader from '../../../Components/Common/ComponentLoader';
-import { createRoom } from '../../../helpers/fakebackend_helper';
-import { toast } from 'react-toastify';
+import DeleteModal from '../../../Components/Common/DeleteModal';
 
-export default function AddSection() {
+export default function PreviewSection() {
   const { t, i18n } = useTranslation();
-  document.title = `${t("common.add")} ${t("section.Section")}`;
   const nav = useNavigate();
-
+  const {id} = useParams();
+  const location = useLocation();
+  const [disableEdit, setDisableEdit] = useState(
+    location?.state?.edit
+  );
+  document.title = `${disableEdit?t("common.view") : t("common.edit")} ${t("section.Section")}`;
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [loadsave, setLoadSave] = useState(false);
-  const loadingProfile= false
-
+  const [loadingProfile, setLoadingProfile] = useState(false);
   // ________________________________________________________________________________________
 
   const Whiteboard = getWhiteboard();
@@ -40,7 +44,6 @@ export default function AddSection() {
     type: type?.[0],
     Description: "",
   });
-
   const validationSchema = Yup.object({
     name: Yup.string().required(`${t("section.name")} ${t("common.required")}`),
     NumberStudents: Yup.number().required(`${t("section.Number_students")} ${t("common.required")}`),
@@ -55,13 +58,14 @@ export default function AddSection() {
       setLoadSave(true)
       await validationSchema.validate(values, { abortEarly: false });
       const payload = {
+        id: id,
         name: values?.name || "",
         type: values?.type?.value?.toUpperCase() || "", // ONLINE / OFFLINE
         capacity: values?.NumberStudents ? parseInt(values.NumberStudents, 10) : 0,
         location: values?.Branch?.value || "",
         isActive: values?.status?.value === "active", // boolean
       };
-      createRoom(payload).then((res) => {        
+      update_Room(payload).then((res) => {
         if (res && res.status) {
           toast.success(res?.message, {
             position: "top-center",
@@ -80,7 +84,7 @@ export default function AddSection() {
           });
           setLoadSave(false)
         }
-      });
+      })
     } 
     catch(error){
       if (error.name === "ValidationError") {
@@ -92,9 +96,86 @@ export default function AddSection() {
       return;
     }
   };
+  // ________________________________________________________________________________________
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const onClickDelete = (id) => {
+    setDeleteModal(true);
+  };
+  const handleDeleteTicket = async () => {
+    const data = { id: id };
+    try {
+      const res = await delete_Room(data);
+      if (res && res.status) {
+        toast.success(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+
+        setDeleteModal(false);
+        nav("/section");
+      } else {
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+      }
+    } catch (error) {
+      toast.error("An error occurred while deleting the branch", {
+        position: "top-center",
+        hideProgressBar: false,
+        autoClose: 3000,
+        progress: undefined,
+        toastId: "",
+      });
+    }
+  }
+  // ________________________________________________________________________________________
+  const getData= ()=>{    
+    setLoadingProfile(true);
+    getRoom({id}).then((res) => {
+      if (res && res.status) {
+        console.log("ahmed res", res);
+        
+        setInitialValues({
+          name: res?.data?.name,
+          NumberStudents: res?.data?.capacity?.toString(),
+          Whiteboard: Whiteboard?.[0],
+          Screen: Screen?.[0],
+          Branch: Branch?.[0],
+          status: Status?.[0],
+          type: type?.find((option) => option?.value === res?.data?.type) || "",
+          Description: "",
+        })
+        setLoadingProfile(false);
+       } else{
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          progress: undefined,
+          toastId: "",
+        });
+        setLoadingProfile(false);
+      }
+    });
+  };
+  useEffect(() => {
+    getData();
+  }, [id]);
 
   return (
     <React.Fragment>
+      <DeleteModal
+        show={deleteModal}
+        onCloseClick={() => setDeleteModal(false)}
+        onDeleteClick={handleDeleteTicket}
+      />
       <div className="page-content">
         <Container fluid>
           <BreadCrumb
@@ -102,7 +183,7 @@ export default function AddSection() {
             subTitle={t("LayoutMenuData.Setting")}
             pageTitle={t("section.Section")}
             pageTitleLink={"/section"}
-            subPageTitle={`${t("common.add")} ${t("section.Section")}`}
+            subPageTitle={`${disableEdit?t("common.view") : t("common.edit")} ${t("section.Section")}`}
           />
           <Row>
             <Col xxl={12}>
@@ -144,7 +225,11 @@ export default function AddSection() {
                     }}
                   >
                     <TopPageButttons
-                      PageTittle={`${t("common.add")} ${t("section.Section")}`}
+                      edit={true}
+                      disableEdit={disableEdit}
+                      setDisableEdit={setDisableEdit}
+                      deleteButton={()=> onClickDelete(id)}
+                      PageTittle={`${disableEdit?t("common.view") : t("common.edit")} ${t("section.Section")}`}
                       handleSave={() => handleSaveNew(values)}
                       loadsave={loadsave}
                       close={() => {nav("/section")}}
@@ -181,6 +266,7 @@ export default function AddSection() {
                                     }
                                     value={values?.name}
                                     onBlur={handleBlur}
+                                    disabled={disableEdit}
                                   />
                                   {touched?.name && errors?.name && (
                                     <ErrorMessage
@@ -213,6 +299,7 @@ export default function AddSection() {
                                     value={values?.NumberStudents}
                                     onBlur={handleBlur}
                                     onWheel={(e) => e.target.blur()} // disables scroll increment
+                                    disabled={disableEdit}
                                   />
                                   {touched?.NumberStudents && errors?.NumberStudents && (
                                      <ErrorMessage
@@ -271,6 +358,7 @@ export default function AddSection() {
                                     onBlur={() => {
                                       setFieldTouched("Whiteboard", true);
                                     }}
+                                    isDisabled={disableEdit}
                                   />
                                   {touched?.Whiteboard && errors?.Whiteboard && (
                                     <ErrorMessage
@@ -329,6 +417,7 @@ export default function AddSection() {
                                     onBlur={() => {
                                       setFieldTouched("Screen", true);
                                     }}
+                                    isDisabled={disableEdit}
                                   />
                                   {touched?.Screen && errors?.Screen && (
                                     <ErrorMessage
@@ -387,6 +476,7 @@ export default function AddSection() {
                                     onBlur={() => {
                                       setFieldTouched("Branch", true);
                                     }}
+                                    isDisabled={disableEdit}
                                   />
                                   {touched?.Branch && errors?.Branch && (
                                     <ErrorMessage
@@ -445,6 +535,7 @@ export default function AddSection() {
                                     onBlur={() => {
                                       setFieldTouched("status", true);
                                     }}
+                                    isDisabled={disableEdit}
                                   />
                                   {touched?.status && errors?.status && (
                                     <ErrorMessage
@@ -503,6 +594,7 @@ export default function AddSection() {
                                     onBlur={() => {
                                       setFieldTouched("type", true);
                                     }}
+                                    isDisabled={disableEdit}
                                   />
                                   {touched?.type && errors?.type && (
                                     <ErrorMessage
@@ -533,6 +625,7 @@ export default function AddSection() {
                                     }
                                     value={values?.Description}
                                     onBlur={handleBlur}
+                                    disabled={disableEdit}
                                   />
                                   {touched?.Description && errors?.Description && (
                                     <div style={{ color: "red" }}>

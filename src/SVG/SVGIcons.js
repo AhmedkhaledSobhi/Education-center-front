@@ -74,7 +74,8 @@ import Profile from "./Profile.svg";
 import Point from "./Point.svg";
 import UpgradesSubscriptions from "./UpgradesSubscriptions.svg";
 import Help from "./Help.svg";
-import logoSm from "./logoSm.svg"
+import logoSm from "./logoSm.svg";
+import Delete from "./Delete.svg";
 
 const MySVG = {
   saveDraft,
@@ -151,6 +152,7 @@ const MySVG = {
   UpgradesSubscriptions,
   Help,
   logoSm,
+  Delete
 };
 
 export default MySVG;
