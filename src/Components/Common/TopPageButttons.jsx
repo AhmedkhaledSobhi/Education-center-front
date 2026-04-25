@@ -44,8 +44,6 @@ export default function TopPageButttons({
                     setDisableEdit(!disableEdit)
                   }}
                   styleImg={"brightness(0) invert(1)"}
-                  loading={loadsave}
-                  disabled={loadsave}
                 />
                 {deleteButton &&(
                   <ButtonComponent

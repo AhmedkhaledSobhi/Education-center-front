@@ -7,6 +7,7 @@ import RegionData from "../../../localesJson/Region.json";
 import CityData from "../../../localesJson/City.json";
 import ButtonLoader from '../../../Components/Common/ButtonLoader';
 import { ErrorMessage } from 'formik';
+import ComponentLoader from '../../../Components/Common/ComponentLoader';
 
 export default function AddressComponents({
   values,
@@ -14,7 +15,8 @@ export default function AddressComponents({
   setFieldValue,
   touched,
   errors,
-  loadingProfile,
+  loadingProfile= false,
+  disableEdit = false,
 }) {
   const { t, i18n } = useTranslation();
   const country = CountryData?.countries
@@ -33,21 +35,7 @@ export default function AddressComponents({
         </CardHeader>
         <CardBody>
           {loadingProfile ?
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                height: 200,
-              }}
-            >
-              <ButtonLoader
-                color="#0d6efd"
-                width="70"
-                height="70"
-              />
-            </div>
+            <ComponentLoader/>
           : (
             <Row>
               {/* ----------- الدولة ----------- */}
@@ -85,10 +73,10 @@ export default function AddressComponents({
                     onChange={(selectedOption) => {
                       setFieldValue("countryCode", selectedOption?.id);
                       setFieldValue("region", null);
-                      setFieldValue("city", null);
+                      setFieldValue("cityCode", null);
                     }}
                     onBlur={handleBlur("countryCode")}
-                    isDisabled
+                    isDisabled={disableEdit}
                   />
                   {touched?.countryCode && errors?.countryCode && (
                     <ErrorMessage
@@ -129,14 +117,14 @@ export default function AddressComponents({
                     getOptionLabel={(option) => option?.name}
                     getOptionValue={(option) => option?.id}
                     onChange={(selectedOption) => {
-                      setFieldValue("region", selectedOption);
-                      setFieldValue("city", null);
+                      setFieldValue("region", selectedOption?.id);
+                      setFieldValue("cityCode", null);
                     }}
                     value={Regions?.find(
                       (option) => option?.id == (values?.region?.id ?? values?.region)
                     )}
                     onBlur={handleBlur("region")}
-                    isDisabled={values?.countryCode == undefined}
+                    isDisabled={disableEdit ||values?.countryCode == undefined}
                     isClearable
                   />
                   {touched?.region && errors?.region && (
@@ -179,18 +167,18 @@ export default function AddressComponents({
                     getOptionLabel={(option) => option?.name}
                     getOptionValue={(option) => option?.id}
                     onChange={(selectedOption) => {
-                      setFieldValue("cityCode", selectedOption);
+                      setFieldValue("cityCode", selectedOption?.id);
                     }}
                     value={citys?.find(
-                      (option) => option?.id === (values?.city?.id ?? values?.city)
+                      (option) => option?.id === (values?.cityCode?.id ?? values?.cityCode)
                     )}
                     onBlur={handleBlur("cityCode")}
-                    isDisabled={!values?.countryCode || !values?.region}
+                    isDisabled={disableEdit || !values?.countryCode || !values?.region}
                     isClearable
                   />
-                  {touched?.city && errors?.city && (
+                  {touched?.cityCode && errors?.cityCode && (
                     <ErrorMessage
-                      name="city"
+                      name="cityCode"
                       component="div"
                       className="text-danger"
                     />
@@ -220,7 +208,7 @@ export default function AddressComponents({
                       )
                     }
                     onBlur={handleBlur}
-                    // disabled={disableEdit}
+                    disabled={disableEdit}
                     value={values?.AdditionalAddress}
                   />
                 </FormGroup>

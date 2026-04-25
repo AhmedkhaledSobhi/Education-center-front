@@ -5,6 +5,10 @@ const getStatus = () => [
   {name: i18n.t("common.active") , id: 0, value:"active"},
   {name: i18n.t("common.Inactive") , id: 1, value:"Inactive"},
 ];
+const getStatus2 = () => [
+  {name: i18n.t("common.active") , id: true, value:"active"},
+  {name: i18n.t("common.Inactive") , id: false, value:"Inactive"},
+];
 // ----------- نوع الدفع -----------
 const getPaymentType = () => [
   {name: i18n.t("common.One_Time") , id: 0, value:"ONE_TIME"},
@@ -75,6 +79,7 @@ const getWhiteboard = ()=> [
 export {
   getEducationalStages,
   getStatus,
+  getStatus2,
   getPaymentType,
   getGender,
   getSubjects,

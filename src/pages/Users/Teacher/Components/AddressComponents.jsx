@@ -72,7 +72,7 @@ export default function AddressComponents({
                     onChange={(selectedOption) => {
                       setFieldValue("countryCode", selectedOption?.id);
                       setFieldValue("region", null);
-                      setFieldValue("cityCode", null);
+                      setFieldValue("city", null);
                     }}
                     onBlur={handleBlur("countryCode")}
                     isDisabled={disableEdit}
@@ -116,8 +116,8 @@ export default function AddressComponents({
                     getOptionLabel={(option) => option?.name}
                     getOptionValue={(option) => option?.id}
                     onChange={(selectedOption) => {
-                      setFieldValue("region", selectedOption?.id);
-                      setFieldValue("cityCode", null);
+                      setFieldValue("region", selectedOption);
+                      setFieldValue("city", null);
                     }}
                     value={Regions?.find(
                       (option) => option?.id == (values?.region?.id ?? values?.region)
@@ -166,18 +166,18 @@ export default function AddressComponents({
                     getOptionLabel={(option) => option?.name}
                     getOptionValue={(option) => option?.id}
                     onChange={(selectedOption) => {
-                      setFieldValue("cityCode", selectedOption?.id);
+                      setFieldValue("cityCode", selectedOption);
                     }}
                     value={citys?.find(
-                      (option) => option?.id === (values?.cityCode?.id ?? values?.cityCode)
+                      (option) => option?.id === (values?.city?.id ?? values?.city)
                     )}
                     onBlur={handleBlur("cityCode")}
                     isDisabled={disableEdit || !values?.countryCode || !values?.region}
                     isClearable
                   />
-                  {touched?.cityCode && errors?.cityCode && (
+                  {touched?.city && errors?.city && (
                     <ErrorMessage
-                      name="cityCode"
+                      name="city"
                       component="div"
                       className="text-danger"
                     />

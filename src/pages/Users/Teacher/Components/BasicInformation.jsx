@@ -20,6 +20,7 @@ export default function BasicInformation({
   Subjects,
   Gender,
   Status,
+  language,
   disableEdit,
   loadingProfile,
 }) {
@@ -56,26 +57,52 @@ export default function BasicInformation({
                     {t("Teacher.teacher")}{" "}
                     <span className="text-danger">*</span>
                   </Label>
-                  <Input
-                    type="text"
-                    placeholder={`${t("common.enter")} ${t("Teacher.teacher")} ${t("common.placeholder")}`}
-                    title={t("Teacher.teacher")}
-                    name="name"
-                    id="name"
-                    onChange={(e) =>
-                      setFieldValue("name", e.target.value)
-                    }
-                    value={values?.name}
-                    onBlur={handleBlur}
-                    disabled={disableEdit}
-                  />
-                  {touched?.name && errors?.name && (
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className="text-danger"
-                    />
-                  )}
+                  <div className='d-flex gap-2'>
+                    <FormGroup>
+                      <Input
+                        type="text"
+                        placeholder={`${t("common.enter")} ${t("Teacher.teacher")} ${t("common.placeholder")}`}
+                        title={t("Teacher.teacher")}
+                        name="first_name"
+                        id="first_name"
+                        onChange={(e) =>
+                          setFieldValue("first_name", e.target.value)
+                        }
+                        value={values?.first_name}
+                        onBlur={handleBlur}
+                        disabled={disableEdit}
+                      />
+                      {touched?.first_name && errors?.first_name && (
+                        <ErrorMessage
+                          name="first_name"
+                          component="div"
+                          className="text-danger"
+                        />
+                      )}
+                    </FormGroup>
+                    <FormGroup>
+                      <Input
+                        type="text"
+                        placeholder={`${t("common.enter")} ${t("Teacher.teacher")} ${t("common.placeholder")}`}
+                        title={t("Teacher.teacher")}
+                        name="last_name"
+                        id="last_name"
+                        onChange={(e) =>
+                          setFieldValue("last_name", e.target.value)
+                        }
+                        value={values?.last_name}
+                        onBlur={handleBlur}
+                        disabled={disableEdit}
+                      />
+                      {touched?.last_name && errors?.last_name && (
+                        <ErrorMessage
+                          name="last_name"
+                          component="div"
+                          className="text-danger"
+                        />
+                      )}
+                    </FormGroup>
+                  </div>
                 </FormGroup>
               </Col>
 
@@ -383,6 +410,100 @@ export default function BasicInformation({
                 </FormGroup>
               </Col>
 
+              {/* ------ العمر ------ */}
+              <Col lg={4}>
+                <FormGroup>
+                  <Label
+                    htmlFor="age"
+                  >
+                    {t("Registers.age")}{" "}
+                    <span className="text-danger">*</span>
+                  </Label>
+                  <Input
+                    type="number"
+                    id="age"
+                    name="age"
+                    title={t("Registers.age")}
+                    placeholder={`${t("common.enter")} ${t("Registers.age")} ${t("common.placeholder")}`}
+                    onChange={(e) =>{
+                      const value = e.target.value.replace(/\D/g, "");
+                      setFieldValue("age", value)
+                    }}
+                    value={values?.age}
+                    onBlur={handleBlur}
+                    maxLength={2}
+                    onWheel={(e) => e.target.blur()}
+                    disabled={disableEdit}
+                  />
+                  {touched?.age && errors?.age && (
+                    <ErrorMessage
+                      name="age"
+                      component="div"
+                      className="text-danger"
+                    />
+                  )}
+                </FormGroup>
+              </Col>
+
+              {/* ------ اللغة ------ */}
+              <Col lg={4}>
+                <FormGroup>
+                  <Label
+                    htmlFor="language"
+                  >
+                    {t("common.language")}{" "}
+                    <span className="text-danger">*</span>
+                  </Label>
+                  <Select
+                    theme={(theme) => ({
+                      ...theme,
+                      colors: {
+                        ...theme.colors,
+                        primary25: "#BEC4C7",
+                        primary: "#283C47",
+                      },
+                      cursor: "default",
+                      ":active": {
+                        backgroundColor: "#BEC4C7",
+                      },
+                    })}
+                    menuPortalTarget={document.body}
+                    menuPosition="fixed"
+                    styles={{
+                      menuPortal: (base) => ({
+                        ...base,
+                        zIndex: 9999,
+                      }),
+                    }}
+                    id="language"
+                    name="language"
+                    placeholder={`${t("common.Select")} ${t("common.language")} ${t("common.placeholder")}`}    
+                    options={language}
+                    getOptionLabel={(option) => option?.name}
+                    getOptionValue={(option) => option?.id}
+                    value={
+                      language?.find((option)=>{
+                        return  option?.value === (values?.lang?.value ?? values?.lang)
+                      }) 
+                    } 
+                    onChange={(option) => {
+                      setFieldValue("lang", option?.value);
+                    }}
+                    onBlur={() => {
+                      setFieldTouched("lang", true);
+                    }}
+                    isDisabled={disableEdit}
+                  />
+                  {touched?.lang && errors?.lang && (
+                    <ErrorMessage
+                      name="language"
+                      component="div"
+                      className="text-danger"
+                    />
+                  )}
+                </FormGroup>
+              </Col>
+
               {/* ------ الحالة ------ */}
               <Col lg={4}>
                 <FormGroup>
@@ -421,7 +542,7 @@ export default function BasicInformation({
                     getOptionValue={(option) => option?.id}
                     value={
                       Status?.find((option)=>{
-                        return  option?.value === values?.status?.value
+                        return  option?.id === values?.status ?? values?.status?.id
                       }) 
                     } 
                     onChange={(option) => {
@@ -430,7 +551,7 @@ export default function BasicInformation({
                     onBlur={() => {
                       setFieldTouched("status", true);
                     }}
-                    isDisabled={disableEdit}
+                    isDisabled={true}
                   />
                   {touched?.status && errors?.status && (
                     <ErrorMessage

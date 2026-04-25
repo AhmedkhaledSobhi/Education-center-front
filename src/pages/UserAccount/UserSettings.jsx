@@ -56,7 +56,7 @@ export default function UserSettings() {
           name_en: "Egypt",
         },
         region: Profile?.regionId,
-        city: Profile?.cityCode,
+        cityCode: Profile?.cityCode,
         AdditionalAddress: Profile?.AdditionalAddress
       })
       setProfileData((prev) => {
@@ -74,23 +74,23 @@ export default function UserSettings() {
     first_name: Yup.string().required(`${t("Registers.first_Name")} ${t("common.required")}`),
     last_name: Yup.string().required(`${t("Registers.last_Name")} ${t("common.required")}`),
     Center_name: Yup.string().required(`${t("AccountSettings.Center_Name")} ${t("common.required")}`),
-
+    countryCode: Yup.string().required(`${t("common.country")} ${t("common.required")}`),
+    region: Yup.number().required(`${t("common.Region")} ${t("common.required")}`),
+    cityCode: Yup.string().required(`${t("common.city")} ${t("common.required")}`),
   })
 
   const handleSaveNew = async (values, action) => {
     try {
-      const formData = new FormData();
       await validationSchema.validate(values, { abortEarly: false });
       setLoadSave(true)
-      
       const changedValues = getChangedValues(values, initialValues);
-      const {city, photo, id, ...rest } = changedValues;
+      const {photo, id, ...rest } = changedValues;
 
       const params = {
         ...rest,
         countryCode: values?.countryCode?.id ?? "65",
-        region: rest?.region ? rest?.region?.id : undefined,
-        cityCode: rest?.cityCode? rest?.cityCode?.id : undefined,
+        region: values?.region?.id ?? values?.region,
+        cityCode: values?.cityCode?.id ?? values?.cityCode,
         age: rest?.age ? Number(rest.age) : undefined,
       }
 

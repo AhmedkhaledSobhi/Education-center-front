@@ -35,6 +35,15 @@ export const editAccountInformation = (data) =>{
 
 // _____________________________________________
 
+// Teacher
+export const getTeacher = (data) => api.get(url.PROFILES, data);
+export const editAccountTeacher = (data) =>{  
+  const { id, ...rest } = data;
+  return api.update(`${url.EDIT_ACCOUNT_INFORMATION}${id}`, 
+    rest,
+  );
+}
+
 // Room
 export const createRoom = (data) => api.create(url.ROOM, data)
 export const allRoom = (data) => api.get(url.ROOM, data);

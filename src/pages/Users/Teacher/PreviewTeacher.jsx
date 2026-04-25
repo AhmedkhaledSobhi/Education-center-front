@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card, CardBody, CardHeader, Col, Container, FormGroup, Input, Label, Row } from 'reactstrap';
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import { useTranslation } from 'react-i18next';
-import { getEducationalStages, getGender, getStatus } from '../../../helpers/dataLocal';
+import { getEducationalStages, getGender, getLanguage, getStatus, getStatus2 } from '../../../helpers/dataLocal';
 import { useGetAllCourse } from '../../../helpers/getAllApiSelect';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import * as Yup from "yup";
@@ -10,10 +10,11 @@ import { ErrorMessage, Formik } from 'formik';
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import BasicInformation from './Components/BasicInformation';
 import Alert from '../../../Components/Common/Alert';
-import { getCourse, profile } from '../../../helpers/fakebackend_helper';
+import { editAccountTeacher, getCourse, getTeacher, uploadFiles } from '../../../helpers/fakebackend_helper';
 import { toast } from 'react-toastify';
 import AddressComponents from '../../../Components/Common/AddressComponents';
 import CommentsComponents from '../../../Components/Common/CommentsComponents';
+import { getChangedValues, NoChanges } from '../../../helpers';
 
 export default function PreviewTeacher() {
   const { t, i18n } = useTranslation();
@@ -37,7 +38,8 @@ export default function PreviewTeacher() {
     LoadingCourse,
   };
   const Gender = getGender();
-  const Status = getStatus();
+  const Status = getStatus2();
+  const language = getLanguage();
   // ________________________________________________________________________________________
 
   const [initialValues, setInitialValues] = useState({
@@ -48,6 +50,7 @@ export default function PreviewTeacher() {
     email: "",
     Gender: Gender?.[0],
     status: Status?.[0],
+    lang: language?.[0],
     country: { 
       id: "65", 
       name: "Egypt", 
@@ -55,32 +58,83 @@ export default function PreviewTeacher() {
       name_en: "Egypt",
     },
     region: "",
-    city: "",
+    cityCode: "",
     AdditionalAddress: "",
     comments: "",
   });
   // ________________________________________________________________________________________
 
   const validationSchema = Yup.object({
-    name: Yup.string().required(`${t("Teacher.teacher")} ${t("common.required")}`),
-    EducationalStages: Yup.array().min(1, `${t("Teacher.Educational_Stages")} ${t("common.required")}`),
-    NameSubject: Yup.object().required(`${t("Teacher.Name_Subject")} ${t("common.required")}`),
+    first_name: Yup.string().required(`${t("Teacher.teacher")} ${t("common.required")}`),
+    last_name: Yup.string().required(`${t("Teacher.teacher")} ${t("common.required")}`),
     phone: Yup.string().required(`${t("Teacher.phoneNumber")} ${t("common.required")}`),
     email: Yup.string().email(t("required.EmailIncorrect")).matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/,t("Registers.EmailIncorrect")).required(t("Registers.EmailRequired")),
-    Gender: Yup.object().required(`${t("common.Gender")} ${t("common.required")}`),
-    status: Yup.object().required(`${t("common.status")} ${t("common.required")}`),
-    country: Yup.object().required(`${t("common.country")} ${t("common.required")}`),
-    region: Yup.object().required(`${t("common.Region")} ${t("common.required")}`),
-    city: Yup.object().required(`${t("common.city")} ${t("common.required")}`),
+    countryCode: Yup.string().required(`${t("common.country")} ${t("common.required")}`),
+    region: Yup.number().required(`${t("common.Region")} ${t("common.required")}`),
+    cityCode: Yup.string().required(`${t("common.city")} ${t("common.required")}`),
+    // Gender: Yup.object().required(`${t("common.Gender")} ${t("common.required")}`),
+    // status: Yup.object().required(`${t("common.status")} ${t("common.required")}`),
   });
   // ________________________________________________________________________________________
 
   const handleSaveNew = async (values, action) =>{
     try {
+
       setLoadSave(true)
       await validationSchema.validate(values, { abortEarly: false });
 
-      setLoadSave(false)
+      const changedValues = getChangedValues(values, initialValues);
+      const {photo, role, Gender, EducationalStages, NameSubject,  ...rest } = changedValues;
+      const params = {
+        ...rest,
+        id: id,
+        countryCode: values?.countryCode?.id ?? "65",
+        region: values?.region?.id ?? values?.region,
+        cityCode: values?.cityCode?.id ?? values?.cityCode,
+        age: rest?.age ? Number(rest.age) : undefined,
+      }
+      const payload = Object.fromEntries(
+        Object.entries(params).filter(
+          ([_, value]) => value !== undefined && value !== null
+        )
+      );
+
+      if (values?.photo && values.photo !== initialValues.photo) {
+        const file = values.photo; // لازم يكون File مش FileList
+        const uploadRes = await uploadFiles(file?.[0]);   
+        payload.image_path = uploadRes?.url;
+      }
+      // مفيش أي تعديل تم
+      if (NoChanges(values, initialValues)) {
+        toast.error(t("common.No_data_modification_required_to_save_it"),{
+          position: "top-center",
+          hideProgressBar: false,
+          progress: undefined,
+          toastId: "",
+        });
+        setLoadSave(false);
+        return;
+      }
+      editAccountTeacher(payload).then((res) => {
+        if (res && res.status) {
+          toast.success(res?.message, {
+            position: "top-center",
+            hideProgressBar: false,
+            progress: undefined,
+            toastId: "",
+          });
+          setLoadSave(false)
+          nav("/teacher");
+        } else{
+          toast.error(res?.message, {
+            position: "top-center",
+            hideProgressBar: false,
+            progress: undefined,
+            toastId: "",
+          });
+          setLoadSave(false)
+        }
+      })
     } catch (error) {
       if (error.name === "ValidationError") {
         setLoadSave(false)
@@ -93,24 +147,25 @@ export default function PreviewTeacher() {
   // ________________________________________________________________________________________
   const getData= ()=>{    
     setLoadingProfile(true);
-    profile({id:id}).then((res) => {
+    getTeacher({id:id}).then((res) => {
       if (res && !res.status) {
-        console.log("ahmed res", res);
         const phone = res?.phone?.replace(/^\(\+20\)/, "");
-
         setInitialValues({
-          name: res?.first_name + " " + res?.last_name || "",
+          first_name: res?.first_name || "",
+          last_name:  res?.last_name || "",
+          status: res?.isVerified,
+          age: res?.age,
+          lang: res?.lang,
           phone: phone,
           email: res?.email,
-          countryCode: res?.countryCode ,
-          // ?? { 
-          //   id: "65", 
-          //   name: "Egypt", 
-          //   name_ar: "مصر",
-          //   name_en: "Egypt",
-          // },
+          countryCode: res?.countryCode ?? { 
+            id: "65", 
+            name: "Egypt", 
+            name_ar: "مصر",
+            name_en: "Egypt",
+          },
           region: res?.regionId,
-          city: res?.cityCode,
+          cityCode: res?.cityCode,
           AdditionalAddress: res?.AdditionalAddress
         })
         setLoadingProfile(false);
@@ -202,6 +257,7 @@ export default function PreviewTeacher() {
                       Subjects={Subjects}
                       Gender={Gender}
                       Status={Status}
+                      language={language}
                       disableEdit={disableEdit}
                       loadingProfile={loadingProfile}
                     />
