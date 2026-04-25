@@ -103,6 +103,12 @@ export default function Subjects() {
             statusText = t("common.Inactive");
             className = "badge bg-danger text-white";
           } 
+          else{
+            statusText = t("common.active");
+            className = "badge bg-success text-white";
+            // statusText = t("common.Inactive");
+            // className = "badge bg-danger text-white";
+          }
           return (
             <span className={className} 
               style={{ 

@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import BasicInformation from './Components/BasicInformation';
 import { getEducationalStages, getGender, getStatus, getSubjects } from '../../../helpers/dataLocal';
 import AddressComponents from '../../../Components/Common/AddressComponents';
+import { useGetAllCourse } from '../../../helpers/getAllApiSelect';
 
 export default function AddTeacher() {
   const { t, i18n } = useTranslation();
@@ -20,9 +21,13 @@ export default function AddTeacher() {
   const [loadsave, setLoadSave] = useState(false);
 
   // ________________________________________________________________________________________
-
+  const { data: Courses = [], isLoading: LoadingCourse } = useGetAllCourse();
+  
   const EducationalStages = getEducationalStages();
-  const Subjects = getSubjects();
+  const Subjects = {
+    Courses: Courses?.data,
+    LoadingCourse,
+  };
   const Gender = getGender();
   const Status = getStatus();
 
@@ -31,7 +36,7 @@ export default function AddTeacher() {
   const [initialValues, setInitialValues] = useState({
     name: "",
     EducationalStages: [],
-    NameSubject: Subjects?.[0],
+    NameSubject: Subjects?.Courses?.[0],
     phone: "",
     email: "",
     Gender: Gender?.[0],

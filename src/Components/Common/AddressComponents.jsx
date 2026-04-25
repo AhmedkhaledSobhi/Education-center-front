@@ -14,12 +14,15 @@ export default function AddressComponents({
   setFieldValue,
   touched,
   errors,
-  loadingProfile,
+  loadingProfile= false,
+  disableEdit = false,
 }) {
   const { t, i18n } = useTranslation();
   const country = CountryData?.countries
-  const Regions = RegionData?.regions.filter((region)=> region?.country_id === (values?.country?.id ?? values?.country) )
-  const citys = CityData?.cities.filter((city)=> city?.country_id === (values?.country?.id ?? values?.country) && city?.region_id === values?.region?.id)
+  const Regions = RegionData?.regions.filter((region)=> region?.country_id === (values?.countryCode?.id ?? values?.countryCode) )
+  const citys = CityData?.cities.filter((city)=> {
+    return Number(city?.country_id) === Number(values?.countryCode?.id ?? values?.countryCode) && Number(city?.region_id) === Number(values?.region?.id ?? values?.region) 
+  })
 
   return (
     <React.Fragment>
@@ -38,7 +41,7 @@ export default function AddressComponents({
               <Col lg={4}>
                 <FormGroup>
                   <Label
-                    htmlFor="country"
+                    htmlFor="countryCode"
                   >
                     {t("AccountSettings.country")}
                     <span className="text-danger">*</span>
@@ -56,34 +59,33 @@ export default function AddressComponents({
                         backgroundColor: "#BEC4C7",
                       },
                     })}
-                    name="country"
+                    name="countryCode"
                     className="js-example-basic-single w-100"
-                    id="country"
+                    id="countryCode"
                     placeholder={`${t("common.Select")} ${t("AccountSettings.country")} ${t("common.placeholder")}`}
                     options={country}
                     value={country?.find(
-                      (option) => option?.id == values?.country?.id
+                      (option) => option?.id === (values?.countryCode?.id ?? values?.countryCode) 
                     )}
                     getOptionLabel={(option) => option?.name}
                     getOptionValue={(option) => option?.id}
                     onChange={(selectedOption) => {
-                      setFieldValue("country", selectedOption?.id);
+                      setFieldValue("countryCode", selectedOption?.id);
                       setFieldValue("region", null);
                       setFieldValue("city", null);
                     }}
-                    onBlur={handleBlur("country")}
-                    isDisabled
+                    onBlur={handleBlur("countryCode")}
+                    isDisabled={disableEdit}
                   />
-                  {touched?.country && errors?.country && (
+                  {touched?.countryCode && errors?.countryCode && (
                     <ErrorMessage
-                      name="country"
+                      name="countryCode"
                       component="div"
                       className="text-danger"
                     />
                   )}
                 </FormGroup>
               </Col>
-
               {/* ----------- المحافظه ----------- */}
               <Col lg={4}>
                 <FormGroup>
@@ -118,10 +120,10 @@ export default function AddressComponents({
                       setFieldValue("city", null);
                     }}
                     value={Regions?.find(
-                      (option) => option?.id === values?.region?.id
+                      (option) => option?.id == (values?.region?.id ?? values?.region)
                     )}
                     onBlur={handleBlur("region")}
-                    isDisabled={values?.country== undefined}
+                    isDisabled={disableEdit ||values?.countryCode == undefined}
                     isClearable
                   />
                   {touched?.region && errors?.region && (
@@ -164,13 +166,13 @@ export default function AddressComponents({
                     getOptionLabel={(option) => option?.name}
                     getOptionValue={(option) => option?.id}
                     onChange={(selectedOption) => {
-                      setFieldValue("city", selectedOption);
+                      setFieldValue("cityCode", selectedOption);
                     }}
                     value={citys?.find(
-                      (option) => option?.id == values?.city
+                      (option) => option?.id === (values?.city?.id ?? values?.city)
                     )}
-                    onBlur={handleBlur("city")}
-                    isDisabled={!values?.country || !values?.region}
+                    onBlur={handleBlur("cityCode")}
+                    isDisabled={disableEdit || !values?.countryCode || !values?.region}
                     isClearable
                   />
                   {touched?.city && errors?.city && (
@@ -205,6 +207,7 @@ export default function AddressComponents({
                       )
                     }
                     onBlur={handleBlur}
+                    disabled={disableEdit}
                     value={values?.AdditionalAddress}
                   />
                 </FormGroup>

@@ -145,6 +145,7 @@
   "Teacher": {
     "Teachers": "Teachers",
     "AddTeacher": "Add Teacher",
+    "Teacher2": "teacher",
     "AddStudent": "Add Student",
     "name": "Name",
     "email": "Email",

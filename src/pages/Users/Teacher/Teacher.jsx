@@ -89,7 +89,17 @@ export default function Teacher() {
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-end" >
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      nav("/PreviewTeacher/" + cellProps?.row?.original?.id, {
+                        state: {
+                          detail: cellProps?.row?.original,
+                          edit: true,
+                        },
+                      })
+                    }}
+                  >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`mdi mdi-eye-circle-outline  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>
                       <div>{t("common.view")}</div>
@@ -97,7 +107,17 @@ export default function Teacher() {
                   </DropdownItem>
                 </li>
                 <li>
-                  <DropdownItem>
+                  <DropdownItem
+                    onClick={(e) => {
+                      e?.stopPropagation();
+                      nav("/PreviewTeacher/" + cellProps?.row?.original?.id, {
+                        state: {
+                          detail: cellProps?.row?.original,
+                          edit: true,
+                        },
+                      })
+                    }}
+                  >
                     <div className="d-flex justify-content-start align-items-center">
                       <i className={`bx bxs-edit  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
                       <div>{t("common.edit")}</div>
@@ -189,7 +209,7 @@ export default function Teacher() {
                           per_page={per_page}
                           setPer_page={setPer_page}
                           setPage={setPage}
-                          previewItem={"/teacher"}
+                          previewItem={"PreviewTeacher"}
                         /> 
                       )           
                     }  

@@ -17,8 +17,8 @@
     animation-duration: .3s;
     animation-fill-mode: both;
     position: absolute;
-    z-index: 1000;
-
+    // z-index: 1000;
+    z-index: 9999 !important;
     &.dropdown-megamenu {
         padding: 20px;
         left: 0 !important;

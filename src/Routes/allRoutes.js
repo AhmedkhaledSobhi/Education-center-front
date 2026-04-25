@@ -18,6 +18,7 @@ import Subjects from "../pages/Setting/Subjects/Subjects";
 import AddSubject from "../pages/Setting/Subjects/AddSubject";
 import PreviewSubject from "../pages/Setting/Subjects/PreviewSubject";
 import PreviewSection from "../pages/Setting/Section/PreviewSection";
+import PreviewTeacher from "../pages/Users/Teacher/PreviewTeacher";
 
 const publicRoutes = [
   { path: "/login", component: <Login /> },
@@ -42,6 +43,7 @@ const authProtectedRoutes = [
     moduleName: "home",
     component: <Navigate to="/Home" />,
   },
+  // Teachers
   {
     path: "/teacher",
     component: <Teacher/>,
@@ -53,6 +55,12 @@ const authProtectedRoutes = [
     moduleName: "Teacher"
   },
   {
+    path: "/PreviewTeacher/:id",
+    component: <PreviewTeacher/>,
+    moduleName: "Teacher"
+  },
+  // Students
+  {
     path: "/student",
     component: <Student/>,
     moduleName: "Student"
@@ -62,11 +70,13 @@ const authProtectedRoutes = [
     component: <AddStudent/>,
     moduleName: "Teacher"
   },
+  // Assistant
   {
     path: "/assistant",
     component: <Assistant/>,
     moduleName: "Assistant"
   },
+  // Sections
   {
     path: "/section",
     component: <Section/>,
@@ -82,6 +92,7 @@ const authProtectedRoutes = [
     component: <PreviewSection/>,
     moduleName: "Section"
   },
+  // Branches
   {
     path: "/branches",
     component: <Branches/>,
@@ -92,6 +103,7 @@ const authProtectedRoutes = [
     component: <AddBranche/>,
     moduleName: "Branches"
   },
+  // Subjects
   {
     path: "/subjects",
     component: <Subjects/>,
