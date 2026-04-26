@@ -9,6 +9,7 @@ export const ALLUSERS = `auth/users`;
 
 // Edit Account Information
 export const EDIT_ACCOUNT_INFORMATION = `user/`;
+export const DELETE_TEACHER = `user/`;
 
 // Room
 export const ROOM = `room`;

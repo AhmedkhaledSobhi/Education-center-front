@@ -101,7 +101,9 @@
     "country": "الدولة",
     "city": "المدينة",
     "Region": "المحافظه",
-
+    "InsertProductImage": "قم بإدراج الصورة",
+    "imagesize": "حجم الصورة يجب أن يكون (Px250*250)",
+    "InsertDocumentsHere": "قم بإدراج المستندات هنا",
     "No_data_modification_required_to_save_it": "لا توجد تعديل على البيانات لحفظها",
     "message_delete": "هل أنت متأكد من عملية الحذف؟",
     "back": "في حالة الضغط علي نعم لا يمكن التراجع",

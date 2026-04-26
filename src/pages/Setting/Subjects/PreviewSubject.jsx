@@ -108,10 +108,8 @@ export default function PreviewSubject() {
   };
   const handleDeleteTicket = async () => {
     const data = { id: id };
-
     try {
       const res = await delete_Course(data);
-
       if (res && res.status) {
         toast.success(res?.message, {
           position: "top-center",
@@ -120,7 +118,6 @@ export default function PreviewSubject() {
           progress: undefined,
           toastId: "",
         });
-
         setDeleteModal(false);
         nav("/subjects");
       } else {

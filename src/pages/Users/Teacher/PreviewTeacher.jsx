@@ -10,12 +10,13 @@ import { ErrorMessage, Formik } from 'formik';
 import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import BasicInformation from './Components/BasicInformation';
 import Alert from '../../../Components/Common/Alert';
-import { editAccountTeacher, getCourse, getTeacher, uploadFiles } from '../../../helpers/fakebackend_helper';
+import { delete_Teacher, editAccountTeacher, getCourse, getTeacher, uploadFiles } from '../../../helpers/fakebackend_helper';
 import { toast } from 'react-toastify';
 import AddressComponents from '../../../Components/Common/AddressComponents';
 import CommentsComponents from '../../../Components/Common/CommentsComponents';
 import { getChangedValues, NoChanges } from '../../../helpers';
-
+import ImageComponent from '../../../Components/Common/ImageComponent';
+import DeleteModal from '../../../Components/Common/DeleteModal';
 export default function PreviewTeacher() {
   const { t, i18n } = useTranslation();
   const nav = useNavigate();
@@ -28,6 +29,7 @@ export default function PreviewTeacher() {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [loadsave, setLoadSave] = useState(false);
   const [loadingProfile, setLoadingProfile] = useState(false);
+  const [profileData, setProfileData] = useState();
   
   // ________________________________________________________________________________________
   const { data: Courses = [], isLoading: LoadingCourse } = useGetAllCourse();
@@ -79,12 +81,10 @@ export default function PreviewTeacher() {
 
   const handleSaveNew = async (values, action) =>{
     try {
-
       setLoadSave(true)
       await validationSchema.validate(values, { abortEarly: false });
-
       const changedValues = getChangedValues(values, initialValues);
-      const {photo, role, Gender, EducationalStages, NameSubject,  ...rest } = changedValues;
+      const {avatar, comments, role, Gender, EducationalStages, NameSubject,  ...rest } = changedValues;
       const params = {
         ...rest,
         id: id,
@@ -99,10 +99,14 @@ export default function PreviewTeacher() {
         )
       );
 
-      if (values?.photo && values.photo !== initialValues.photo) {
-        const file = values.photo; // لازم يكون File مش FileList
-        const uploadRes = await uploadFiles(file?.[0]);   
-        payload.image_path = uploadRes?.url;
+      if (values?.avatar && values.avatar !== initialValues.avatar) {
+      const file = values.avatar; // لازم يكون File مش FileList
+        const uploadRes = await uploadFiles(file);  
+        if(uploadRes?.url){
+          payload.image_path = uploadRes?.url;
+        }else{
+          setLoadSave(false);
+        }
       }
       // مفيش أي تعديل تم
       if (NoChanges(values, initialValues)) {
@@ -145,6 +149,45 @@ export default function PreviewTeacher() {
     }
   }
   // ________________________________________________________________________________________
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const onClickDelete = (id) => {
+    setDeleteModal(true);
+  };
+  const handleDeleteTicket = async () => {
+    const data = { id: id };
+    try {
+      const res = await delete_Teacher(data);
+      if (res && res.status) {
+        toast.success(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+        setDeleteModal(false);
+        nav("/teacher");
+      } else {
+        toast.error(res?.message, {
+          position: "top-center",
+          hideProgressBar: false,
+          autoClose: 3000,
+          progress: undefined,
+          toastId: "",
+        });
+      }
+    } catch (error) {
+      toast.error("An error occurred while deleting the branch", {
+        position: "top-center",
+        hideProgressBar: false,
+        autoClose: 3000,
+        progress: undefined,
+        toastId: "",
+      });
+    }
+  }
+  // ________________________________________________________________________________________
   const getData= ()=>{    
     setLoadingProfile(true);
     getTeacher({id:id}).then((res) => {
@@ -163,6 +206,12 @@ export default function PreviewTeacher() {
           cityCode: res?.data?.cityCode,
           AdditionalAddress: res?.data?.AdditionalAddress
         })
+        setProfileData((prev) => {
+          return {
+            id: res?.data?.id,
+            avatar: res?.data?.image_path != "null" ? `http://localhost:5173/api/${res?.data?.image_path}`: "",
+          };
+        });
         setLoadingProfile(false);
        } else{
         toast.error(res?.message, {
@@ -180,6 +229,11 @@ export default function PreviewTeacher() {
   }, [id]);
   return (
     <React.Fragment>
+      <DeleteModal
+        show={deleteModal}
+        onCloseClick={() => setDeleteModal(false)}
+        onDeleteClick={handleDeleteTicket}
+      />
       <div className="page-content">
         <Container fluid>
           <BreadCrumb
@@ -232,9 +286,11 @@ export default function PreviewTeacher() {
                       edit={true}
                       disableEdit={disableEdit}
                       setDisableEdit={setDisableEdit}
-                      // deleteButton={()=> onClickDelete(id)}
+                      deleteButton={()=> onClickDelete(id)}
+                      deleteSoon={true}
                       PageTittle={`${disableEdit?t("common.view"): t("common.edit")} ${t("Teacher.Teacher2")}`}
                       handleSave={() => handleSaveNew(values)}
+                      // handleSaveSoon={true}
                       loadsave={loadsave}
                       close={() => {nav("/teacher")}}
                       information={()=> setIsInfoOpen(!isInfoOpen)}
@@ -283,16 +339,12 @@ export default function PreviewTeacher() {
 
                       {/* ------ مرفقات ------ */}
                       <Col xxl={6}>
-                        <Card>
-                          <CardHeader>
-                            <div className="sub-title">
-                              {t("common.Attachments")}
-                            </div>
-                          </CardHeader>
-                          <CardBody>
-
-                          </CardBody>
-                        </Card>
+                        <ImageComponent 
+                          profileData={profileData}
+                          setFieldValue={setFieldValue}
+                          disableEdit={disableEdit}
+                          loadingProfile={loadingProfile}
+                        />
                       </Col>                
                     </Row> 
                   </form>

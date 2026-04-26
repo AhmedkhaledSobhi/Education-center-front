@@ -536,3 +536,16 @@ html[lang="en"] {
   cursor: pointer;
   margin-inline-start: 15px;
 }
+
+// ---------------------------------------------
+
+.upload-box {
+  padding: 15px;
+  border: 2px dashed rgba(13, 109, 253, 5) !important;
+  min-height: 280px;
+  max-height: 280px;
+
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}

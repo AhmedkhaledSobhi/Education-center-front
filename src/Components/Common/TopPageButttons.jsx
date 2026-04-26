@@ -6,16 +6,20 @@ import { useTranslation } from 'react-i18next';
 export default function TopPageButttons({
   PageTittle,
   handleSave,
+  handleSaveSoon,
   loadsave,
   handleSaveDraft,
+  handleSaveDraftSoon,
   loadsaveDraft,
   close,
   information,
+  informationSoon,
 
   edit = false,
   disableEdit,
   setDisableEdit,
   deleteButton,
+  deleteSoon,
 }) {
   const { t, i18n } = useTranslation();
 
@@ -52,6 +56,7 @@ export default function TopPageButttons({
                     onClick={deleteButton}
                     icon={"ri-delete-bin-5-line"}
                     style={{ color: "#D60000", borderColor: "#D60000", padding: "8px 18px" }}
+                    soon={deleteSoon}
                   />
                 )}
                 </>
@@ -66,6 +71,7 @@ export default function TopPageButttons({
                       styleImg={"brightness(0) invert(1)"}
                       loading={loadsave}
                       disabled={loadsave}
+                      soon={handleSaveSoon}
                     />
                   )}
         
@@ -82,6 +88,8 @@ export default function TopPageButttons({
                       loading={loadsaveDraft}
                       disabled={loadsave || loadsaveDraft}
                       colorLoading={"#00a598"}
+                      soon={handleSaveDraftSoon}
+
                     />
                   )}
                   {close && (
@@ -149,6 +157,7 @@ export default function TopPageButttons({
               nameBtn={""}
               styleImg={""}
               loading={""}
+              soon={informationSoon}
             />
           )}
         </div>

@@ -43,6 +43,7 @@ export const editAccountTeacher = (data) =>{
     rest,
   );
 }
+export const delete_Teacher = (data) => api.delete(`${url.DELETE_TEACHER}${data.id}`);
 
 // Room
 export const createRoom = (data) => api.create(url.ROOM, data)
