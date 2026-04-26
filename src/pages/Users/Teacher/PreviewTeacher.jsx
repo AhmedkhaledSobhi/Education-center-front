@@ -148,25 +148,20 @@ export default function PreviewTeacher() {
   const getData= ()=>{    
     setLoadingProfile(true);
     getTeacher({id:id}).then((res) => {
-      if (res && !res.status) {
-        const phone = res?.phone?.replace(/^\(\+20\)/, "");
+      if (res && res.status) {
+        const phone = res?.data?.phone?.replace(/^\(\+20\)/, "");
         setInitialValues({
-          first_name: res?.first_name || "",
-          last_name:  res?.last_name || "",
-          status: res?.isVerified,
-          age: res?.age,
-          lang: res?.lang,
+          first_name: res?.data?.first_name || "",
+          last_name:  res?.data?.last_name || "",
+          status: res?.data?.isVerified,
+          age: res?.data?.age,
+          lang: res?.data?.lang,
           phone: phone,
-          email: res?.email,
-          countryCode: res?.countryCode ?? { 
-            id: "65", 
-            name: "Egypt", 
-            name_ar: "مصر",
-            name_en: "Egypt",
-          },
-          region: res?.regionId,
-          cityCode: res?.cityCode,
-          AdditionalAddress: res?.AdditionalAddress
+          email: res?.data?.email,
+          countryCode: res?.data?.countryCode ?? "65",
+          region: res?.data?.regionId,
+          cityCode: res?.data?.cityCode,
+          AdditionalAddress: res?.data?.AdditionalAddress
         })
         setLoadingProfile(false);
        } else{

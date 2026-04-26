@@ -91,8 +91,8 @@ export default function Login() {
           const id = idUser;
           try {
             const response = await axios.get(`${BASE_URL}${PROFILES}`,{params : {id},});
-            localStorage.setItem("myInfo", JSON.stringify(response));
-            localStorage.setItem("loginType", JSON.stringify(response?.role));
+            localStorage.setItem("myInfo", JSON.stringify(response?.data));
+            localStorage.setItem("loginType", JSON.stringify(response?.data?.role));
             navigate("/Home")
           } catch (error) {
             console.error(error.response?.data || error.message);

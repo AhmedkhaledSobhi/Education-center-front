@@ -39,7 +39,7 @@ const ProfileDropdown = () => {
       if (user) {
         const response = await profile(data);
         if (response) {
-          setUserInfo(response);
+          setUserInfo(response?.data);
         }
       }
     } catch (error) {}

@@ -16,7 +16,7 @@ const useGetProfile = () => {
     queryFn: async () => {
       if (!userId) return null;
       const res = await profile({ id: userId });
-      return res ?? [];
+      return res?.data ?? [];
     },
     enabled: !!userId,
     staleTime: 5 * 60 * 1000,
