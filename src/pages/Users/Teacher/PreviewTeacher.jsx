@@ -53,7 +53,7 @@ export default function PreviewTeacher() {
     Gender: Gender?.[0],
     status: Status?.[0],
     lang: language?.[0],
-    country: { 
+    countryCode: { 
       id: "65", 
       name: "Egypt", 
       name_ar: "مصر",
@@ -67,15 +67,13 @@ export default function PreviewTeacher() {
   // ________________________________________________________________________________________
 
   const validationSchema = Yup.object({
-    first_name: Yup.string().required(`${t("Teacher.teacher")} ${t("common.required")}`),
-    last_name: Yup.string().required(`${t("Teacher.teacher")} ${t("common.required")}`),
+    first_name: Yup.string().required(`${t("common.first_name")} ${t("common.required")}`),
+    last_name: Yup.string().required(`${t("common.last_name")} ${t("common.required")}`),
     phone: Yup.string().required(`${t("Teacher.phoneNumber")} ${t("common.required")}`),
     email: Yup.string().email(t("required.EmailIncorrect")).matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/,t("Registers.EmailIncorrect")).required(t("Registers.EmailRequired")),
     countryCode: Yup.string().required(`${t("common.country")} ${t("common.required")}`),
     region: Yup.number().required(`${t("common.Region")} ${t("common.required")}`),
     cityCode: Yup.string().required(`${t("common.city")} ${t("common.required")}`),
-    // Gender: Yup.object().required(`${t("common.Gender")} ${t("common.required")}`),
-    // status: Yup.object().required(`${t("common.status")} ${t("common.required")}`),
   });
   // ________________________________________________________________________________________
 
@@ -188,7 +186,7 @@ export default function PreviewTeacher() {
     }
   }
   // ________________________________________________________________________________________
-  const getData= ()=>{    
+  const getData = ()=>{    
     setLoadingProfile(true);
     getTeacher({id:id}).then((res) => {
       if (res && res.status) {
@@ -209,7 +207,7 @@ export default function PreviewTeacher() {
         setProfileData((prev) => {
           return {
             id: res?.data?.id,
-            avatar: res?.data?.image_path != "null" ? `http://localhost:5173/api/${res?.data?.image_path}`: "",
+            avatar: res?.data?.image_path != null ? `http://localhost:5173/api/${res?.data?.image_path}`: "",
           };
         });
         setLoadingProfile(false);

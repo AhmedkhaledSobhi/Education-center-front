@@ -36,14 +36,36 @@ export const editAccountInformation = (data) =>{
 // _____________________________________________
 
 // Teacher
+export const createAccountTeacher = (data) =>{  
+  return api.create(`${url.REGISTER}`, data, {
+    "Content-Type": "application/json",
+  });
+};
 export const getTeacher = (data) => api.get(url.PROFILES, data);
 export const editAccountTeacher = (data) =>{  
   const { id, ...rest } = data;
   return api.update(`${url.EDIT_ACCOUNT_INFORMATION}${id}`, 
     rest,
   );
-}
+};
 export const delete_Teacher = (data) => api.delete(`${url.DELETE_TEACHER}${data.id}`);
+// _____________________________________________
+
+// Student
+export const createAccountStudent = (data) =>{  
+  return api.create(`${url.REGISTER}`, data, {
+    "Content-Type": "application/json",
+  });
+};
+export const getStudent = (data) => api.get(url.PROFILES, data);
+
+export const editAccountStudent = (data) =>{  
+  const { id, ...rest } = data;
+  return api.update(`${url.EDIT_ACCOUNT_INFORMATION}${id}`, 
+    rest,
+  );
+}
+// _____________________________________________
 
 // Room
 export const createRoom = (data) => api.create(url.ROOM, data)

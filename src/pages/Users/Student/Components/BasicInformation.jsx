@@ -7,6 +7,7 @@ import phoneCodeData from "../../../../localesJson/PhoneCode.json";
 import { ErrorMessage } from 'formik';
 
 export default function BasicInformation({
+  namePage,
   values,
   handleBlur,
   setFieldValue,
@@ -16,18 +17,17 @@ export default function BasicInformation({
   EducationalStages,
   Gender,
   Status,
+  language,
+  disableEdit,
+  loadingProfile,
+  seletedCountry,
+  setseletedCountry,
 }) {
   const { t, i18n } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const phoneCode = phoneCodeData ?.phoneCodes || [];
-  const [seletedCountry, setseletedCountry] = useState({
-    id: 251,
-    countryName: "Egypt",
-    code: "+20",
-  });
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-
-
+  const [show, setShow] = useState(false);
 
   // ________________________________________________________________________________________
 
@@ -51,25 +51,52 @@ export default function BasicInformation({
                   {t("Student.student")}{" "}
                   <span className="text-danger">*</span>
                 </Label>
-                <Input
-                  type="text"
-                  placeholder={`${t("common.enter")} ${t("Student.student")} ${t("common.placeholder")}`}
-                  title={t("Student.student")}
-                  name="name"
-                  id="name"
-                  onChange={(e) =>
-                    setFieldValue("name", e.target.value)
-                  }
-                  value={values?.name}
-                  onBlur={handleBlur}
-                />
-                {touched?.name && errors?.name && (
-                  <ErrorMessage
-                    name="name"
-                    component="div"
-                    className="text-danger"
-                  />
-                )}
+                <div className='d-flex gap-2'>
+                  <FormGroup>
+                    <Input
+                      type="text"
+                      placeholder={`${t("common.enter")} ${t("common.first_name")} ${t("common.placeholder")}`}
+                      title={t("common.first_name")}
+                      name="first_name"
+                      id="first_name"
+                      onChange={(e) =>
+                        setFieldValue("first_name", e.target.value)
+                      }
+                      value={values?.first_name}
+                      onBlur={handleBlur}
+                      disabled={disableEdit}
+                    />
+                    {touched?.first_name && errors?.first_name && (
+                      <ErrorMessage
+                        name="first_name"
+                        component="div"
+                        className="text-danger"
+                      />
+                    )}
+                  </FormGroup>
+                  <FormGroup>
+                    <Input
+                      type="text"
+                      placeholder={`${t("common.enter")} ${t("common.last_name")} ${t("common.placeholder")}`}
+                      title={t("common.last_name")}
+                      name="last_name"
+                      id="last_name"
+                      onChange={(e) =>
+                        setFieldValue("last_name", e.target.value)
+                      }
+                      value={values?.last_name}
+                      onBlur={handleBlur}
+                      disabled={disableEdit}
+                    />
+                    {touched?.last_name && errors?.last_name && (
+                      <ErrorMessage
+                        name="last_name"
+                        component="div"
+                        className="text-danger"
+                      />
+                    )}
+                  </FormGroup>
+                </div>
               </FormGroup>
             </Col>
 
@@ -121,7 +148,7 @@ export default function BasicInformation({
                     setFieldTouched("EducationalStages", true);
                   }}
                   // isMulti
-                  // isDisabled
+                  isDisabled={disableEdit}
                 />
                 {touched?.EducationalStages && errors?.EducationalStages && (
                   <ErrorMessage
@@ -150,7 +177,7 @@ export default function BasicInformation({
                 >
                   <DropdownToggle
                     as="button"
-                    // disabled
+                    disabled={disableEdit}
                     readOnly={true}
                     className={`btn btn-light border arrow-none input-btnleft ${
                       i18n.language === "ar"
@@ -174,10 +201,11 @@ export default function BasicInformation({
                     }
                     value={values?.phone}
                     onBlur={handleBlur}
+                    disabled={disableEdit}
                   />
                   <DropdownMenu
                     as="ul"
-                    // disabled
+                    disabled={disableEdit}
                     className={`list-unstyled w-25 dropdown-menu-list mb-0 input-btnleft ${
                       i18n.language === "ar"
                         ? "input-btn-left"
@@ -191,7 +219,7 @@ export default function BasicInformation({
                       {phoneCode?.map((item, key) => (
                         <DropdownItem
                           as="li"
-                          // disabled
+                          disabled={disableEdit}
                           onClick={() => {
                             setseletedCountry(item);
                           }}
@@ -241,6 +269,7 @@ export default function BasicInformation({
                   }
                   value={values?.email}
                   onBlur={handleBlur}
+                  disabled={disableEdit}
                 />
                 {touched.email && errors.email && (
                   <ErrorMessage
@@ -299,6 +328,7 @@ export default function BasicInformation({
                   onBlur={() => {
                     setFieldTouched("Gender", true);
                   }}
+                  isDisabled={disableEdit}
                 />
                 {touched?.Gender && errors?.Gender && (
                   <ErrorMessage
@@ -310,63 +340,205 @@ export default function BasicInformation({
               </FormGroup>
             </Col>
             
-            {/* ------ الحالة ------ */}
-            <Col lg={4}>
-              <FormGroup>
-                <Label
-                  htmlFor="status"
-                >
-                  {t("common.status")}{" "}
-                  <span className="text-danger">*</span>
-                </Label>
-                <Select
-                  theme={(theme) => ({
-                    ...theme,
-                    colors: {
-                      ...theme.colors,
-                      primary25: "#BEC4C7",
-                      primary: "#283C47",
-                    },
-                    cursor: "default",
-                    ":active": {
-                      backgroundColor: "#BEC4C7",
-                    },
-                  })}
-                  menuPortalTarget={document.body}
-                  menuPosition="fixed"
-                  styles={{
-                    menuPortal: (base) => ({
-                      ...base,
-                      zIndex: 9999,
-                    }),
-                  }}
-                  id="status"
-                  name="status"
-                  placeholder={`${t("common.Select")} ${t("common.status")} ${t("common.placeholder")}`}    
-                  options={Status}
-                  getOptionLabel={(option) => option?.name}
-                  getOptionValue={(option) => option?.id}
-                  value={
-                    Status?.find((option)=>{
-                      return  option?.value === values?.status?.value
-                    }) 
-                  } 
-                  onChange={(option) => {
-                    setFieldValue("status", option);
-                  }}
-                  onBlur={() => {
-                    setFieldTouched("status", true);
-                  }}
-                />
-                {touched?.status && errors?.status && (
-                  <ErrorMessage
-                    name="status"
-                    component="div"
-                    className="text-danger"
+              {/* ------ العمر ------ */}
+              <Col lg={4}>
+                <FormGroup>
+                  <Label
+                    htmlFor="age"
+                  >
+                    {t("Registers.age")}{" "}
+                    <span className="text-danger">*</span>
+                  </Label>
+                  <Input
+                    type="number"
+                    id="age"
+                    name="age"
+                    title={t("Registers.age")}
+                    placeholder={`${t("common.enter")} ${t("Registers.age")} ${t("common.placeholder")}`}
+                    onChange={(e) =>{
+                      const value = e.target.value.replace(/\D/g, "");
+                      setFieldValue("age", value)
+                    }}
+                    value={values?.age}
+                    onBlur={handleBlur}
+                    maxLength={2}
+                    onWheel={(e) => e.target.blur()}
+                    disabled={disableEdit}
                   />
-                )}
-              </FormGroup>
-            </Col>
+                  {touched?.age && errors?.age && (
+                    <ErrorMessage
+                      name="age"
+                      component="div"
+                      className="text-danger"
+                    />
+                  )}
+                </FormGroup>
+              </Col>
+
+              {/* ------ اللغة ------ */}
+              <Col lg={4}>
+                <FormGroup>
+                  <Label
+                    htmlFor="language"
+                  >
+                    {t("common.language")}{" "}
+                    {namePage !== "add" && (
+                      <span className="text-danger">*</span>
+                    )}
+                  </Label>
+                  <Select
+                    theme={(theme) => ({
+                      ...theme,
+                      colors: {
+                        ...theme.colors,
+                        primary25: "#BEC4C7",
+                        primary: "#283C47",
+                      },
+                      cursor: "default",
+                      ":active": {
+                        backgroundColor: "#BEC4C7",
+                      },
+                    })}
+                    menuPortalTarget={document.body}
+                    menuPosition="fixed"
+                    styles={{
+                      menuPortal: (base) => ({
+                        ...base,
+                        zIndex: 9999,
+                      }),
+                    }}
+                    id="language"
+                    name="language"
+                    placeholder={`${t("common.Select")} ${t("common.language")} ${t("common.placeholder")}`}    
+                    options={language}
+                    getOptionLabel={(option) => option?.name}
+                    getOptionValue={(option) => option?.id}
+                    value={
+                      language?.find((option)=>{
+                        return  option?.value === (values?.lang?.value ?? values?.lang)
+                      }) 
+                    } 
+                    onChange={(option) => {
+                      setFieldValue("lang", option?.value);
+                    }}
+                    onBlur={() => {
+                      setFieldTouched("lang", true);
+                    }}
+                    isDisabled={namePage === "add" || disableEdit}
+                  />
+                  {touched?.lang && errors?.lang && (
+                    <ErrorMessage
+                      name="language"
+                      component="div"
+                      className="text-danger"
+                    />
+                  )}
+                </FormGroup>
+              </Col>
+
+              {namePage === "add" ? <>
+                  {/* ------ كلمة المرور ------ */}
+                  <Col lg={4}>
+                    <FormGroup>
+                      <Label
+                        htmlFor="password"
+                        className="form-label"
+                      >
+                        {t("Registers.password")}{" "}
+                        <span className="text-danger">*</span>
+                      </Label>
+                      <div className="position-relative auth-pass-inputgroup mb-3">
+                        <Input
+                          type={show ? "text" : "password"}
+                          placeholder={`${t("common.enter")} ${t("Registers.password")} ${t("common.placeholder")}`}
+                          name="password"
+                          title="password"
+                          id="password"
+                          onChange={(e) =>
+                            setFieldValue("password", e.target.value)
+                          }
+                          value={values?.password}
+                          onBlur={handleBlur}
+                        />
+                        <button
+                          className="btn btn-link position-absolute start0 end-0 top-0 text-decoration-none text-muted password-addon"
+                          type="button"
+                          id="password-addon"
+                        >
+                          <i
+                            onClick={() => setShow(!show)}
+                            className="ri-eye-fill align-middle"
+                          ></i>
+                        </button>
+                        {touched?.password && errors?.password ? (
+                          <div style={{ color: "red" }}>
+                            {errors?.password}
+                          </div>
+                        ) : null}
+                      </div>
+                    </FormGroup>
+                  </Col>
+                </> : <>
+                  {/* ------ الحالة ------ */}
+                  <Col lg={4}>
+                    <FormGroup>
+                      <Label
+                        htmlFor="status"
+                      >
+                        {t("common.status")}{" "}
+                        <span className="text-danger">*</span>
+                      </Label>
+                      <Select
+                        theme={(theme) => ({
+                          ...theme,
+                          colors: {
+                            ...theme.colors,
+                            primary25: "#BEC4C7",
+                            primary: "#283C47",
+                          },
+                          cursor: "default",
+                          ":active": {
+                            backgroundColor: "#BEC4C7",
+                          },
+                        })}
+                        menuPortalTarget={document.body}
+                        menuPosition="fixed"
+                        styles={{
+                          menuPortal: (base) => ({
+                            ...base,
+                            zIndex: 9999,
+                          }),
+                        }}
+                        id="status"
+                        name="status"
+                        placeholder={`${t("common.Select")} ${t("common.status")} ${t("common.placeholder")}`}    
+                        options={Status}
+                        getOptionLabel={(option) => option?.name}
+                        getOptionValue={(option) => option?.id}
+                        value={
+                          Status?.find((option)=>{
+                            return  option?.id === values?.status ?? values?.status?.id
+                          }) 
+                        } 
+                        onChange={(option) => {
+                          setFieldValue("status", option);
+                        }}
+                        onBlur={() => {
+                          setFieldTouched("status", true);
+                        }}
+                        isDisabled={true}
+                      />
+                      {touched?.status && errors?.status && (
+                        <ErrorMessage
+                          name="status"
+                          component="div"
+                          className="text-danger"
+                        />
+                      )}
+                    </FormGroup>
+                  </Col>
+                </>
+              }
           </Row>
         </CardBody>
       </Card>

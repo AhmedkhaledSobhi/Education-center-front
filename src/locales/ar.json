@@ -46,6 +46,8 @@
     "enter": "ادخل",
     "required": "مطلوب",
     "Select": "اختر",
+    "first_name": "الاسم الاول",
+    "last_name": "الاسم الثاني",
     "numbers_Only": "ارقام فقط",
     "minAge": "الحد الأدنى للسن 5 سنوات",
     "maxAge": "الحد الأقصى للسن 99",
@@ -209,6 +211,7 @@
   "Student": {
     "Students": "الطلاب",
     "student": "اسم الطالب",
+    "student2": "الطالب",
     "AddStudent": "اضافه طالب",
     "Identification_number": "الرقم التعريفي",
     "name": "الاسم",

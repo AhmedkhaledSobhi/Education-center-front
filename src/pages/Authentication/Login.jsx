@@ -77,7 +77,8 @@ export default function Login() {
 
         localStorage.setItem("userInfo", JSON.stringify(res?.data?.user));
         localStorage.setItem("access_token", JSON.stringify(res?.data?.access_token));
-        localStorage.setItem("I18N_LANGUAGE", lang);
+        localStorage.setItem("I18N_LANGUAGE", res?.data?.user?.lang ?? lang);
+        localStorage.setItem("i18nextLng", res?.data?.user?.lang ?? lang);
 
         const authUser = JSON.parse(localStorage.getItem("authUser"));
         const accessToken = JSON.parse(localStorage.getItem("access_token"));

@@ -19,6 +19,7 @@ import AddSubject from "../pages/Setting/Subjects/AddSubject";
 import PreviewSubject from "../pages/Setting/Subjects/PreviewSubject";
 import PreviewSection from "../pages/Setting/Section/PreviewSection";
 import PreviewTeacher from "../pages/Users/Teacher/PreviewTeacher";
+import PreviewStudent from "../pages/Users/Student/PreviewStudent";
 
 const publicRoutes = [
   { path: "/login", component: <Login /> },
@@ -65,10 +66,15 @@ const authProtectedRoutes = [
     component: <Student/>,
     moduleName: "Student"
   },
-    {
+  {
     path: "/addStudent",
     component: <AddStudent/>,
-    moduleName: "Teacher"
+    moduleName: "Student"
+  },
+  {
+    path: "/PreviewStudent/:id",
+    component: <PreviewStudent/>,
+    moduleName: "Student"
   },
   // Assistant
   {

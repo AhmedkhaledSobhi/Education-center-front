@@ -11,7 +11,8 @@ export default function ParentInformation({
   setFieldValue,
   setFieldTouched,
   touched,
-  errors
+  errors,
+  disableEdit,
 }) {
   const { t, i18n } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -55,6 +56,7 @@ export default function ParentInformation({
                   }
                   value={values?.FatherName}
                   onBlur={handleBlur}
+                  disabled={disableEdit}
                 />
                 {touched?.FatherName && errors?.FatherName && (
                   <ErrorMessage
@@ -85,7 +87,7 @@ export default function ParentInformation({
                 >
                   <DropdownToggle
                     as="button"
-                    // disabled
+                    disabled={disableEdit}
                     readOnly={true}
                     className={`btn btn-light border arrow-none input-btnleft ${
                       i18n.language === "ar"
@@ -109,10 +111,11 @@ export default function ParentInformation({
                     }
                     value={values?.FatherPhone}
                     onBlur={handleBlur}
+                    disabled={disableEdit}
                   />
                   <DropdownMenu
                     as="ul"
-                    // disabled
+                    disabled={disableEdit}
                     className={`list-unstyled w-25 dropdown-menu-list mb-0 input-btnleft ${
                       i18n.language === "ar"
                         ? "input-btn-left"
@@ -178,6 +181,7 @@ export default function ParentInformation({
                   }
                   value={values?.FatherEmail}
                   onBlur={handleBlur}
+                  disabled={disableEdit}
                 />
                 {touched.FatherEmail && errors.FatherEmail && (
                   <ErrorMessage

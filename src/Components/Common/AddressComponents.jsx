@@ -75,7 +75,7 @@ export default function AddressComponents({
                       setFieldValue("cityCode", null);
                     }}
                     onBlur={handleBlur("countryCode")}
-                    isDisabled={disableEdit}
+                    isDisabled={(values?.countryCode === undefined || values?.countryCode) || disableEdit}
                   />
                   {touched?.countryCode && errors?.countryCode && (
                     <ErrorMessage

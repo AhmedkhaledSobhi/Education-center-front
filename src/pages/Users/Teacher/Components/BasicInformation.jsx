@@ -9,6 +9,7 @@ import { ErrorMessage } from 'formik';
 import ComponentLoader from '../../../../Components/Common/ComponentLoader';
 
 export default function BasicInformation({
+  namePage,
   values,
   handleBlur,
   setFieldValue,
@@ -23,16 +24,14 @@ export default function BasicInformation({
   language,
   disableEdit,
   loadingProfile,
+  seletedCountry,
+  setseletedCountry,
 }) {
   const { t, i18n } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const phoneCode = phoneCodeData ?.phoneCodes || [];
-  const [seletedCountry, setseletedCountry] = useState({
-    id: 251,
-    countryName: "Egypt",
-    code: "+20",
-  });
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+  const [show, setShow] = useState(false);
 
   return (
     <React.Fragment>
@@ -61,8 +60,8 @@ export default function BasicInformation({
                     <FormGroup>
                       <Input
                         type="text"
-                        placeholder={`${t("common.enter")} ${t("Teacher.teacher")} ${t("common.placeholder")}`}
-                        title={t("Teacher.teacher")}
+                        placeholder={`${t("common.enter")} ${t("common.first_name")} ${t("common.placeholder")}`}
+                        title={t("common.first_name")}
                         name="first_name"
                         id="first_name"
                         onChange={(e) =>
@@ -83,8 +82,8 @@ export default function BasicInformation({
                     <FormGroup>
                       <Input
                         type="text"
-                        placeholder={`${t("common.enter")} ${t("Teacher.teacher")} ${t("common.placeholder")}`}
-                        title={t("Teacher.teacher")}
+                        placeholder={`${t("common.enter")} ${t("common.last_name")} ${t("common.placeholder")}`}
+                        title={t("common.last_name")}
                         name="last_name"
                         id="last_name"
                         onChange={(e) =>
@@ -113,7 +112,6 @@ export default function BasicInformation({
                     htmlFor="EducationalStages"
                   >
                     {t("Teacher.Educational_Stages")}{" "}
-                    <span className="text-danger">*</span>
                   </Label>
                   <Select
                     theme={(theme) => ({
@@ -173,7 +171,6 @@ export default function BasicInformation({
                     htmlFor="NameSubject"
                   >
                     {t("Teacher.Name_Subject")}{" "}
-                    <span className="text-danger">*</span>
                   </Label>
                   <Select
                     theme={(theme) => ({
@@ -261,7 +258,7 @@ export default function BasicInformation({
                       type="text"
                       className="form-control rounded-end flag-input  input-btn"
                       placeholder={`${t("common.enter")} ${t("AccountSettings.phone")} ${t("common.placeholder")}`}
-                      title="phone"
+                      title={t("AccountSettings.phone")}
                       id="phone"
                       onChange={(e) =>
                         setFieldValue("phone", e.target.value)
@@ -331,7 +328,7 @@ export default function BasicInformation({
                     className="form-control pe5 password-input"
                     placeholder={`${t("common.enter")} ${t("AccountSettings.email")} ${t("common.placeholder")}`}
                     id="email"
-                    title="email"
+                    title={t("AccountSettings.email")}
                     name="email"
                     onChange={(e) =>
                       setFieldValue("email", e.target.value)
@@ -358,7 +355,6 @@ export default function BasicInformation({
                     className="form-label"
                   >
                     {t("common.Gender")}{" "}
-                    <span className="text-danger">*</span>
                   </Label>
                   <Select
                     theme={(theme) => ({
@@ -452,7 +448,9 @@ export default function BasicInformation({
                     htmlFor="language"
                   >
                     {t("common.language")}{" "}
-                    <span className="text-danger">*</span>
+                    {namePage !== "add" && (
+                      <span className="text-danger">*</span>
+                    )}
                   </Label>
                   <Select
                     theme={(theme) => ({
@@ -477,6 +475,8 @@ export default function BasicInformation({
                     }}
                     id="language"
                     name="language"
+                    title={t("common.language")}
+
                     placeholder={`${t("common.Select")} ${t("common.language")} ${t("common.placeholder")}`}    
                     options={language}
                     getOptionLabel={(option) => option?.name}
@@ -492,7 +492,7 @@ export default function BasicInformation({
                     onBlur={() => {
                       setFieldTouched("lang", true);
                     }}
-                    isDisabled={disableEdit}
+                    isDisabled={namePage === "add" || disableEdit}
                   />
                   {touched?.lang && errors?.lang && (
                     <ErrorMessage
@@ -504,64 +504,109 @@ export default function BasicInformation({
                 </FormGroup>
               </Col>
 
-              {/* ------ الحالة ------ */}
-              <Col lg={4}>
-                <FormGroup>
-                  <Label
-                    htmlFor="status"
-                  >
-                    {t("common.status")}{" "}
-                    <span className="text-danger">*</span>
-                  </Label>
-                  <Select
-                    theme={(theme) => ({
-                      ...theme,
-                      colors: {
-                        ...theme.colors,
-                        primary25: "#BEC4C7",
-                        primary: "#283C47",
-                      },
-                      cursor: "default",
-                      ":active": {
-                        backgroundColor: "#BEC4C7",
-                      },
-                    })}
-                    menuPortalTarget={document.body}
-                    menuPosition="fixed"
-                    styles={{
-                      menuPortal: (base) => ({
-                        ...base,
-                        zIndex: 9999,
-                      }),
-                    }}
-                    id="status"
-                    name="status"
-                    placeholder={`${t("common.Select")} ${t("common.status")} ${t("common.placeholder")}`}    
-                    options={Status}
-                    getOptionLabel={(option) => option?.name}
-                    getOptionValue={(option) => option?.id}
-                    value={
-                      Status?.find((option)=>{
-                        return  option?.id === values?.status ?? values?.status?.id
-                      }) 
-                    } 
-                    onChange={(option) => {
-                      setFieldValue("status", option);
-                    }}
-                    onBlur={() => {
-                      setFieldTouched("status", true);
-                    }}
-                    isDisabled={true}
-                  />
-                  {touched?.status && errors?.status && (
-                    <ErrorMessage
-                      name="status"
-                      component="div"
-                      className="text-danger"
-                    />
-                  )}
-                </FormGroup>
-              </Col>
+              {namePage === "add" ? <>
+                  {/* ------ كلمة المرور ------ */}
+                  <Col lg={4}>
+                    <FormGroup>
+                      <Label
+                        htmlFor="password"
+                        className="form-label"
+                      >
+                        {t("Registers.password")}{" "}
+                        <span className="text-danger">*</span>
+                      </Label>
+                      <div className="position-relative auth-pass-inputgroup mb-3">
+                        <Input
+                          type={show ? "text" : "password"}
+                          placeholder={`${t("common.enter")} ${t("Registers.password")} ${t("common.placeholder")}`}
+                          name="password"
+                          title={t("Registers.password")}
+                          id="password"
+                          onChange={(e) =>
+                            setFieldValue("password", e.target.value)
+                          }
+                          value={values?.password}
+                          onBlur={handleBlur}
+                        />
+                        <button
+                          className="btn btn-link position-absolute start0 end-0 top-0 text-decoration-none text-muted password-addon"
+                          type="button"
+                          id="password-addon"
+                        >
+                          <i
+                            onClick={() => setShow(!show)}
+                            className="ri-eye-fill align-middle"
+                          ></i>
+                        </button>
+                        {touched?.password && errors?.password ? (
+                          <div style={{ color: "red" }}>
+                            {errors?.password}
+                          </div>
+                        ) : null}
+                      </div>
+                    </FormGroup>
+                  </Col>
+                </> : <>
+                  {/* ------ الحالة ------ */}
+                  <Col lg={4}>
+                    <FormGroup>
+                      <Label
+                        htmlFor="status"
+                      >
+                        {t("common.status")}{" "}
+                        <span className="text-danger">*</span>
+                      </Label>
+                      <Select
+                        theme={(theme) => ({
+                          ...theme,
+                          colors: {
+                            ...theme.colors,
+                            primary25: "#BEC4C7",
+                            primary: "#283C47",
+                          },
+                          cursor: "default",
+                          ":active": {
+                            backgroundColor: "#BEC4C7",
+                          },
+                        })}
+                        menuPortalTarget={document.body}
+                        menuPosition="fixed"
+                        styles={{
+                          menuPortal: (base) => ({
+                            ...base,
+                            zIndex: 9999,
+                          }),
+                        }}
+                        id="status"
+                        name="status"
+                        placeholder={`${t("common.Select")} ${t("common.status")} ${t("common.placeholder")}`}    
+                        options={Status}
+                        getOptionLabel={(option) => option?.name}
+                        getOptionValue={(option) => option?.id}
+                        value={
+                          Status?.find((option)=>{
+                            return  option?.id === values?.status ?? values?.status?.id
+                          }) 
+                        } 
+                        onChange={(option) => {
+                          setFieldValue("status", option);
+                        }}
+                        onBlur={() => {
+                          setFieldTouched("status", true);
+                        }}
+                        isDisabled={true}
+                      />
+                      {touched?.status && errors?.status && (
+                        <ErrorMessage
+                          name="status"
+                          component="div"
+                          className="text-danger"
+                        />
+                      )}
+                    </FormGroup>
+                  </Col>
+                </>
+              }
             </Row>
           )}
         </CardBody>

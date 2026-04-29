@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Card, CardBody, CardHeader, Col, FormGroup, Input, Label, Row } from 'reactstrap'
+import { Button, Card, CardBody, CardHeader, Col, FormGroup, Input, Label, Row } from 'reactstrap'
 import SubjectHeader from './SubjectHeader';
 import Select from "react-select";
 import { useGetAllUser } from '../../../../helpers/getAllApiSelect';
@@ -14,6 +14,7 @@ export default function SubjectComponent({
   errors,
   subjectInput,
   setSubjectInputs,
+  disableEdit,
 }) {
   const { t, i18n } = useTranslation();
   const Subjects = getSubjects();
@@ -124,6 +125,7 @@ export default function SubjectComponent({
                             }}
                             isLoading={LoadingTeacher}
                             isClearable
+                            isDisabled={disableEdit}
                           />
                         </div>
                       </td>
@@ -176,6 +178,7 @@ export default function SubjectComponent({
                             }}
                             isLoading={LoadingTeacher}
                             isClearable
+                            isDisabled={disableEdit}
                           />
                         </div>
                       </td>
@@ -199,6 +202,7 @@ export default function SubjectComponent({
                           value={values?.Course_Price}
                           onBlur={handleBlur}
                           onWheel={(e) => e.target.blur()}
+                          disabled={disableEdit}
                         />
                       </td>
                       <td>
@@ -216,12 +220,14 @@ export default function SubjectComponent({
                             }}
                             value={values?.Description}
                             onBlur={handleBlur}
+                            disabled={disableEdit}
                           />
                           
                           {subjectInput?.length > 1 && (
                             <div
                               className="table-delete p-2"
                               onClick={() => {
+                                if (disableEdit) return; // ⛔ وقف التنفيذ
                                 handleDeleteInput(subjectInput, index, setSubjectInputs);
                               }}
                             >
@@ -238,14 +244,15 @@ export default function SubjectComponent({
           </div>
           <div className="mt-3 w-100 d-flex flex-column flex-lg-row align-items-lg-start align-items-end justify-content-lg-between">
             <div className="w-100">
-              <button
+              <Button
                 className="add-product-table bg-primary-subtle text-primary border-0"
                 onClick={() => handleAddInput()}
+                disabled={disableEdit}
               >
                 <i className="ri-add-line"></i>
                 {t("common.add")} {""}
                 {t("Student.New_Course")}
-              </button>
+              </Button>
             </div>
           </div>
         </CardBody>

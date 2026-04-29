@@ -113,7 +113,7 @@ export default function Teacher() {
                       nav("/PreviewTeacher/" + cellProps?.row?.original?.id, {
                         state: {
                           detail: cellProps?.row?.original,
-                          edit: true,
+                          edit: false,
                         },
                       })
                     }}

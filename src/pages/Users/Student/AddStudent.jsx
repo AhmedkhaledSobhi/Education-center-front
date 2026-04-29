@@ -10,23 +10,34 @@ import * as Yup from "yup";
 import SubjectComponent from './Components/SubjectComponent';
 import BasicInformation from './Components/BasicInformation';
 import { toast } from 'react-toastify';
-import { getEducationalStages, getGender, getStatus } from '../../../helpers/dataLocal';
+import { getEducationalStages, getGender, getLanguage, getStatus } from '../../../helpers/dataLocal';
 import ParentInformation from './Components/ParentInformation';
 import AddressComponents from '../../../Components/Common/AddressComponents';
+import { createAccountStudent, uploadFiles } from '../../../helpers/fakebackend_helper';
+import ImageComponent from '../../../Components/Common/ImageComponent';
+import CommentsComponents from '../../../Components/Common/CommentsComponents';
 
 export default function AddStudent() {
   const { t, i18n } = useTranslation();
   document.title = `${t("common.add")} ${t("Student.Students")}`;
   const nav = useNavigate();
   // ________________________________________________________________________________________________________________________________________
-  const loadingProfile = true
+  const [loadingProfile, setLoadingProfile] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [loadsave, setLoadSave] = useState(false);
+  const [profileData, setProfileData] = useState();
+  const [seletedCountry, setseletedCountry] = useState({
+    id: 251,
+    countryName: "Egypt",
+    code: "+20",
+  });
   // ________________________________________________________________________________________
 
   const EducationalStages = getEducationalStages();
   const Gender = getGender();
   const Status = getStatus();
+  const language = getLanguage();
+  
   // ________________________________________________________________________________________________________________________________________
   const [subjectInput, setSubjectInputs] = useState([
     {
@@ -47,30 +58,20 @@ export default function AddStudent() {
     FatherName: "",
     FatherPhone: "",
     FatherEmail: "",
-    country: { 
-      id: "65", 
-      name: "Egypt", 
-      name_ar: "مصر",
-      name_en: "Egypt",
-    },
-    region: "",
-    city: "",
-    AdditionalAddress: "",
-    comments: "",
   });
 
   // ________________________________________________________________________________________________________________________________________
 
   const validationSchema = Yup.object({
-    name: Yup.string().required(`${t("Student.student")} ${t("common.required")}`),
-    EducationalStages: Yup.object().required(`${t("Teacher.Educational_Stages")} ${t("common.required")}`),
-    phone: Yup.string().required(`${t("required.phoneNumber")} ${t("common.required")}`),
+    first_name: Yup.string().required(`${t("common.first_name")} ${t("common.required")}`),
+    last_name: Yup.string().required(`${t("common.last_name")} ${t("common.required")}`),
+    phone: Yup.string().required(`${t("Teacher.phoneNumber")} ${t("common.required")}`),
     email: Yup.string().email(t("required.EmailIncorrect")).matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/,t("Registers.EmailIncorrect")).required(t("Registers.EmailRequired")),
-    status: Yup.object().required(`${t("common.status")} ${t("common.required")}`),
-    Gender: Yup.object().required(`${t("common.Gender")} ${t("common.required")}`),
-    country: Yup.object().required(`${t("common.country")} ${t("common.required")}`),
-    region: Yup.object().required(`${t("common.Region")} ${t("common.required")}`),
-    city: Yup.object().required(`${t("common.city")} ${t("common.required")}`),
+    age: Yup.number().typeError(t("common.numbers_Only"))   // لو كتب حروف
+      .required(`${t("Registers.age")} ${t("common.required")}`)
+      .min(5, t("common.minAge"))           // أقل عمر
+      .max(99, t("common.maxAge")),
+    password: Yup.string().required(t("Registers.passwordValidation")).min(6, t("Registers.passwordMinLength")),
   });
 
   // ________________________________________________________________________________________________________________________________________
@@ -78,9 +79,15 @@ export default function AddStudent() {
   const handleSaveNew = async (values, action) =>{
     try {
       setLoadSave(true)
-      console.log("ahmed values", values);
-      console.log("ahmed subjectInput", subjectInput);
       await validationSchema.validate(values, { abortEarly: false });
+      const {image_path, avatar, phone, status, Gender, EducationalStages, ...rest } = values;
+      
+      const params = {
+        ...rest,
+        role: "STUDENT",
+        age: rest?.age ? Number(rest.age) : undefined,
+        phone: `(${seletedCountry?.code})${values.phone}`,
+      };
 
       const invalidItem = subjectInput.find(
         item => !item.subject || !item.Teacher || !item.price
@@ -126,6 +133,44 @@ export default function AddStudent() {
         setLoadSave(false)
         return;
       }
+
+      const payload = Object.fromEntries(
+        Object.entries(params).filter(
+          ([_, value]) => value !== undefined && value !== null && value !== ""
+        )
+      );
+
+      if (values?.avatar && values.avatar !== initialValues.avatar) {
+        const file = values.avatar; // لازم يكون File مش FileList
+          const uploadRes = await uploadFiles(file);  
+          if(uploadRes?.url){
+            payload.image_path = uploadRes?.url;
+          }else{
+            setLoadSave(false);
+          }
+      }
+
+      setLoadSave(false)
+      createAccountStudent(payload).then((res) => {
+        if (res && res.status) {
+          toast.success(res?.message, {
+            position: "top-center",
+            hideProgressBar: false,
+            progress: undefined,
+            toastId: "",
+          });
+          nav("/student");
+          setLoadSave(false)
+        } else{
+          toast.error(res?.message, {
+            position: "top-center",
+            hideProgressBar: false,
+            progress: undefined,
+            toastId: "",
+          });
+          setLoadSave(false)
+        }
+      })
     } catch (error) {
       if (error.name === "ValidationError") {
         setLoadSave(false)
@@ -204,6 +249,7 @@ export default function AddStudent() {
 
                     {/* ---------------- المعلومات الاساسيه ---------------- */}
                     <BasicInformation
+                      namePage={"add"}
                       values={values}
                       handleBlur={handleBlur}
                       setFieldValue={setFieldValue}
@@ -213,6 +259,9 @@ export default function AddStudent() {
                       EducationalStages={EducationalStages}
                       Gender={Gender}
                       Status={Status}
+                      language={language}
+                      seletedCountry={seletedCountry}
+                      setseletedCountry={setseletedCountry}
                     />
 
                     {/* ---------------- المواد الدراسية ---------------- */}
@@ -242,62 +291,27 @@ export default function AddStudent() {
                       setFieldValue={setFieldValue}
                       touched={touched}
                       errors={errors}
-                      // loadingProfile={loadingProfile}
+                      disableEdit={true}
                     />
                     <Row>
                       {/* ------ ملاحظات ------ */}
                       <Col xxl={6}>
-                        <Card>
-                          <CardHeader>
-                            <div className="sub-title">
-                              {t("common.comments")}
-                            </div>
-                          </CardHeader>
-                          <CardBody>
-                            {/* ------ ملاحظات ------ */}
-                            <FormGroup>
-                              <Label
-                                htmlFor="comments"
-                              >
-                                {t("common.enter")} {t("common.comments")}{" "}
-                              </Label>
-                              <Input
-                                type="textarea"
-                                placeholder={`${t("common.enter")} ${t("common.comments")} ${t("common.placeholder")}`}
-                                title={t("common.comments")}
-                                name="comments"
-                                id="comments"
-                                rows='5'
-                                onChange={(e) =>
-                                  setFieldValue("comments", e.target.value)
-                                }
-                                value={values?.comments}
-                                onBlur={handleBlur}
-                              />
-                              {touched?.comments && errors?.comments && (
-                                <ErrorMessage
-                                  name="comments"
-                                  component="div"
-                                  className="text-danger"
-                                />
-                              )}
-                            </FormGroup>
-                          </CardBody>
-                        </Card>
+                        <CommentsComponents 
+                          values={values}
+                          handleBlur={handleBlur}
+                          setFieldValue={setFieldValue}
+                          touched={touched}
+                          errors={errors}
+                          disableEdit={true}
+                        />
                       </Col>
 
                       {/* ------ مرفقات ------ */}
                       <Col xxl={6}>
-                        <Card>
-                          <CardHeader>
-                            <div className="sub-title">
-                              {t("common.Attachments")}
-                            </div>
-                          </CardHeader>
-                          <CardBody>
-
-                          </CardBody>
-                        </Card>
+                        <ImageComponent 
+                          profileData={profileData}
+                          setFieldValue={setFieldValue}
+                        />
                       </Col>                
                     </Row> 
                   </form>

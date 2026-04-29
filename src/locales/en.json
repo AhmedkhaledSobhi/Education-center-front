@@ -47,6 +47,8 @@
     "enter": "Enter",
     "required": "required",
     "Select": "Select",
+    "first_name": "First Name",
+    "last_name": "Last Name",
     "numbers_Only": "Numbers only",
     "minAge": "Minimum age: 5 years",
     "maxAge": "Maximum age: 99",
@@ -162,6 +164,7 @@
   "Student": {
     "Students": "Students",
     "AddStudent": "Add Student",
+    "student2": "Student",
     "name": "Name",
     "email": "Email",
     "phoneNumber": "Phone Number",

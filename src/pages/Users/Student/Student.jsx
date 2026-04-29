@@ -18,7 +18,7 @@ export default function Student() {
   const [productsData, setProductsData] = useState([]);
 
   const [page, setPage] = useState(1);
-  const [per_page, setPer_page] = useState({ label: 5, id: 5 });
+  const [per_page, setPer_page] = useState({ label: 15, id: 15 });
   const [totalItems, setTotalItems] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [params, setParams] = useState({
@@ -28,98 +28,117 @@ export default function Student() {
 
   // ____________________________________________________________________
 
-  const tableDataColumns = useMemo(
-    () => [
-      {
-        Header: t("Student.Identification_number"),
-        accessor: "id",
-        filterable: false,
-        Cell: (cellProps)=>{
-          return ( <span> {cellProps?.row?.original?.id} </span>)
-        }
-      },
-      {
-        Header: t("Student.name"),
-        accessor: "first_name",
-        filterable: false,
-        Cell: (cellProps)=>{
-          return ( <span> {cellProps?.row?.original?.first_name } {cellProps?.row?.original?.last_name} </span>)
-        }
-      },
-      {
-        Header: t("Student.email"),
-        accessor: "email",
-        filterable: false,
-      },
-      {
-        Header: t("Student.phoneNumber"),
-        accessor: "phone",
-        filterable: false,
-        Cell: (cellProps)=>{
-          const phone = cellProps?.row?.original?.phone ?.replace(/^\(\+20\)/, "");
-          return ( <span> {phone} </span>)
-        }
-      },
-      {
-        Header: t("Student.age"),
-        accessor: "age",
-        filterable: false,
-      },
-      {
-        Header: t("Student.Address"),
-        accessor: "address",
-        filterable: false,
-      },
-      {
-        Header: t("Student.Account_type"),
-        accessor: "role",
-        filterable: false,
-        Cell: (cellProps)=>{
-          return cellProps?.row?.original?.role
-        }
-      },
-      {
-        Header: t("common.settings"),
-        Cell: (cellProps) => {
-          return (
-            <UncontrolledDropdown onClick={(e) => e?.stopPropagation()}>
-              <DropdownToggle
-                tag="a"
-                className="btn btn-light btn-sm"
-              >
-                <i className="ri-more-2-fill align-middle"></i>
-              </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-end" >
-                <li>
-                  <DropdownItem>
-                    <div className="d-flex justify-content-start align-items-center">
-                      <i className={`mdi mdi-eye-circle-outline  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>
-                      <div>{t("common.view")}</div>
-                    </div>
-                  </DropdownItem>
-                </li>
-                <li>
-                  <DropdownItem>
-                    <div className="d-flex justify-content-start align-items-center">
-                      <i className={`bx bxs-edit  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
-                      <div>{t("common.edit")}</div>
-                    </div>
-                  </DropdownItem>
-                </li>
-                <li>
-                  <DropdownItem>
-                    <div className="d-flex justify-content-start align-items-center">
-                      <i className={`ri-delete-bin-5-line align-bottom text- muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
-                      <div>{t("common.delete")}</div>
-                    </div>
-                  </DropdownItem>
-                </li>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          )
-        }
+  const tableDataColumns = useMemo(() => [
+    {
+      Header: t("Student.Identification_number"),
+      accessor: "id",
+      filterable: false,
+      Cell: (cellProps)=>{
+        return ( <span> {cellProps?.row?.original?.id} </span>)
       }
-    ]);
+    },
+    {
+      Header: t("Student.name"),
+      accessor: "first_name",
+      filterable: false,
+      Cell: (cellProps)=>{
+        return ( <span> {cellProps?.row?.original?.first_name } {cellProps?.row?.original?.last_name} </span>)
+      }
+    },
+    {
+      Header: t("Student.email"),
+      accessor: "email",
+      filterable: false,
+    },
+    {
+      Header: t("Student.phoneNumber"),
+      accessor: "phone",
+      filterable: false,
+      Cell: (cellProps)=>{
+        const phone = cellProps?.row?.original?.phone ?.replace(/^\(\+20\)/, "");
+        return ( <span> {phone} </span>)
+      }
+    },
+    {
+      Header: t("Student.age"),
+      accessor: "age",
+      filterable: false,
+    },
+    {
+      Header: t("Student.Address"),
+      accessor: "address",
+      filterable: false,
+    },
+    {
+      Header: t("Student.Account_type"),
+      accessor: "role",
+      filterable: false,
+      Cell: (cellProps)=>{
+        return cellProps?.row?.original?.role
+      }
+    },
+    {
+      Header: t("common.settings"),
+      Cell: (cellProps) => {
+        return (
+          <UncontrolledDropdown onClick={(e) => e?.stopPropagation()}>
+            <DropdownToggle
+              tag="a"
+              className="btn btn-light btn-sm"
+            >
+              <i className="ri-more-2-fill align-middle"></i>
+            </DropdownToggle>
+            <DropdownMenu className="dropdown-menu-end" >
+              <li>
+                <DropdownItem
+                  onClick={(e) => {
+                    e?.stopPropagation();
+                    nav("/PreviewStudent/" + cellProps?.row?.original?.id, {
+                      state: {
+                        detail: cellProps?.row?.original,
+                        edit: true,
+                      },
+                    })
+                  }}
+                >
+                  <div className="d-flex justify-content-start align-items-center">
+                    <i className={`mdi mdi-eye-circle-outline  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>
+                    <div>{t("common.view")}</div>
+                  </div>
+                </DropdownItem>
+              </li>
+              <li>
+                <DropdownItem
+                  onClick={(e) => {
+                    e?.stopPropagation();
+                    nav("/PreviewStudent/" + cellProps?.row?.original?.id, {
+                      state: {
+                        detail: cellProps?.row?.original,
+                        edit: false,
+                      },
+                    })
+                  }}
+                >
+                  <div className="d-flex justify-content-start align-items-center">
+                    <i className={`bx bxs-edit  align-bottom text -muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
+                    <div>{t("common.edit")}</div>
+                  </div>
+                </DropdownItem>
+              </li>
+              <li>
+                <DropdownItem>
+                  <div className="d-flex justify-content-start align-items-center">
+                    <i className={`ri-delete-bin-5-line align-bottom text- muted text-primary-emphasis ${i18n.language === "ar" ? "me-2" : "ms-2"}`}></i>{" "}
+                    <div>{t("common.delete")}</div>
+                  </div>
+                </DropdownItem>
+              </li>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        )
+      }
+    }
+  ]);
 
   // ____________________________________________________________________
   const { data: Students = [], isLoading: LoadingStudent } = useGetAllStudent( {...params} );
@@ -134,13 +153,11 @@ export default function Student() {
 
   useEffect(() => {
     if (!Students) return;
-
     if(Students){
       const result = Students?.data?.filter((item) => {
         return item.role == "STUDENT";
       });
       setProductsData(result);
-
       setTotalItems(Students?.pagination?.total);
       setTotalPage(Students?.pagination?.totalPages);
     }
@@ -191,7 +208,7 @@ export default function Student() {
                           per_page={per_page}
                           setPer_page={setPer_page}
                           setPage={setPage}
-                          previewItem={"/teacher"}
+                          previewItem={"PreviewStudent"}
                         /> 
                       )            
                     }  

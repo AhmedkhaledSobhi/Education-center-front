@@ -50,13 +50,13 @@ export default function Register() {
     code: "+20",
   });
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-  const Account_type =[
+  const Account_type = [
     {name: t("Registers.Admin") , id: 0, value:"ADMIN"},
     {name: t("Registers.Teacher") , id: 1, value:"TEACHER"},
     {name: t("Registers.Student") , id: 2, value:"STUDENT"},
     {name: t("Registers.Employee") , id: 3, value:"EMPLOYEE"},
     {name: t("Registers.Assistant") , id: 4, value:"ASSISTANT"},
-  ]
+  ];
 
 // ______________________________________________________________
 
@@ -78,7 +78,7 @@ export default function Register() {
     password: "",
     email: "",
     password_confirmation: "",
-    role: Account_type[1],
+    role: Account_type[0],
     age: 0,
     // address: "",
   });
@@ -119,7 +119,8 @@ export default function Register() {
         if (res?.data?.access_token !== undefined) {
           localStorage.setItem("access_token", JSON.stringify(res?.data?.access_token));          
         }
-        localStorage.setItem("I18N_LANGUAGE", lang);
+        localStorage.setItem("I18N_LANGUAGE", res?.data?.user?.lang ?? lang);
+        localStorage.setItem("i18nextLng", res?.data?.user?.lang ?? lang);
 
         const authUser = JSON.parse(localStorage.getItem("authUser") || "null");
         const accessToken = JSON.parse(localStorage.getItem("access_token") || "null");
