@@ -13,9 +13,11 @@ import TopPageButttons from '../../../Components/Common/TopPageButttons';
 import ComponentLoader from '../../../Components/Common/ComponentLoader';
 import Select from "react-select";
 import DeleteModal from '../../../Components/Common/DeleteModal';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function PreviewSubject() {
   const { t, i18n } = useTranslation();
+  const queryClient = useQueryClient();
   const nav = useNavigate();
   const {id} = useParams();
   const location = useLocation();
@@ -77,6 +79,10 @@ export default function PreviewSubject() {
             progress: undefined,
             toastId: "",
           });
+          queryClient.refetchQueries({
+            queryKey: ["allCourse",],
+            exact: false,
+          });
           nav("/subjects")
           setLoadSave(false)
         } else{
@@ -117,6 +123,10 @@ export default function PreviewSubject() {
           autoClose: 3000,
           progress: undefined,
           toastId: "",
+        });
+        queryClient.refetchQueries({
+          queryKey: ["allCourse",],
+          exact: false,
         });
         setDeleteModal(false);
         nav("/subjects");

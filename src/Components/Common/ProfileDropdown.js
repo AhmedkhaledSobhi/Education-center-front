@@ -30,26 +30,29 @@ const ProfileDropdown = () => {
   const toggleProfileDropdown = () => {
     setIsProfileDropdown(!isProfileDropdown);
   };
-  const [userInfo, setUserInfo] = useState();
   const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
-  const getProfileData = async () => {
-    try {
-      const user = getLoggedInUser();
-      const data ={id: Number(user?.id) }
-      if (user) {
-        const response = await profile(data);
-        if (response) {
-          setUserInfo(response?.data);
-        }
-      }
-    } catch (error) {}
-  };
+  const userInfo = Profile
 
-  useEffect(() => {
-    if (Profile && Profile?.id !== userInfo?.id) {
-      setUserInfo(Profile);
-    }
-  }, [Profile]);
+  // ____________/ old \____________
+  // const [userInfo, setUserInfo] = useState();
+  // const getProfileData = async () => {
+  //   try {
+  //     const user = getLoggedInUser();
+  //     const data ={id: Number(user?.id) }
+  //     if (user) {
+  //       const response = await profile(data);
+  //       if (response) {
+  //         setUserInfo(response?.data);
+  //       }
+  //     }
+  //   } catch (error) {}
+  // };
+
+  // useEffect(() => {
+  //   if (Profile && Profile?.id !== userInfo?.id) {
+  //     setUserInfo(Profile);
+  //   }
+  // }, [Profile]);
 
   const handleLogOut = async () => {
     // logout()
@@ -108,7 +111,7 @@ const ProfileDropdown = () => {
             <div className="container-header-profile-user overflow-hidden me-1  ">
               <img
                 className="roundedcircle header-profile-user header-profile-user-sm me2"
-                src={userInfo?.avatar ?? avatar1}
+                src={userInfo?.image_path ? `http://localhost:5173/api/${userInfo?.image_path}` : avatar1}
                 alt="Header Avatar"
                 style={{
                   maxWidth: isSmallScreen ? "30px !important" : "",

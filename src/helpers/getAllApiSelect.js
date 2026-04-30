@@ -50,7 +50,7 @@ const useGetAllUser = (params = {}) => {
 const useGetAllTeacher = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
-    queryKey: ["allUser", params],
+    queryKey: ["allTeacher", params],
     queryFn: () => allUser(params).then((res) => res || []),
     staleTime: 5000 * 10 * 5,
     refetchInterval: 50000,  // ⏱️ كل 5 ثواني
@@ -61,7 +61,7 @@ const useGetAllTeacher = (params = {}) => {
 const useGetAllStudent = (params = {}) => {
   params = cleanParams(params);
   return useQuery({
-    queryKey: ["allUser", params],
+    queryKey: ["allStudent", params],
     queryFn: () => allUser(params).then((res) => res || []),
     staleTime: 5000 * 10 * 5,
     refetchInterval: 50000,  // ⏱️ كل 5 ثواني

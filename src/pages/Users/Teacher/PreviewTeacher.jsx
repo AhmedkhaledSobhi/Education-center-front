@@ -17,8 +17,10 @@ import CommentsComponents from '../../../Components/Common/CommentsComponents';
 import { getChangedValues, NoChanges } from '../../../helpers';
 import ImageComponent from '../../../Components/Common/ImageComponent';
 import DeleteModal from '../../../Components/Common/DeleteModal';
+import { useQueryClient } from '@tanstack/react-query';
 export default function PreviewTeacher() {
   const { t, i18n } = useTranslation();
+  const queryClient = useQueryClient();
   const nav = useNavigate();
   const {id} = useParams();
   const location = useLocation();
@@ -125,6 +127,10 @@ export default function PreviewTeacher() {
             progress: undefined,
             toastId: "",
           });
+          queryClient.refetchQueries({
+            queryKey: ["allTeacher",],
+            exact: false,
+          });
           setLoadSave(false)
           nav("/teacher");
         } else{
@@ -163,6 +169,10 @@ export default function PreviewTeacher() {
           autoClose: 3000,
           progress: undefined,
           toastId: "",
+        });
+        queryClient.refetchQueries({
+          queryKey: ["allTeacher",],
+          exact: false,
         });
         setDeleteModal(false);
         nav("/teacher");

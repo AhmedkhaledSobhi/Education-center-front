@@ -16,9 +16,11 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { delete_Teacher, editAccountStudent, getStudent, uploadFiles } from '../../../helpers/fakebackend_helper';
 import * as Yup from "yup";
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function PreviewStudent() {
   const { t, i18n } = useTranslation();
+  const queryClient = useQueryClient();
   const nav = useNavigate();
   const {id} = useParams();
   const location = useLocation();
@@ -174,6 +176,10 @@ export default function PreviewStudent() {
             progress: undefined,
             toastId: "",
           });
+          queryClient.refetchQueries({
+            queryKey: ["allStudent",],
+            exact: false,
+          });
           nav("/student");
           setLoadSave(false)
         } else{
@@ -221,6 +227,10 @@ export default function PreviewStudent() {
           autoClose: 3000,
           progress: undefined,
           toastId: "",
+        });
+        queryClient.refetchQueries({
+          queryKey: ["allStudent",],
+          exact: false,
         });
         setDeleteModal(false);
         nav("/teacher");

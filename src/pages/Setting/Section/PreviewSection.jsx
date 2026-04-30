@@ -13,9 +13,11 @@ import Select from "react-select";
 import { getBranch, getScreen, getStatus, getType, getWhiteboard } from '../../../helpers/dataLocal';
 import ComponentLoader from '../../../Components/Common/ComponentLoader';
 import DeleteModal from '../../../Components/Common/DeleteModal';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function PreviewSection() {
   const { t, i18n } = useTranslation();
+  const queryClient = useQueryClient();
   const nav = useNavigate();
   const {id} = useParams();
   const location = useLocation();
@@ -73,6 +75,10 @@ export default function PreviewSection() {
             progress: undefined,
             toastId: "",
           });
+          queryClient.refetchQueries({
+            queryKey: ["allRoom",],
+            exact: false,
+          });
           nav("/section")
           setLoadSave(false)
         } else{
@@ -114,7 +120,10 @@ export default function PreviewSection() {
           progress: undefined,
           toastId: "",
         });
-
+        queryClient.refetchQueries({
+          queryKey: ["allRoom",],
+          exact: false,
+        });
         setDeleteModal(false);
         nav("/section");
       } else {

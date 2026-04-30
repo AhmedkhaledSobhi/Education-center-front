@@ -31,7 +31,7 @@ export default function ProfileAccount() {
           phone: phone,
           email: Profile?.email,
           phone_code_id: "996",
-          avatar: Profile?.image_path != "null" ? `http://localhost:5173/api/${Profile?.image_path}` : avatar1,
+          avatar: Profile?.image_path !== null ? `http://localhost:5173/api/${Profile?.image_path}` : avatar1,
         };
       });
     }
@@ -95,7 +95,7 @@ export default function ProfileAccount() {
                             width: "100%",
                             height: "100%",
                             objectFit: "contain",
-                            borderRadius: "50%",
+                            borderRadius: !Profile?.image_path ? "50%" : "15%",
                           }}
                         />
                       </div>

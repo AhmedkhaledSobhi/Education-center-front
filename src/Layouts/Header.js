@@ -44,16 +44,9 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   const sidebarVisibilitytype = useSelector(selectDashboardData);
 
   // _________________________________________________________________________________________________
-  const [userInfo, setUserInfo] = useState();
   const { data: Profile = [], isLoading: profileLoading } = useGetProfile();
+  const userInfo = Profile
 // _________________________________________________________________________________________________
-
-  useEffect(() => {
-    if (Profile && Profile?.id !== userInfo?.id) {
-      setUserInfo(Profile);
-    }
-  }, [Profile]);
-  // }, [localStorage.getItem("authUser")]);
 
   const [search, setSearch] = useState(false);
   const toogleSearch = () => {
@@ -217,7 +210,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                     className="roundedcircle header-profile-user header-profile-user-sm me2"
                     src={
                       userInfo?.image_path
-                        ? userInfo?.image_path
+                        ? `http://localhost:5173/api/${userInfo?.image_path}`
                         : avatar1
                     }
                     alt="Header Avatar"
@@ -279,7 +272,9 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                         fontSize: "10px",
                       }}
                     >
-                      {t("common.Platform")} {" "} {t("Registers.Center_Educations")}
+                      {userInfo?.Center_name?.trim() ? userInfo?.Center_name 
+                        : (t("common.Platform") + " " + t("Registers.Center_Educations"))
+                      }
                     </div>
                   </div>
                 </div>

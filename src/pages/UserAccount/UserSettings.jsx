@@ -17,11 +17,13 @@ import { useGetProfile } from '../../helpers/getAllApiSelect';
 import Alert from '../../Components/Common/Alert';
 import { getAccountType, getGender, getLanguage } from '../../helpers/dataLocal';
 import { getChangedValues, NoChanges } from '../../helpers';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function UserSettings() {
   const { t, i18n } = useTranslation();
   document.title = t("ProfileDropdown.accountSettings");
   const nav = useNavigate();
+  const queryClient = useQueryClient();
   const [profileData, setProfileData] = useState();
   const [initialValues, setInitialValues] = useState({});
   const [loadsave, setLoadSave] = useState(false);
@@ -62,7 +64,7 @@ export default function UserSettings() {
       setProfileData((prev) => {
         return {
           id: Profile?.id,
-          avatar: Profile?.image_path != "null" ? `http://localhost:5173/api/${Profile?.image_path}`: avatar1,
+          avatar: Profile?.image_path !== null ? `http://localhost:5173/api/${Profile?.image_path}`: "",
         };
       });
     }
@@ -126,6 +128,10 @@ export default function UserSettings() {
             toastId: "",
           });
           setLoadSave(false)
+          queryClient.refetchQueries({
+            queryKey: ["profile", values?.id],
+            exact: false,
+          });
         } else{
           toast.error(res?.message, {
             position: "top-center",
